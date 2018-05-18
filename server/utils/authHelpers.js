@@ -4,7 +4,6 @@ const moment = require('moment')
 const config = require('../../config/main')
 const jwt = require('jsonwebtoken')
 const Users = require('../users/')
-
 module.exports = {
   isLoggedIn (req, res, next) {
     let userCandidate

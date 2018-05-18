@@ -1,7 +1,6 @@
 'use strict'
 const moment = require('moment')
 const { transaction } = require('objection')
-
 const {
   User,
   validatePasswordResetToken,
@@ -12,7 +11,6 @@ const {
 } = require('./model')
 
 module.exports = function () {
-  const authHelpers = require('../utils/authHelpers')
   return {
     // verifyResetToken: async function (payload) {
     //   const instance = await validatePasswordResetToken(payload)
@@ -69,6 +67,7 @@ module.exports = function () {
     //   })
     // },
     updatePassword: async function (options, id) {
+      const authHelpers = require('../utils/authHelpers')
       return transaction(User.knex(), async (trx) => {
         const result = await validateUpdatePassword(options)
 
@@ -79,7 +78,6 @@ module.exports = function () {
           })
           .first()
           .throwIfNotFound()
-
         if (!authHelpers.validPassword(result.currentPassword, user.password)) {
           const error = new Error('Incorrect current password')
           error.status = 400
