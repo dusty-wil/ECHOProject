@@ -17,6 +17,9 @@ services:
         container_name: echo_db
         image: 'mysql:5.7'
         #network_mode: host
+        # volumes:
+        #     #- /var/lib/mysql:/var/lib/mysql      # Must be empty for docker-entrypoint-initdb.d loading to work!
+        #     - ./mysql:/docker-entrypoint-initdb.d # The mySQL image looks to this directory and runs any SQL found there
         environment:
             MYSQL_ROOT_PASSWORD: awfulPassword
             MYSQL_USER: dev
