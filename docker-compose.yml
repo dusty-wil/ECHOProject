@@ -1,0 +1,22 @@
+version: '2' #Old school :P
+services:
+    server:
+        container_name: echo_server
+        build: .
+        working_dir: /ECHOProject
+        command: ['/bin/bash', '-c', 'tail -f /dev/null']
+        network_mode: host
+        volumes:
+            - .:/ECHOProject
+            - /ECHOProject/node_modules
+
+    db:
+        container_name: echo_db
+        image: 'mysql:5.7'
+        network_mode: host
+        environment:
+            MYSQL_ROOT_PASSWORD: awfulPassword
+            MYSQL_USER: dev
+            MYSQL_PASSWORD: awfulPassword
+            MYSQL_DATABASE: echo
+        ports: ['3306:3306']

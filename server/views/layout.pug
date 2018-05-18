@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ' crossorigin='anonymous')
+    link(link rel='stylesheet' href='https://cdn.linearicons.com/free/1.0.0/icon-font.min.css')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css')
+    link(link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,700,900')
+
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css' rel='stylesheet')
+
+
+
+    link(rel='manifest' href='/manifest.json')
+
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(name='theme-color' content='#222222')
+    meta(name='csrf' content=csrfToken)
+
+
+    block extra_styles
+
+  body
+    noscript
+      h3= 'This site requires JavaScript.'
+    if messages
+      for message in messages
+        div.alert(class='alert-danger' class='alert-dismissible' role='alert')
+          button.close(type='button' data-dismiss='alert' aria-label='Close')
+            span(aria-hidden='true') &times;
+          span= message
+
+    div(id='app')
+
+    script(src='https://code.jquery.com/jquery-3.1.1.slim.min.js' integrity='sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n' crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js' integrity='sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb' crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js' integrity='sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn' crossorigin='anonymous')
+    script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.5/jquery.jgrowl.min.js')
+    script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js')
+
+    script(type='text/javascript' src='/sw-bootstrap.js')
+
+
+    block content
