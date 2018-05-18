@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+const app = require('../app').app
+const db = require('../db')()
+const server = require('../app').server
+const port = normalizePort(process.env.PORT || '3000')
+const Logger = require('../utils/logger').Logger
+const log = Logger('app:hologram:www')
+
+log.info('Running DB migrations...')
+db.migrate.latest()
+  .then(() => {
+    log.info('Ran migrations')
+    db.seed.run()
+  })
+  .then(() => {
+    log.info('Ran seed scripts')
+  })
+  .then(() => startServer())
+
+
+function startServer () {
+  app.set('port', port)
+  server.listen(port)
+  server.on('error', onError)
+  server.on('listening', onListening)
+}
+
+function normalizePort (value) {
+  let port = parseInt(value, 10)
+
+  if (isNaN(port)) {
+    return value
+  }
+
+  if (port >= 0) {
+    return port
+  }
+
+  throw new Error('Invalid Port!')
+}
+
+function onError (error) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
+
+  let bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
+
+  switch (error.code) {
+    case 'EACCES':
+      log.error(`${bind} requires elevated privileges.`)
+      process.exit(1)
+    case 'EADDRINUSE':
+      log.error(`${bind} is already in use.`)
+      process.exit(1)
+    default:
+      throw error
+  }
+}
+
+function onListening () {
+  const address = server.address()
+  const bind = typeof address === 'string' ? `Pipe ${address}` : `Port ${address.port}`
+  log.info(`Listening on ${bind}`)
+}

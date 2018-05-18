@@ -1,0 +1,13 @@
+{
+  "name": "echoproject",
+  "short_name": "echo",
+  "icons": [{
+    "src": "logo.png",
+    "type": "image/png",
+    "sizes": "500x75"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "display": "standalone",
+  "background_color": "#E3F2FD",
+  "theme_color": "#1976D2"
+}
