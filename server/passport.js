@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy
 const authHelpers = require('./utils/authHelpers')
 const Logger = require('./utils/logger').Logger
-const log = Logger('app:hologram:passport')
+const log = Logger('app:echo:passport')
 const Users = require('./users/')
 
 module.exports = (passport) => {

@@ -2,7 +2,7 @@ const router = require('express').Router()
 const config = require('../../config/main')
 const isLoggedIn = require('../utils/authHelpers').isLoggedIn
 const Logger = require('../utils/logger').Logger
-const log = Logger('app:hologram:api')
+const log = Logger('app:echo:api')
 
 // Modules
 const modules = [
