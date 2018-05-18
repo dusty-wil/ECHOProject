@@ -4,7 +4,7 @@ const db = require('../db')()
 const server = require('../app').server
 const port = normalizePort(process.env.PORT || '3000')
 const Logger = require('../utils/logger').Logger
-const log = Logger('app:hologram:www')
+const log = Logger('app:echo:www')
 
 log.info('Running DB migrations...')
 db.migrate.latest()
@@ -20,7 +20,7 @@ db.migrate.latest()
 
 function startServer () {
   app.set('port', port)
-  server.listen(port)
+  server.listen(port, '0.0.0.0')
   server.on('error', onError)
   server.on('listening', onListening)
 }

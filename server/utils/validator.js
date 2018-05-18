@@ -1,6 +1,6 @@
 const validateSchema = require('jsonschema').validate
 const Logger = require('./logger').Logger
-const log = Logger('app:hologram:validator')
+const log = Logger('app:echo:validator')
 
 const validate = (payload, schema) => (
   new Promise(function (resolve) {

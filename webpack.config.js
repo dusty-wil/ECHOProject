@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -8,6 +9,7 @@ console.log('Environment:', process.env.NODE_ENV)
 const DIST_DIR = 'server/public'
 
 const VENDOR_LIBS = [
+  'axios',
   'moment',
   'vue',
   'vue-router',
@@ -78,6 +80,7 @@ module.exports = {
   },
   devtool: '#cheap-module-eval-source-map',
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)

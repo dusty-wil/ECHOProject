@@ -9,14 +9,18 @@ services:
         volumes:
             - .:/ECHOProject
             - /ECHOProject/node_modules
+        # ports:
+        #     - 3000:3000
+        #     - 8888:8888
 
     db:
         container_name: echo_db
         image: 'mysql:5.7'
-        network_mode: host
+        #network_mode: host
         environment:
             MYSQL_ROOT_PASSWORD: awfulPassword
             MYSQL_USER: dev
             MYSQL_PASSWORD: awfulPassword
             MYSQL_DATABASE: echo
-        ports: ['3306:3306']
+        ports:
+            - 3306:3306
