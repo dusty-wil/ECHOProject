@@ -2,10 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="wrapper">
-
-        <router-link to="/">
-          <img src="../../../../shared/src/assets/img/logo.png" alt="ECHO">
-        </router-link>
         <div class="loginWrapper">
           <h2>Login</h2>
           <form action='/login' method="POST">
@@ -29,7 +25,6 @@
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </template>

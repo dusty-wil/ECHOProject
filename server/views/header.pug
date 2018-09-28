@@ -1,0 +1,19 @@
+div(id='header')
+    h1  ECHO Project 
+    nav(class='navbar')
+        ul(class='nav-container')
+            li 
+                a(href='/#/home') home
+            li 
+                a(href='/#/about') about
+            li 
+                a(href='/#/login') login
+            li
+                Search stories by
+                select(class='input-sel' id='search-sel')
+                    option(value='theme') Theme
+                    option(value='category') Category
+                    option(value='period') Period
+                    option(value='author') Author
+                input(type='text' class='input-txt' id='search-txt' placeholder='test')
+                button(class='input-btn' id='search-go') go
