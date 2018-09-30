@@ -1,12 +1,12 @@
 <template>
-    <div class="searchResult">
+    <li class="searchResult">
         <h4>{{SearchResult.title}}</h4>
         <p>
             {{SearchResult.author}} <br/>
             {{SearchResult.id}} <br/>
             {{SearchResult.desc}} 
         </p>
-    </div>
+    </li>
 </template>
 <script>
 export default {

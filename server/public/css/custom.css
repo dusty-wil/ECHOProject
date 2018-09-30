@@ -6,20 +6,17 @@
 
 body
 {
-    background-color: #2C2C2C;
+    background-color: #D31245;
     color: #EFEFEF;
 }
 
 .body-container
 {
-    min-height: 100%;
-    margin-bottom: -80px;
-}
-
-.body-container:after
-{
-    content: "";
-    display: block;
+    background-color: #2C2C2C;
+    color: #EFEFEF;
+    padding: 50px 0px;
+    width: 100%;
+    min-height: 500px;
 }
 
 #header
@@ -40,12 +37,12 @@ body
     background-color: #A40E36;
     text-transform: uppercase;
     font-family: sans-serif;
-    margin-bottom: 20px;
 }
 
 .nav-container
 {
     list-style-type: none;
+    margin-bottom: 0px;
 }
 
 .nav-container li
@@ -59,16 +56,12 @@ body
     color: #EFEFEF;
 }
 
-
-#footer, .body-container:after
-{
-    height: 200px;
-}
-
 #footer
 {
+    height: 100px;
     padding: 20px;
     background-color: #D31245;
+    color: #EFEFEF;
     width: 100%;
     display: block;
     margin-top: 20px;
