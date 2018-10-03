@@ -5,7 +5,7 @@ const ids = [1]
 const authHelpers = require('../../utils/authHelpers')
 exports.seed = function (knex, Promise) {
   return knex('periodBridge')
-    .whereIn('id', ids)
+    .whereIn('period_id', ids)
     .then((periodBridge) => {
       if (periodBridge.length === ids.length) {
         return Promise.resolve()

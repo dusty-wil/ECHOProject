@@ -14,7 +14,6 @@ exports.seed = function (knex, Promise) {
       return knex('stories')
         .insert([
             {
-                id: 1,
                 author_id: 1,
                 approver_id: 1,
                 approved: 1,
@@ -23,7 +22,7 @@ exports.seed = function (knex, Promise) {
                 county: 'allegheny county',
                 storage_path: '',
                 youtube_path: '',
-                publish_date: ''
+                publish_date: '2018-10-01 00:00:00'
             }
         ])
     })

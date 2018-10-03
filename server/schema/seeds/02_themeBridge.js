@@ -5,7 +5,7 @@ const ids = [1]
 const authHelpers = require('../../utils/authHelpers')
 exports.seed = function (knex, Promise) {
   return knex('themeBridge')
-    .whereIn('id', ids)
+    .whereIn('theme_id', ids)
     .then((themeBridge) => {
       if (themeBridge.length === ids.length) {
         return Promise.resolve()

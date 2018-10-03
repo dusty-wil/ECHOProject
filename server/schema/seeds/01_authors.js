@@ -14,7 +14,6 @@ exports.seed = function (knex, Promise) {
       return knex('authors')
         .insert([
             {
-                id: 1,
                 user_id: 2,
                 calu_id: '112233abc',
                 phone: '1234567890',

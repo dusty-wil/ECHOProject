@@ -22,7 +22,10 @@ class Story extends BaseModel
             required: ['id', 'author_id', 'title', 'description'],
 
             properties: {
-                id: { type: 'integer' },
+                id: { 
+                    type: 'integer',
+                    primaryKey: true
+                },
                 author_id: { type: 'integer' },
                 approver_id: { type: 'integer' },
                 approved: { type: 'integer' },

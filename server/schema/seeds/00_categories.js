@@ -14,7 +14,6 @@ exports.seed = function (knex, Promise) {
       return knex('categories')
         .insert([
             {
-                id: 1,
                 name: 'category 1',
                 description: 'description of category 1',
             }

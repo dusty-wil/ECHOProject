@@ -22,7 +22,10 @@ class Author extends BaseModel
             required: ['id', 'user_id'],
             
             properties: {
-                id: { type: 'integer' },
+                id: { 
+                    type: 'integer',
+                    primaryKey: true
+                },
                 user_id: { type: 'integer' },
                 calu_id: { type: 'string' },
                 phone: { type: 'string' },

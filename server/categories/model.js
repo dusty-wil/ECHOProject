@@ -22,7 +22,10 @@ class Category extends BaseModel
             required: ['id', 'name', 'description'],
 
             properties: {
-                id: { type: 'integer' },
+                id: { 
+                    type: 'integer',
+                    primaryKey: true
+                },
                 name: { type: 'string' },
                 description: { type: 'string' },
                 created_at: { type: 'string' },

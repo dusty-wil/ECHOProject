@@ -11,10 +11,10 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'hash',
   routes: [
-    {path: '/home',  alias: '/', component: Home},
-    {path: '/login',             component: LoginPage},
-    {path: '/about',             component: About},
-    {path: '/results',           component: Results},
+    {path: '/home', alias: '/', component: Home},
+    {path: '/login', component: LoginPage},
+    {path: '/about', component: About},
+    {path: '/results', component: Results},
     {path: '/*', name: 'defaultRoute'}
   ]
 })
