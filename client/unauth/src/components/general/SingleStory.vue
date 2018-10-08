@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <h2 class="pageTitle">Featured Video</h2>
-            <Story :Story="featuredStory"/>
+            <Story :Story="story"/>
         </div>
     </div>
 </template>
@@ -14,7 +14,21 @@ export default {
   },
   data: function () { 
     return {
-      featuredStory: getFeaturedStory()
+      story: null
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
+  methods: {
+    fetchData () {
+      this.story = null
+      console.log('this.$route.params.id')
+      console.log(this.$route.params.id)
+      this.story = getFeaturedStory()    
     }
   }
 
