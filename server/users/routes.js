@@ -20,4 +20,10 @@ module.exports = function (router) {
     User.get(req.user.id)
       .then(user => res.json(user)).catch(done)
   })
+    
+  router.get('/users/byId', function (req, res, done) {
+    User.get(req.query.id)
+      .then(user => res.json(user))
+      .catch(done)
+  })
 }

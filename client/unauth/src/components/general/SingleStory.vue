@@ -1,13 +1,15 @@
 <template>
     <div class="container">
         <div class="row">
-            <h2 class="pageTitle">Featured Video</h2>
+            <h2 class="pageTitle">Selected Story</h2>
             <Story :Story="story"/>
         </div>
     </div>
 </template>
 <script>
 import Story from './Story.vue'
+import api from '../../../../api/main'
+
 export default {
   components: {
     Story: Story
@@ -26,8 +28,17 @@ export default {
   methods: {
     fetchData () {
       this.story = null
-      console.log('this.$route.params.id')
-      console.log(this.$route.params.id)
+      
+      console.log('api')
+
+      console.log(api)
+  
+      console.log('api.stories.getStoryById')
+      
+      var aStory = api.stories.getStoryById(this.$route.params.id)
+
+      console.log(aStory)
+
       this.story = getFeaturedStory()    
     }
   }

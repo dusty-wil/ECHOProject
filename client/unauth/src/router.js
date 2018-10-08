@@ -6,7 +6,7 @@ import Home from './components/general/Home.vue'
 import About from './components/general/About.vue'
 import Results from './components/general/ResultsTest.vue'
 import StoryResult from './components/general/SingleStory.vue'
-import StoryResults from './components/general/ManyStories'
+import StoryResults from './components/general/ManyStories.vue'
 
 Vue.use(VueRouter)
 
@@ -17,7 +17,8 @@ const router = new VueRouter({
     {path: '/login', component: LoginPage},
     {path: '/about', component: About},
     {path: '/results', component: Results},
-    {path: '/stories/byId/:id', component: StoryResult}, 
+
+    {path: '/story/:id', component: StoryResult}, 
     {path: '/*', name: 'defaultRoute'}
   ]
 })

@@ -38,8 +38,6 @@ export default {
     }
   },
   mounted () {
-    console.log('mounted')
-    console.log(this.Story)
     loadYTPlayer(this.Story.youtube_id)
   }
 }
