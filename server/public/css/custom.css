@@ -28,7 +28,15 @@ body
 #header h1
 {
     margin: 0;
-    padding: 20px;
+    padding: 40px 10px 10px 25px;
+    font-size: 60px;
+}
+
+#header h4
+{
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0px 10px 10px 25px;
 }
 
 .pageTitle
@@ -48,17 +56,26 @@ body
 {
     list-style-type: none;
     margin-bottom: 0px;
+    vertical-align: middle;
 }
 
 .navContainer li
 {
     display: inline-block;
     padding: 5px 10px;
+    vertical-align: middle;
 }
 
 .navContainer li a
 {
     color: #EFEFEF;
+}
+
+.loginNav
+{
+    float: right;
+    margin-right: 25px;
+    margin-top: 5px;
 }
 
 .inputSel
@@ -116,14 +133,16 @@ body
 {
     display: inline-block;
     width: 300px;
-    height: 300px;
+    height: 350px;
     margin: 20px;
     background-color: #A40E36;
+    vertical-align: top;
 }
 
 .searchResult img
 {
-    width: 100%;
+    width: 300px;
+    height: 168px;
     margin-bottom: 10px;
 }
 

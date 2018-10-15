@@ -4,8 +4,7 @@
         <h4>{{Story.title}}</h4>
         <p>
             {{Story.author.name}} <br/>
-            {{Story.youtube_id}} <br/>
-            {{Story.desc}}
+            {{Story.desc}} <br/>
             Themes: 
             <ul class="themeTagList">
                 <ThemeTag v-for="theme in Story.themes" :Theme="theme"/>

@@ -23,10 +23,10 @@ export default {
 function getFeaturedStory () {
   return {
     id: 1,
-    youtube_id: 'sIjt6sV55iI',
-    title: 'title1',
-    desc: 'desc1',
-    author: {id: 1, name: 'author1'},
+    youtube_id: '_t0wB8Jb91Q',
+    title: 'Living Labor Free',
+    desc: 'this is a placeholder description of the Living Labor Free story',
+    author: {id: 1, name: 'test author 1'},
     themes: [
       {id: 1, name: 'theme1'},
       {id: 2, name: 'theme2'},

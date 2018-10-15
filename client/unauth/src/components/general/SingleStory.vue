@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="container">
         <div class="row">
             <h2 class="pageTitle">Selected Story</h2>
@@ -48,7 +48,7 @@ export default {
 function getFeaturedStory () {
   return {
     id: 1,
-    youtube_id: 'sIjt6sV55iI',
+    youtube_id: '_t0wB8Jb91Q',
     title: 'title1',
     desc: 'desc1',
     author: {id: 1, name: 'author1'},

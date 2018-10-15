@@ -4,7 +4,6 @@
         <h4>{{SearchResult.title}}</h4>
         <p>
             {{SearchResult.author.name}} <br/>
-            {{SearchResult.youtube_id}} <br/>
             {{SearchResult.desc}}
         </p>
     </li>
