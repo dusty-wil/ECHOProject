@@ -1,14 +1,15 @@
 <template>
-    <li class="categoryTag">
-       {{Category.name}} 
+    <li class="themeTag">
+       {{Theme.name}} 
     </li>
 </template>
 <script>
 export default {
   props: {
-    Category: {
+    Theme: {
       type: Object
     }
   }
 }
 </script>
+

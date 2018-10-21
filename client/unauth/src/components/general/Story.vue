@@ -5,15 +5,15 @@
         <p>
             {{Story.author.name}} <br/>
             {{Story.desc}} <br/>
-            Themes: 
+            <span class="tag-lbl">Themes:</span> 
             <ul class="themeTagList">
                 <ThemeTag v-for="theme in Story.themes" :Theme="theme"/>
             </ul>
-            Categories: 
+            <span class="tag-lbl">Categories:</span> 
             <ul class="categoryTagList">
                 <CategoryTag v-for="category in Story.categories" :Category="category"/>
             </ul>
-            Periods: 
+            <span class="tag-lbl">Periods:</span> 
             <ul class="periodTagList">
                 <PeriodTag v-for="period in Story.periods" :Period="period"/>
             </ul>
@@ -21,15 +21,19 @@
     </div>
 </template>
 <script>
-import ThemeTag from './ThemeTag.vue'
-import CategoryTag from './CategoryTag.vue'
-import PeriodTag from './PeriodTag.vue'
+import ThemeTag from '../tag/ThemeTag.vue'
+import CategoryTag from '../tag/CategoryTag.vue'
+import PeriodTag from '../tag/PeriodTag.vue'
+import NameTag from '../tag/NameTag.vue'
+import SubjectTag from '../tag/SubjectTag.vue'
 
 export default {
   components: {
     ThemeTag: ThemeTag,
     CategoryTag: CategoryTag,
-    PeriodTag: PeriodTag
+    PeriodTag: PeriodTag,
+    NameTag: NameTag,
+    SubjectTag: SubjectTag
   },
   props: {
     Story: {

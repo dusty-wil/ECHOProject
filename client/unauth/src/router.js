@@ -17,7 +17,6 @@ const router = new VueRouter({
     {path: '/login', component: LoginPage},
     {path: '/about', component: About},
     {path: '/results', component: Results},
-
     {path: '/story/:id', component: StoryResult}, 
     {path: '/*', name: 'defaultRoute'}
   ]

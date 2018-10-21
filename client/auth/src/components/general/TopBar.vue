@@ -1,37 +1,12 @@
 <template>
-	<!-- Navigation -->
 	<section>
-		<nav class="navbar navbar-fixed-top navbar-toggleable">
-			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<router-link class="navbar-brand" to="/">
-				<span class="logo">
-					<img src="../../../../shared/src/assets/img/logo.png" alt="Echo">
-				</span>
-			</router-link>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav mr-auto">
-				</ul>
-			</div>
+		<nav class="navbar admin-navbar">
+			<ul class="navContainer">
+                <li><router-link to="/AddEditName">Add/Edit Names</router-link></li>
+                <li><router-link to="/AddEditSubject">Add/Edit Subjects</router-link></li>
+                <li><router-link to="/AddEditTheme">Add/Edit Themes</router-link></li>
+                <li><router-link to="/AddEditStory">Add/Edit Stories</router-link></li>
+            </ul>
 		</nav>
 	</section>
-
 </template>
-
-
-<script>
-	import { mapMutations } from 'vuex'
-
-	export default {
-	  methods: mapMutations([ 'TOGGLE_FLAG' ]),
-	  mounted () {
-	    $('[data-toggle="tooltip"]').tooltip()
-	  }
-	}
-</script>
-
-
-
-<style scoped>
-</style>

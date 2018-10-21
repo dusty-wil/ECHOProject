@@ -4,12 +4,12 @@ const BaseModel = require('../baseModel')
 const schemas = {
 }
 
-class Story extends BaseModel 
+class Subject extends BaseModel 
 {
     // Table name is the only required property.
     static get tableName () 
     {
-        return 'stories'
+        return 'subjects'
     }
 
     // Optional JSON schema. This is not the database schema! Nothing is generated
@@ -19,48 +19,33 @@ class Story extends BaseModel
     {
         return {
             type: 'object',
-            required: ['id', 'author_id', 'title', 'description'],
+            required: ['id', 'name', 'description'],
 
             properties: {
                 id: { 
                     type: 'integer',
                     primaryKey: true
                 },
-                author_id: { type: 'integer' },
-                approver_id: { type: 'integer' },
-                approved: { type: 'integer' },
-                title: { type: 'string' },
+                name: { type: 'string' },
                 description: { type: 'string' },
-                county: { type: 'string' },
-                storage_path: { type: 'string' },
-                youtube_path: { type: 'string' },
-                publish_date: { type: 'string' },
                 created_at: { type: 'string' },
-                updated_at: { type: 'string' },
-                featured_rotation: { type: 'integer' }
+                updated_at: { type: 'string' }
             }
         }
     }
 
-    static get publicColumns () {
+    static get publicColumns () 
+    {
         return [
             'id',
-            'author_id',
-            'approver_id',
-            'approved',
-            'title',
+            'name',
             'description',
-            'county',
-            'storage_path',
-            'youtube_path',
-            'publish_date',
             'created_at',
-            'updated_at',
-            'featured_rotation'
+            'updated_at'
         ]
     }
 }
 
 module.exports = {
-  Story
+  Subject
 }
