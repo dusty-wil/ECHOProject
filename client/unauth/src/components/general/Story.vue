@@ -7,15 +7,15 @@
             {{Story.desc}} <br/>
             <span class="tag-lbl">Themes:</span> 
             <ul class="themeTagList">
-                <ThemeTag v-for="theme in Story.themes" :Theme="theme"/>
+                <ThemeTag v-for="theme in Story.themes" :Theme="theme" :key="theme.id"/>
             </ul>
             <span class="tag-lbl">Categories:</span> 
             <ul class="categoryTagList">
-                <CategoryTag v-for="category in Story.categories" :Category="category"/>
+                <CategoryTag v-for="category in Story.categories" :Category="category" :key="category.id"/>
             </ul>
             <span class="tag-lbl">Periods:</span> 
             <ul class="periodTagList">
-                <PeriodTag v-for="period in Story.periods" :Period="period"/>
+                <PeriodTag v-for="period in Story.periods" :Period="period" :key="period.id"/>
             </ul>
         </p>
     </div>
@@ -67,12 +67,12 @@ function loadYTVideo (youtubeId) {
     height: '490',
     width: '880',
     videoId: youtubeId,
-    playerVars: { 
-      controls: 1, 
-      showinfo: 0, 
-      rel: 0, 
-      showsearch: 0, 
-      iv_load_policy: 3 
+    playerVars: {
+      controls: 1,
+      showinfo: 0,
+      rel: 0,
+      showsearch: 0,
+      iv_load_policy: 3
     },
     events: {
       'onStateChange': onPlayerStateChange,

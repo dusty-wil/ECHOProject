@@ -4,7 +4,7 @@
             <div class="bodyWrapper">
                 <h2>Search Results</h2>
                 <ul class="searchResults">
-                    <SearchResult v-for="result in results" :SearchResult="result"/>
+                    <SearchResult v-for="result in results" :StorySearchResult="result"/>
                 </ul>
             </div>
         </div>

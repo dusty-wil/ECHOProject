@@ -1,7 +1,7 @@
 <template>
-    <li class="periodTag">
-       {{Period.name}} 
-    </li>
+    <router-link tag="li" :to="'/story/search/byPeriod/' + Period.id" class="periodTag">
+       <a>{{Period.name}}</a>
+    </router-link>
 </template>
 <script>
 export default {

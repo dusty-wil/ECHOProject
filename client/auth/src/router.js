@@ -23,9 +23,9 @@ const router = new VueRouter({
     {name: 'Edit Subject', path: '/AddEditSubject/:id', component: AddEditSubjects},
     {name: 'Add Subject', path: '/AddEditTheme', component: AddEditThemes},
     {name: 'Edit Subject', path: '/AddEditTheme/:id', component: AddEditThemes},
-    {name: 'Add Story', path: '/AddEditStory', component: AddEditStory},
-    {name: 'Edit Story', path: '/AddEditStory/:id', component: AddEditStory},
-    {name: 'defaultRoute', path: '/*'},
+    {name: 'Add Story', path: '/AddEditStory', component: AddEditStories},
+    {name: 'Edit Story', path: '/AddEditStory/:id', component: AddEditStories},
+    {name: 'defaultRoute', path: '/*'}
   ]
 })
 

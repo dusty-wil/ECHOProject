@@ -4,9 +4,8 @@ import VueRouter from 'vue-router'
 import LoginPage from './components/user/LoginPage.vue'
 import Home from './components/general/Home.vue'
 import About from './components/general/About.vue'
-import Results from './components/general/ResultsTest.vue'
-import StoryResult from './components/general/SingleStory.vue'
-import StoryResults from './components/general/ManyStories.vue'
+import SingleStoryResult from './components/search/SingleStory.vue'
+import ManyStoryResults from './components/search/ManyStories.vue'
 
 Vue.use(VueRouter)
 
@@ -16,8 +15,18 @@ const router = new VueRouter({
     {path: '/home', alias: '/', component: Home},
     {path: '/login', component: LoginPage},
     {path: '/about', component: About},
-    {path: '/results', component: Results},
-    {path: '/story/:id', component: StoryResult}, 
+    // search endpoints
+    {path: '/story/search/byCategory/:id', component: ManyStoryResults},
+    {path: '/story/search/byDate/:id', component: ManyStoryResults},
+    {path: '/story/search/byName/:id', component: ManyStoryResults},
+    {path: '/story/search/byPeriod/:id', component: ManyStoryResults},
+    {path: '/story/search/bySubject/:id', component: ManyStoryResults},
+    {path: '/story/search/byTheme/:id', component: ManyStoryResults},
+    {path: '/story/search/byAuthor/:name', component: ManyStoryResults},
+    {path: '/story/search/:searchTerm/matching/:searchValue', component: ManyStoryResults},
+    // single story path
+    {path: '/story/byId/:id', component: SingleStoryResult},
+    // default
     {path: '/*', name: 'defaultRoute'}
   ]
 })

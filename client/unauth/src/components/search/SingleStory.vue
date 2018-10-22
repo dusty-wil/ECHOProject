@@ -1,34 +1,45 @@
-<template>
+    <template>
     <div class="container">
         <div class="row">
-            <h2 class="pageTitle">Featured Video</h2>
-            <Story :Story="featuredStory"/>
+            <h2 class="pageTitle">{{story.title}}</h2>
+            <Story :Story="story"/>
         </div>
     </div>
 </template>
 <script>
-import Story from './Story.vue'
+import Story from '../general/Story.vue'
+
 export default {
   components: {
     Story: Story
   },
   data: function () {
     return {
-      featuredStory: getFeaturedStory()
+      story: null
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
+  methods: {
+    fetchData () {
+      this.story = null
+      this.story = getStoryById(this.$route.params.id)
     }
   }
 
 }
 
-function getFeaturedStory () {
-  return getRandomStory()
-}
-
-function getRandomStory () {
+function getStoryById (id) {
   var stories = getAllStories()
-  var len = stories.length
-  var rand = Math.floor(Math.random() * Math.floor(len))
-  return stories[rand]
+  for (var story of stories) {
+    if (story.id == id) {
+      return story
+    }
+  }
 }
 
 // temporary function to emulate getting data from the database

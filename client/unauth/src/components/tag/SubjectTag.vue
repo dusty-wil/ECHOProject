@@ -1,15 +1,14 @@
 <template>
-    <li class="themeTag">
-       {{Theme.name}} 
-    </li>
+    <router-link tag="li" :to="'/story/search/bySubject/' + Subject.id" class="subjectTag">
+       <a>{{Subject.name}}</a>
+    </router-link>
 </template>
 <script>
 export default {
   props: {
-    Theme: {
+    Subject: {
       type: Object
     }
   }
 }
 </script>
-

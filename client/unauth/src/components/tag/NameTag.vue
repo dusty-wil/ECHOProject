@@ -1,12 +1,12 @@
 <template>
-    <li class="themeTag">
-       {{Theme.name}} 
-    </li>
+    <router-link tag="li" :to="'/story/search/byName/' + Name.id" class="nameTag">
+       <a>{{Name.name}}</a>
+    </router-link>
 </template>
 <script>
 export default {
   props: {
-    Theme: {
+    Name: {
       type: Object
     }
   }

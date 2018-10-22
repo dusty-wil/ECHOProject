@@ -1,7 +1,7 @@
 <template>
-    <li class="themeTag">
-       {{Theme.name}} 
-    </li>
+    <router-link tag="li" :to="'/story/search/byTheme/' + Theme.id" class="themeTag">
+       <a>{{Theme.name}}</a>
+    </router-link>
 </template>
 <script>
 export default {
@@ -12,4 +12,3 @@ export default {
   }
 }
 </script>
-
