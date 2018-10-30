@@ -5,10 +5,12 @@ import VueRouter from 'vue-router'
 import Dashboard from './components/general/Dashboard.vue'
 import ProfilePage from './components/user/ProfilePage.vue'
 
-import AddEditNames from './components/AddEditName.vue'
-import AddEditSubjects from './components/AddEditSubject.vue'
-import AddEditThemes from './components/AddEditTheme.vue'
-import AddEditStories from './components/AddEditStory.vue'
+import AddEditNames from './components/general/AddEditName.vue'
+import AddEditSubjects from './components/general/AddEditSubject.vue'
+import AddEditThemes from './components/general/AddEditTheme.vue'
+import AddEditPeriods from './components/general/AddEditPeriod.vue'
+import AddEditCategories from './components/general/AddEditCategory.vue'
+import AddEditStories from './components/general/AddEditStory.vue'
 
 Vue.use(VueRouter)
 
@@ -21,8 +23,12 @@ const router = new VueRouter({
     {name: 'Edit Name', path: '/AddEditName/:id', component: AddEditNames},
     {name: 'Add Subject', path: '/AddEditSubject', component: AddEditSubjects},
     {name: 'Edit Subject', path: '/AddEditSubject/:id', component: AddEditSubjects},
-    {name: 'Add Subject', path: '/AddEditTheme', component: AddEditThemes},
-    {name: 'Edit Subject', path: '/AddEditTheme/:id', component: AddEditThemes},
+    {name: 'Add Theme', path: '/AddEditTheme', component: AddEditThemes},
+    {name: 'Edit Theme', path: '/AddEditTheme/:id', component: AddEditThemes},
+    {name: 'Add Category', path: '/AddEditCategory', component: AddEditCategories},
+    {name: 'Edit Category', path: '/AddEditCategory/:id', component: AddEditCategories},
+    {name: 'Add Period', path: '/AddEditPeriod', component: AddEditPeriods},
+    {name: 'Edit Period', path: '/AddEditPeriod/:id', component: AddEditPeriods},
     {name: 'Add Story', path: '/AddEditStory', component: AddEditStories},
     {name: 'Edit Story', path: '/AddEditStory/:id', component: AddEditStories},
     {name: 'defaultRoute', path: '/*'}

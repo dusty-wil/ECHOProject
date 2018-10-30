@@ -18,6 +18,9 @@ const getters = {
     } else {
       return `${state.currentUser.username}`
     }
+  },
+  testGetter: state => {
+    return 'this is a test'
   }
 }
 

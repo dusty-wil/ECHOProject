@@ -1,11 +1,11 @@
 const controller = require('./controller')
-const Period = controller()
+const Name = controller()
 
 module.exports = function (router) 
 {
-    router.get('/periods/byId', function (req, res, done) {
-        Period.get(req.query.id)
-            .then(period => res.json(period))
+    router.get('/names/byId', function (req, res, done) {
+        Name.get(req.query.id)
+            .then(name => res.json(name))
             .catch(done)
     })
 }

@@ -1,8 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            
-            <h2 class="pageTitle">Add/Edit Name</h2>
+            <h2 class="pageTitle">Add/Edit Period</h2>
             <input/>
         </div>
     </div>

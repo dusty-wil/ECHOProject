@@ -2,6 +2,41 @@ const validator = require('../utils/validator')
 const BaseModel = require('../baseModel')
 
 const schemas = {
+  updateStory: {
+    id: '/updateStory',
+    type: 'object',
+    properties: {
+      'author_id': { type: 'integer' },
+      'approver_id': { type: 'integer' },
+      'approved': { type: 'integer' },
+      'title': { type: 'string' },
+      'description': { type: 'string' },
+      'storage_path': { type: 'string' },
+      'youtube_path': { type: 'string' },
+      'publish_date': { type: 'string' },
+      'updated_at': { type: 'string' },
+      'featured_rotation': { type: 'integer' }
+    },
+    required: ['author_id', 'title', 'description']
+  },
+  createStory: {
+    id: '/createStory',
+    type: 'object',
+    properties: {
+      'author_id': { type: 'integer' },
+      'approver_id': { type: 'integer' },
+      'approved': { type: 'integer' },
+      'title': { type: 'string' },
+      'description': { type: 'string' },
+      'storage_path': { type: 'string' },
+      'youtube_path': { type: 'string' },
+      'publish_date': { type: 'string' },
+      'created_at': { type: 'string' },
+      'updated_at': { type: 'string' },
+      'featured_rotation': { type: 'integer' }
+    },
+    required: ['author_id', 'title', 'description']
+  }
 }
 
 class Story extends BaseModel 
@@ -31,7 +66,6 @@ class Story extends BaseModel
                 approved: { type: 'integer' },
                 title: { type: 'string' },
                 description: { type: 'string' },
-                county: { type: 'string' },
                 storage_path: { type: 'string' },
                 youtube_path: { type: 'string' },
                 publish_date: { type: 'string' },
@@ -50,7 +84,6 @@ class Story extends BaseModel
             'approved',
             'title',
             'description',
-            'county',
             'storage_path',
             'youtube_path',
             'publish_date',
@@ -62,5 +95,7 @@ class Story extends BaseModel
 }
 
 module.exports = {
-  Story
+  Story,
+  validateUpdateStory: payload => validator.validate(payload, schemas.updateStory),
+  validateCreateStory: payload => validator.validate(payload, schemas.createStory)
 }

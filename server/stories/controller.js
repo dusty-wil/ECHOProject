@@ -1,6 +1,10 @@
+'use strict'
 const moment = require('moment')
 const { transaction } = require('objection')
-const { Story } = require('./model')
+const { 
+  Story,
+  validateUpdateStory
+} = require('./model')
 
 module.exports = function () {
   return {
@@ -10,6 +14,28 @@ module.exports = function () {
         .select(Story.publicColumns)
         .first()
         .throwIfNotFound()       
-    }    
+    },    
+    
+    updateStory: async function (payload) {
+      console.log('landed in updateStory')
+      console.log(payload)
+
+      // const updateInstance = await validateUpdateStory(payload)
+     
+      // console.log(updateInstance)
+
+      return Story.query()
+        .patchAndFetchById( 
+          payload.id, 
+          {
+            title: payload.title,
+            author_id: payload.author_id,
+            description: payload.description
+          }
+        )
+        // .returning(Story.publicColumns)
+        // .select(Story.publicColumns)
+        .throwIfNotFound()
+    },
   }
 }
