@@ -35,11 +35,13 @@ export default {
     NameTag: NameTag,
     SubjectTag: SubjectTag
   },
+
   props: {
     Story: {
       type: Object
     }
   },
+
   mounted () {
     loadYTPlayer(this.Story.youtube_id)
   }

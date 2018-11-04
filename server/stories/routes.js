@@ -5,7 +5,7 @@ const log = Logger('app:echo:api')
 
 module.exports = function (router) {
   router.put('/stories/update', function (req, res, done) {
-    Story.updateStory(req.body)
+    Story.update(req.body)
       .then(function (story) {
         res.json(story)
       }).catch(done)

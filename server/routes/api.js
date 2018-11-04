@@ -7,7 +7,12 @@ const log = Logger('app:echo:api')
 // Modules
 const modules = [
   'users',
-  'stories'
+  'stories',
+  'themes',
+  'subjects',
+  'categories',
+  'names',
+  'periods'
 ]
 
 module.exports = function (app, passport) {

@@ -13,10 +13,10 @@ module.exports = function () {
         .where({ id })
         .select(Story.publicColumns)
         .first()
-        .throwIfNotFound()       
+        .throwIfNotFound() 
     },    
     
-    updateStory: async function (payload) {
+    update: async function (payload) {
       console.log('landed in updateStory')
       console.log(payload)
 
