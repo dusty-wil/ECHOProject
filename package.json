@@ -3,14 +3,13 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "start": "nodemon ./server/bin/www --exec 'npm run lint && node'",
+        "start": "nodemon ./server/bin/www --exec 'node'",
         "deploy": "cross-env NODE_ENV=production node ./server/bin/www",
         "webpack": "cross-env NODE_ENV=development webpack --progress --watch",
         "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
         "test:vue": "cross-env NODE_ENV=testing mocha-webpack --webpack-config ./webpack.config.js client/auth/src/components/test/*.vuespec.js --require .setup.js",
         "test:client": "cross-env NODE_ENV=testing mocha -c --require babel-polyfill --compilers js:babel-register ./client/**/*.spec.js",
-        "test:server": "cross-env NODE_ENV=testing mocha -c ./server/**/*.spec.js",
-        "lint": "eslint --fix ./**/*.js"
+        "test:server": "cross-env NODE_ENV=testing mocha -c ./server/**/*.spec.js"
     },
     "dependencies": {
         "axios": "^0.18.0",

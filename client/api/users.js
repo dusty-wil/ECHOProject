@@ -12,5 +12,8 @@ export default (reqInstance) => ({
   updateProfile (payload) {
     return reqInstance.put('users/me/profile', payload)
       .then(res => res.data)
+  },
+  logout () {
+      return reqInstance.get('logout')
   }
 })

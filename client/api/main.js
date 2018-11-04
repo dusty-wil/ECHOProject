@@ -3,6 +3,7 @@ import axios from 'axios'
 import config from '../auth/src/clientConfig/main'
 import users from './users'
 import stories from './stories'
+import categories from './categories'
 
 const reqInstance = axios.create({
   baseURL: `api/${config.api_version}/`,
@@ -11,5 +12,6 @@ const reqInstance = axios.create({
 
 export default {
   users: users(reqInstance),
-  stories: stories(reqInstance)
+  stories: stories(reqInstance),
+  categories: categories(reqInstance)
 }

@@ -7,6 +7,7 @@ exports.seed = function (knex, Promise) {
   return knex('categoryBridge')
     .whereIn('category_id', ids)
     .then((categoryBridge) => {
+        return Promise.resolve()
       if (categoryBridge.length === ids.length) {
         return Promise.resolve()
       }

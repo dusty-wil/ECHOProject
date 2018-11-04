@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = {
   message: 'TEST ENVIRONMENT',
@@ -17,4 +17,4 @@ module.exports = {
     host: process.env.MYSQL_HOST || 'localhost',
     port: process.env.DB_PORT || '3306'
   }
-}
+};

@@ -2,11 +2,16 @@
 	<section>
 		<nav class="navbar admin-navbar">
 			<ul class="navContainer">
-                <li><router-link to="/AddEditName">Add/Edit Names</router-link></li>
-                <li><router-link to="/AddEditSubject">Add/Edit Subjects</router-link></li>
-                <li><router-link to="/AddEditTheme">Add/Edit Themes</router-link></li>
-                <li><router-link to="/AddEditStory">Add/Edit Stories</router-link></li>
+                <li><h4 v-on:click='logout()'>Logout</h4></li>
             </ul>
 		</nav>
 	</section>
 </template>
+<script>
+import {mapActions} from 'vuex'
+export default {
+  name: 'NavBar',
+  data: () => ({}),
+  methods: mapActions(['logout'])
+}
+</script>

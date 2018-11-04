@@ -1,14 +1,14 @@
 version: '2' #Old school :P
 services:
-    server:
-        container_name: echo_server
-        build: .
-        working_dir: /ECHOProject
-        command: ['/bin/bash', '-c', 'tail -f /dev/null']
-        network_mode: host
-        volumes:
-            - .:/ECHOProject
-            - /ECHOProject/node_modules
+    # server:
+    #     container_name: echo_server
+    #     build: .
+    #     working_dir: /ECHOProject
+    #     command: ['/bin/bash', '-c', 'tail -f /dev/null']
+    #     network_mode: host
+    #     volumes:
+    #         - .:/ECHOProject
+    #         - /ECHOProject/node_modules
         # ports:
         #     - 3000:3000
         #     - 8888:8888

@@ -18,7 +18,8 @@ module.exports = function (app, passport) {
     })(req, res)
   })
 
-  app.get('/logout', function (req, res) {
+  app.get('/api/v1/logout', function (req, res) {
+      console.log('smog')
     // logout() is a function added by Passport's middleware
     res.clearCookie('jwt')
     req.logout()

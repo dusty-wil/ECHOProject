@@ -1,21 +1,21 @@
-const validator = require('../utils/validator')
+//const validator = require('../utils/validator')
 const BaseModel = require('../baseModel')
 
 const schemas = {
 }
 
-class Category extends BaseModel
+class CategoryBridge extends BaseModel
 {
     // Table name is the only required property.
     static get tableName ()
     {
-        return 'categories'
+        return 'categoryBridge'
     }
 
     // Optional JSON schema. This is not the database schema! Nothing is generated
     // based on this. This is only used for validation. Whenever a model instance
     // is created it is checked against this schema. http://json-schema.org/.
-    // static get jsonSchema () 
+    // static get jsonSchema ()
     // {
     //     return {
     //         type: 'object',
@@ -37,15 +37,12 @@ class Category extends BaseModel
     static get publicColumns ()
     {
         return [
-            'id',
-            'name',
-            'description',
-            'created_at',
-            'updated_at'
+            'category_id',
+            'story_id'
         ]
     }
 }
 
 module.exports = {
-  Category
+  CategoryBridge
 }

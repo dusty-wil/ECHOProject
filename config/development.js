@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = {
   message: 'DEVELOPMENT ENVIRONMENT',
@@ -10,4 +10,4 @@ module.exports = {
       level: 'debug'
     }
   }
-}
+};

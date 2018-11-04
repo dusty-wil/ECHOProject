@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const defaultConfig = {
   message: 'Hello from Default Config',
@@ -10,14 +10,14 @@ const defaultConfig = {
     port: process.env.DB_PORT || '3306'
   },
   api_version: 'v1'
-}
+};
 
-const nodeEnv = process.env.NODE_ENV || 'development'
+const nodeEnv = process.env.NODE_ENV || 'development';
 
-const envConfig = require(`./${nodeEnv}.js`)
+const envConfig = require(`./${nodeEnv}.js`);
 
-const config = Object.assign({nodeEnv}, defaultConfig, envConfig)
+const config = Object.assign({nodeEnv}, defaultConfig, envConfig);
 
-config.isProduction = () => nodeEnv === 'production'
+config.isProduction = () => nodeEnv === 'production';
 
-module.exports = config
+module.exports = config;

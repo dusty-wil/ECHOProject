@@ -40,6 +40,12 @@ const actions = {
       .then(user => {
         commit(types.UPDATED_USER_PROFILE, { user })
       })
+  },
+  logout ({dispatch, commit, state}) {
+      return dispatch('apiRequest', {func: 'users.logout'})
+        .then(function() {
+            location.reload()
+        })
   }
 }
 
