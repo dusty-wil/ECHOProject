@@ -23,7 +23,7 @@ const stream = (streamFunction) => ({
 })
 
 const write = (writeFunction) => ({
-  write: (message) => writeFunction(message)
+  write: (message) => writefunction (message)
 })
 
 /**

@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 
 console.log('Environment:', process.env.NODE_ENV)
 
@@ -30,16 +30,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // ESLINT loader rule. Must be before any other .js rule.
-      {
-        enforce: 'pre', // Run before other loaders
-        test: /\.(js|vue)$/, // All .js files
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -90,12 +80,6 @@ module.exports = {
     // Do not include moment's locales to reduce bundle size
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ]
-}
-
-if (process.env.NODE_ENV === 'development') {
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new BundleAnalyzerPlugin()
-  ])
 }
 
 if (process.env.NODE_ENV === 'production') {

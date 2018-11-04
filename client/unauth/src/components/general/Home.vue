@@ -13,10 +13,8 @@ export default {
     Story: Story
   },
   data: function () {
-    return {
-      featuredStory: getFeaturedStory()
-    }
-  }
+    return {}
+  },
 
 }
 

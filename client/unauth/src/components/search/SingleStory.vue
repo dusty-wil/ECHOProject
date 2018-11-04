@@ -36,7 +36,7 @@ export default {
 function getStoryById (id) {
   var stories = getAllStories()
   for (var story of stories) {
-    if (story.id == id) {
+    if (story.id === id) {
       return story
     }
   }

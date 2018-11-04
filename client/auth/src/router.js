@@ -5,10 +5,10 @@ import VueRouter from 'vue-router'
 import Dashboard from './components/general/Dashboard.vue'
 import ProfilePage from './components/user/ProfilePage.vue'
 
-import AddEditNames from './components/AddEditName.vue'
-import AddEditSubjects from './components/AddEditSubject.vue'
-import AddEditThemes from './components/AddEditTheme.vue'
-import AddEditStories from './components/AddEditStory.vue'
+import AddEditNames from './components/general/AddEditName.vue'
+import AddEditSubjects from './components/general/AddEditSubject.vue'
+import AddEditThemes from './components/general/AddEditTheme.vue'
+import AddEditStories from './components/general/AddEditStory.vue'
 
 Vue.use(VueRouter)
 
