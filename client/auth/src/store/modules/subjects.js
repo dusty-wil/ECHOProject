@@ -18,12 +18,29 @@ const actions = {
         return subject
       })
   },
-  updateSubject ({ dispatch, commit, state }, payload) { 
+  updateSubject ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'subjects.updateSubject', args: [payload]})
       .then(subject => {
         return subject
       })
-  
+  },
+  addNewSubject ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'subjects.addNewSubject', args: [payload]})
+      .then(subject => {
+        return subject
+      })
+  },
+  getAllSubjects ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'subjects.getAllSubjects'})
+      .then(subjects => {
+        return subjects
+      })
+  },
+  deleteSubject ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'subjects.deleteSubject', args: [payload]})
+      .then(subject => {
+        return subject
+      })
   }
 }
 

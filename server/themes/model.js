@@ -16,7 +16,7 @@ class Theme extends BaseModel {
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['id', 'name', 'description'],
+      required: ['name', 'description'],
       properties: {
         id: { 
           type: 'integer',

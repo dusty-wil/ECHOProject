@@ -2,23 +2,23 @@
 
 export default (reqInstance) => ({
   getStoryById (id) {
-    // console.log(id)
-    console.log('api function called')
-    console.log('reqInstance')
-    console.log(reqInstance)
-    console.log(`stories/byId/${id}`)
-    console.log(reqInstance.get(`stories/byId/${id}`))
     return reqInstance.get(`stories/byId/${id}`)
       .then(res => res.data)
   },
-
+  getAllStories () {
+    return reqInstance.get('stories/all')
+      .then(res => res.data)
+  },
   updateStory (updateData) {
-    console.log(updateData)
-    console.log('api function called')
-    console.log('reqInstance')
-    console.log(reqInstance)
-    console.log('reqInstance.put(stories/update)')
     return reqInstance.put('stories/update', updateData)
-        .then(res => res.data)
+      .then(res => res.data)
+  },
+  addNewStory (storyData) {
+    return reqInstance.put('stories/new', storyData)
+      .then(res => res.data)
+  },
+  deleteStory (storyData) {
+    return reqInstance.put('stories/delete', storyData)
+      .then(res => res.data)
   }
 })

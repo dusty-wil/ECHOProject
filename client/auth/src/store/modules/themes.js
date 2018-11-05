@@ -18,16 +18,28 @@ const actions = {
         return theme
       })
   },
-  updateTheme ({ dispatch, commit, state }, payload) { 
+  updateTheme ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'themes.updateTheme', args: [payload]})
       .then(theme => {
         return theme
       })
   },
-  getAllThemes ({ dispatch, commit, state }, payload) { 
+  addNewTheme ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'themes.addNewTheme', args: [payload]})
+      .then(theme => {
+        return theme
+      })
+  },
+  getAllThemes ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'themes.getAllThemes'})
       .then(themes => {
         return themes
+      })
+  },
+  deleteTheme ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'themes.deleteTheme', args: [payload]})
+      .then(theme => {
+        return theme
       })
   }
 }

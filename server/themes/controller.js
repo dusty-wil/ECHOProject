@@ -12,32 +12,37 @@ module.exports = function () {
         .first()
         .throwIfNotFound()
     },
-
     getAll: async () => {
       return Theme.query()
         .select(Theme.publicColumns)
         .throwIfNotFound()
     },
-
-    update: async function (payload) {
-      console.log('landed in update theme')
-      console.log(payload)
-
-      // const updateInstance = await validateUpdateStory(payload)
-     
-      // console.log(updateInstance)
-
+    update: async (payload) => {
       return Theme.query()
-        .patchAndFetchById( 
-          payload.id, 
+        .patchAndFetchById(
+          payload.id,
           {
             name: payload.name,
             description: payload.description
           }
         )
-        // .returning(Story.publicColumns)
-        // .select(Story.publicColumns)
         .throwIfNotFound()
     },
+    new: async (payload) => {
+      return Theme.query()
+        .insert({
+          name: payload.name,
+          description: payload.description
+        })
+    },
+    delete: async (payload) => {
+      let id = payload.id
+      console.log(id)
+      return Theme.query()
+        .where({ id })
+        .select(Theme.publicColumns)
+        .first()
+        .throwIfNotFound()
+    }
   }
 }

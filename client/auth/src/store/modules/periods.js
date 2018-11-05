@@ -18,12 +18,29 @@ const actions = {
         return period
       })
   },
-  updatePeriod ({ dispatch, commit, state }, payload) { 
+  updatePeriod ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'periods.updatePeriod', args: [payload]})
       .then(period => {
         return period
       })
-  
+  },
+  addNewPeriod ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'periods.addNewPeriod', args: [payload]})
+      .then(period => {
+        return period
+      })
+  },
+  getAllPeriods ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'periods.getAllPeriods'})
+      .then(periods => {
+        return periods
+      })
+  },
+  deletePeriod ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'periods.deletePeriod', args: [payload]})
+      .then(period => {
+        return period
+      })
   }
 }
 

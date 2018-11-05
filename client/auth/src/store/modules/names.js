@@ -18,12 +18,29 @@ const actions = {
         return name
       })
   },
-  updateName ({ dispatch, commit, state }, payload) { 
+  updateName ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'names.updateName', args: [payload]})
       .then(name => {
         return name
       })
-  
+  },
+  addNewName ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'names.addNewName', args: [payload]})
+      .then(name => {
+        return name
+      })
+  },
+  getAllNames ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'names.getAllNames'})
+      .then(names => {
+        return names
+      })
+  },
+  deleteName ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'names.deleteName', args: [payload]})
+      .then(name => {
+        return name
+      })
   }
 }
 

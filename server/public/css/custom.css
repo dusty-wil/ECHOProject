@@ -235,7 +235,104 @@ body
 .subjectTagList li a:hover 
 {
     color: #EFEFEF;
-    text-decoriation: underline;
+    text-decoration: underline;
+}
+
+.attributeListContainer
+{
+    margin: 20px;
+    display: inline-block;
+
+}
+
+.selectAttributeList li
+{
+    cursor: pointer;
+}
+
+.selectAttributeList li:hover
+{
+    text-decoration: underline;
+}
+
+.editAttributeForm
+{
+    margin: 20px;
+    display: inline-block;
+}
+
+.editFormTxt
+{
+    display: block;
+    padding: 3px;
+    margin: 2px 5px 10px 5px;
+}
+
+.editFormLbl
+{
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+.formBtn
+{
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 3px solid #000000;
+    
+    color: #EFEFEF;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+            
+            border-radius: 5px;
+       -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+.inputBtn:hover
+{
+    cursor: pointer;
+    background-color: #3F3F3F;
+}
+
+.saveBtn
+{
+    background-color: #21A179;
+}
+
+.saveBtn:hover
+{
+    background-color: #197659;
+}
+
+.delBtn
+{
+    /* background-color: #E84855; */
+    background-color: #D31245;
+}
+
+.delBtn:hover
+{
+    /* background-color: #942e37; */
+    background-color: #A40E36;
+}
+
+.clearBtn
+{
+    background-color: #255C99;
+}
+
+.clearBtn:hover
+{
+    background-color: #183B62;
 }
 
 

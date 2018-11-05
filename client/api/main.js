@@ -3,6 +3,7 @@ import axios from 'axios'
 import config from '../auth/src/clientConfig/main'
 import users from './users'
 import names from './names'
+import categories from './categories'
 import periods from './periods'
 import subjects from './subjects'
 import themes from './themes'
@@ -19,6 +20,7 @@ export default {
   stories: stories(reqInstance),
   names: names(reqInstance),
   periods: periods(reqInstance),
+  categories: categories(reqInstance),
   subjects: subjects(reqInstance),
   themes: themes(reqInstance)
 }

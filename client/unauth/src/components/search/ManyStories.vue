@@ -66,7 +66,7 @@ function getStoriesBy (searchType, searchParam, isMatching) {
   if (!isMatching && searchType !== 'author') { 
     storiesOut = getStoriesByType(searchType, searchParam.id)
   } else { 
-    searchVal = (searchType === 'author') ? searchParam.name : searchParam.searchValue;
+    searchVal = (searchType === 'author') ? searchParam.name : searchParam.searchValue
     storiesOut = getStoriesByMatch(searchType, searchVal)
   }
   
