@@ -4,10 +4,10 @@ const BaseModel = require('../baseModel')
 const schemas = {
 }
 
-class Theme extends BaseModel 
+class Theme extends BaseModel
 {
     // Table name is the only required property.
-    static get tableName () 
+    static get tableName ()
     {
         return 'themes'
     }
@@ -15,26 +15,26 @@ class Theme extends BaseModel
     // Optional JSON schema. This is not the database schema! Nothing is generated
     // based on this. This is only used for validation. Whenever a model instance
     // is created it is checked against this schema. http://json-schema.org/.
-    static get jsonSchema () 
-    {
-        return {
-            type: 'object',
-            required: ['id', 'name', 'description'],
+    // static get jsonSchema ()
+    // {
+    //     return {
+    //         type: 'object',
+    //         required: ['id', 'name', 'description'],
+    //
+    //         properties: {
+    //             id: {
+    //                 type: 'integer',
+    //                 primaryKey: true
+    //             },
+    //             name: { type: 'string' },
+    //             description: { type: 'string' },
+    //             created_at: { type: 'string' },
+    //             updated_at: { type: 'string' }
+    //         }
+    //     }
+    // }
 
-            properties: {
-                id: { 
-                    type: 'integer',
-                    primaryKey: true
-                },
-                name: { type: 'string' },
-                description: { type: 'string' },
-                created_at: { type: 'string' },
-                updated_at: { type: 'string' }
-            }
-        }
-    }
-
-    static get publicColumns () 
+    static get publicColumns ()
     {
         return [
             'id',
@@ -47,5 +47,5 @@ class Theme extends BaseModel
 }
 
 module.exports = {
-    Theme
+  Theme
 }

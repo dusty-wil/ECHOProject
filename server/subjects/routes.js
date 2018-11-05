@@ -1,11 +1,33 @@
 const controller = require('./controller')
 const Subject = controller()
-
-module.exports = function (router) 
+const SubjectBridgeController = require('../subjectBridge/controller')
+module.exports = function (router)
 {
     router.get('/subjects/byId', function (req, res, done) {
         Subject.get(req.query.id)
-            .then(subjects => res.json(subjects))
+            .then(subject => res.json(subject))
             .catch(done)
+    })
+    router.get('/subjects/all', function (req, res, done) {
+        Subject.getAll()
+            .then(subject => res.json(subject))
+            .catch(done)
+    }),
+    router.get('/subjects/delete', function(req,res,done) {
+        SubjectBridgeController().deleteSubjectBridgeBySubjectId(req.query.id)
+        .then(function(){
+            Subject.deleteSubject(req.query.id)
+                .then(function(){
+                    Subject.getAll()
+                        .then(subject => res.json(subject))
+                })
+        })
+            .catch(done)
+    }),
+    router.post('/subjects/create', function(req,res,done) {
+        Subject.create(req.body).then(function(){
+            Subject.getAll()
+                .then(subject => res.json(subject))
+        }).catch(done)
     })
 }

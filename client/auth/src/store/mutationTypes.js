@@ -9,3 +9,12 @@ export const UPDATED_USER_PROFILE = 'UPDATED_USER_PROFILE'
 
 // Categories:
 export const UPDATE_ALL_CATEGORIES = 'UPDATE_ALL_CATEGORIES'
+
+// Periods:
+export const UPDATE_ALL_PERIODS = 'UPDATE_ALL_PERIODS'
+
+// Subjects:
+export const UPDATE_ALL_SUBJECTS = 'UPDATE_ALL_SUBJECTS'
+
+// Themes:
+export const UPDATE_ALL_THEMES = 'UPDATE_ALL_THEMES'

@@ -6,6 +6,9 @@ import * as actions from './actions'
 import users from './modules/users'
 import ui from './modules/ui'
 import categories from './modules/categories'
+import periods from './modules/periods'
+import subjects from './modules/subjects'
+import themes from './modules/themes'
 
 Vue.use(Vuex)
 
@@ -16,7 +19,10 @@ export default new Vuex.Store({
   modules: {
     users,
     ui,
-    categories
+    categories,
+    periods,
+    subjects,
+    themes
   },
   strict: debug
 })

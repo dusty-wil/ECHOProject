@@ -8,7 +8,14 @@ const log = Logger('app:echo:api')
 const modules = [
   'users',
   'stories',
-  'categories'
+  'categories',
+  'categoryBridge',
+  'periods',
+  'periodBridge',
+  'subjects',
+  'subjectBridge',
+  'themes',
+  'themeBridge'
 ]
 
 module.exports = function (app, passport) {
