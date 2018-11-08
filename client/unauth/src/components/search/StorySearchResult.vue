@@ -3,8 +3,9 @@
         <img v-bind:src="'https://img.youtube.com/vi/' + StorySearchResult.youtube_id + '/mqdefault.jpg'"/>
         <h4>{{StorySearchResult.title}}</h4>
         <p>
-            {{StorySearchResult.author.name}} <br/>
             {{StorySearchResult.desc}}
+            <br/>
+            <span class="searchResultAuthorTag" v-for="author in StorySearchResult.author">{{author.name}}</span>
         </p>
     </router-link>
 </template>

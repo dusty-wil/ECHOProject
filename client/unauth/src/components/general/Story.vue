@@ -1,21 +1,33 @@
 <template>
     <div class="story">
         <div id="player"></div>
-        <h4>{{Story.title}}</h4>
         <p>
-            {{Story.author.name}} <br/>
-            {{Story.desc}} <br/>
-            <span class="tag-lbl">Themes:</span> 
-            <ul class="themeTagList">
-                <ThemeTag v-for="theme in Story.themes" :Theme="theme" :key="theme.id"/>
+            <span class="storyDesc">{{Story.desc}}</span>
+            <span class="storyAuthors"><span class="authorTag" v-for="author in Story.author">{{author.name}}</span></span>
+            <br/>
+            <span class="tagLbl">Subjects:</span> 
+            <ul class="subjectTagList">
+                <SubjectTag v-for="subject in Story.subjects" :Subject="subject" :key="subject.id"/>
             </ul>
-            <span class="tag-lbl">Categories:</span> 
+            <br/>
+            <span class="tagLbl">Categories:</span> 
             <ul class="categoryTagList">
                 <CategoryTag v-for="category in Story.categories" :Category="category" :key="category.id"/>
             </ul>
-            <span class="tag-lbl">Periods:</span> 
+            <br/>
+            <span class="tagLbl">Names:</span> 
+            <ul class="nameTagList">
+                <NameTag v-for="name in Story.names" :Name="name" :key="name.id"/>
+            </ul>
+            <br/>
+            <span class="tagLbl">Dates:</span> 
             <ul class="periodTagList">
                 <PeriodTag v-for="period in Story.periods" :Period="period" :key="period.id"/>
+            </ul>
+            <br/>
+            <span class="tagLbl">Locations:</span> 
+            <ul class="locationTagList">
+                <LocationTag v-for="location in Story.locations" :Location="location" :key="location.id"/>
             </ul>
         </p>
     </div>
@@ -26,6 +38,7 @@ import CategoryTag from '../tag/CategoryTag.vue'
 import PeriodTag from '../tag/PeriodTag.vue'
 import NameTag from '../tag/NameTag.vue'
 import SubjectTag from '../tag/SubjectTag.vue'
+import LocationTag from '../tag/LocationTag.vue'
 
 export default {
   components: {
@@ -33,7 +46,8 @@ export default {
     CategoryTag: CategoryTag,
     PeriodTag: PeriodTag,
     NameTag: NameTag,
-    SubjectTag: SubjectTag
+    SubjectTag: SubjectTag,
+    LocationTag: LocationTag
   },
 
   props: {

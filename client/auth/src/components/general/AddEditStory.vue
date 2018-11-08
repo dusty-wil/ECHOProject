@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <h2 class="pageTitle">Add/Edit Stories</h2>
-            <div class="attributeListContainer">
+            <div class="activeStoryListContainer">
                 <h6>Active Stories</h6>
                 <ul class="selectAttributeList" id="selectStory">
                     <li v-for="story in this.storyList" v-on:click="selectStory(story.id)">
@@ -10,6 +10,7 @@
                     </li>
                 </ul>
             </div>
+            
             <form class="editAttributeForm" id="editStoryForm">
                 <label class="editFormLbl" for="storyTitle">Story Title:</label>
                 <input type="text" class="editFormTxt" id="storyName" v-model="selectedStory.name" placeholder="Story Name"/>
@@ -23,6 +24,34 @@
                 <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
                 <button class="formBtn delBtn" v-on:click="delStory">Delete</button>
             </form>
+            
+            <div class="attributeListContainer">
+                <ul class="selectAttributeList" id="selectCategory">
+                    <li v-for="category in this.categoryList" v-on:click="">
+                        {{category.name}}
+                    </li>
+                </ul>
+                <ul class="selectAttributeList" id="selectName">
+                    <li v-for="name in this.nameList" v-on:click="">
+                        {{name.name}}
+                    </li>
+                </ul>
+                <ul class="selectAttributeList" id="selectPeriod">
+                    <li v-for="period in this.periodList" v-on:click="">
+                        {{period.name}}
+                    </li>
+                </ul>
+                <ul class="selectAttributeList" id="selectSubject">
+                    <li v-for="subject in this.subjectList" v-on:click="">
+                        {{subject.name}}
+                    </li>
+                </ul>
+                <ul class="selectAttributeList" id="selectTheme">
+                    <li v-for="theme in this.themeList" v-on:click="">
+                        {{theme.name}}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -35,6 +64,11 @@ export default {
 
   data: () => ({
     storyList: null,
+    categoryList: null,
+    periodList: null,
+    themeList: null,
+    subjectList: null,
+    nameList: null,
     selectedStory: {
       id: null,
       title: null,
@@ -56,8 +90,28 @@ export default {
       this.getAllStories()
         .then((result) => {
           this.storyList = result
-          console.log(this.storyList)
         })
+      
+      this.getAllThemes()
+        .then((result) => {
+          this.themeList = result
+        })
+      
+      this.getAllPeriods()
+        .then((result) => {
+          this.periodList = result
+        })
+      
+      this.getAllCategories()
+        .then((result) => {
+          this.categoryList = result
+        })
+      
+      this.getAllSubjects()
+        .then((result) => {
+          this.subjectList = result
+        })
+
     },
     selectStory (storyId) {
       this.getStoryById(storyId)
@@ -102,6 +156,14 @@ export default {
   }, mapActions([
     'getStoryById',
     'getAllStories',
+    'getAllCategories',
+    'getCategoryById',
+    'getAllPeriods',
+    'getPeriodById',
+    'getAllSubjects',
+    'getSubjectById',
+    'getAllThemes',
+    'getThemeById',
     'updateStory',
     'addNewStory',
     'deleteStory'

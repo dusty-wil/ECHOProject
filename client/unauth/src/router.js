@@ -22,7 +22,8 @@ const router = new VueRouter({
     {path: '/story/search/byPeriod/:id', component: ManyStoryResults},
     {path: '/story/search/bySubject/:id', component: ManyStoryResults},
     {path: '/story/search/byTheme/:id', component: ManyStoryResults},
-    {path: '/story/search/byAuthor/:name', component: ManyStoryResults},
+    {path: '/story/search/byAuthor/:id', component: ManyStoryResults},
+    {path: '/story/search/byLocation/:id', component: ManyStoryResults},
     {path: '/story/search/:searchTerm/matching/:searchValue', component: ManyStoryResults},
     // single story path
     {path: '/story/byId/:id', component: SingleStoryResult},

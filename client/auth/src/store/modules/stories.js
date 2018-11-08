@@ -1,6 +1,12 @@
 import * as types from '../mutationTypes'
 import Vue from 'vue'
 
+import Categories from './categories'
+import Names from './names'
+import Periods from './periods'
+import Subjects from './subjects'
+import Themes from './themes'
+
 const defaultState = () => {
   return {
   }
@@ -18,12 +24,29 @@ const actions = {
         return story
       })
   },
-  updateStory ({ dispatch, commit, state }, payload) { 
+  updateStory ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'stories.updateStory', args: [payload]})
       .then(story => {
         return story
       })
-  
+  },
+  addNewStory ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.addNewStory', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+  getAllStories ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getAllStories'})
+      .then(stories => {
+        return stories
+      })
+  },
+  deleteStory ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.deleteStory', args: [payload]})
+      .then(story => {
+        return story
+      })
   }
 }
 
@@ -34,5 +57,10 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  Categories,
+  Names,
+  Periods,
+  Subjects,
+  Themes
 }

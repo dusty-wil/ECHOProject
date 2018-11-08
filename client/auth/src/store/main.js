@@ -10,6 +10,7 @@ import names from './modules/names'
 import periods from './modules/periods'
 import subjects from './modules/subjects'
 import themes from './modules/themes'
+import locations from './modules/locations'
 import ui from './modules/ui'
 
 Vue.use(Vuex)
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     periods,
     subjects,
     themes,
+    locations,
     ui
   },
   strict: debug

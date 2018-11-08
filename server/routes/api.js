@@ -12,6 +12,7 @@ const modules = [
   'subjects',
   'categories',
   'names',
+  'locations',
   'periods'
 ]
 

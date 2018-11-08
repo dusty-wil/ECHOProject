@@ -1,50 +1,46 @@
 'use strict'
 const moment = require('moment')
 const { transaction } = require('objection')
-const { 
-  Story,
-  validateUpdateStory
-} = require('./model')
+const { Location } = require('./model')
 
 module.exports = function () {
   return {
     get: async (id) => {
-      return Story.query()
+      return Location.query()
         .where({ id })
-        .select(Story.publicColumns)
+        .select(Location.publicColumns)
         .first()
-        .throwIfNotFound() 
-    },    
-    getAll: async () => {
-      return Story.query()
-        .select(Story.publicColumns)
         .throwIfNotFound()
     },
-    update: async function (payload) {
-      return Story.query()
-        .patchAndFetchById( 
-          payload.id, 
+    getAll: async () => {
+      return Location.query()
+        .select(Location.publicColumns)
+        .throwIfNotFound()
+    },
+    update: async (payload) => {
+      return Location.query()
+        .patchAndFetchById(
+          payload.id,
           {
-            title: payload.title,
-            author_id: payload.author_id,
+            name: payload.name,
             description: payload.description
           }
         )
         .throwIfNotFound()
     },
     new: async (payload) => {
-      return Story.query()
+      return Location.query()
         .insert({
-          title: payload.title,
-          author_id: payload.author_id,
+          name: payload.name,
           description: payload.description
         })
     },
     delete: async (payload) => {
       let id = payload.id
-      return Story.query()
+      console.log(id)
+      return Location.query()
         .where({ id })
-        .select(Story.publicColumns)
+        .select(Location.publicColumns)
         .first()
         .throwIfNotFound()
     }
