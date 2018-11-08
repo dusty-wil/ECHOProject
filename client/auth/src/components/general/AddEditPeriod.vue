@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="row">
-            <h2 class="pageTitle">Add/Edit Periods</h2>
+            <h2 class="pageTitle">Add/Edit Dates</h2>
             <div class="attributeListContainer">
-                <h6>Active Periods</h6>
+                <h6>Active Dates</h6>
                 <ul class="selectAttributeList" id="selectPeriod">
                     <li v-for="period in this.periodList" v-on:click="selectPeriod(period.id)">
                         {{period.name}}
@@ -11,11 +11,11 @@
                 </ul>
             </div>
             <form class="editAttributeForm" id="editPeriodForm">
-                <label class="editFormLbl" for="periodName">Period Name:</label>
-                <input type="text" class="editFormTxt" id="periodName" v-model="selectedPeriod.name" placeholder="Period Name"/>
+                <label class="editFormLbl" for="periodName">Date Name:</label>
+                <input type="text" class="editFormTxt" id="periodName" v-model="selectedPeriod.name" placeholder="Date Name"/>
                 
-                <label class="editFormLbl" for="periodDesc">Period Description:</label>
-                <input type="text" class="editFormTxt" id="periodDesc" v-model="selectedPeriod.description" placeholder="Period Description"/>
+                <label class="editFormLbl" for="periodDesc">Date Description:</label>
+                <input type="text" class="editFormTxt" id="periodDesc" v-model="selectedPeriod.description" placeholder="Date Description"/>
                 
                 <input type="hidden" id="periodId" v-model="selectedPeriod.id" value=""/>
                 <button class="formBtn saveBtn"  v-on:click="savePeriod">Save</button>

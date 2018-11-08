@@ -8,9 +8,11 @@
                     Search Stories By
                     <select class="inputSel" name="searchSel" v-model="searchSel">
                         <option disabled value="">Please Choose</option>
-                        <option value="byTheme">Theme</option>
+                        <option value="bySubject">Subject</option>
                         <option value="byCategory">Category</option>
-                        <option value="byPeriod">Period</option>
+                        <option value="byPeriod">Date</option>
+                        <option value="byName">Name</option>
+                        <option value="byLocation">Location</option>
                         <option value="byAuthor">Author</option>
                     </select>
                     <input type="text" class="inputTxt" name="searchTxt" v-model="searchTxt" placeholder="Enter search term"/>

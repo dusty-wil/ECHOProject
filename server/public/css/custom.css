@@ -283,7 +283,42 @@ body
 {
     margin: 20px;
     display: inline-block;
+    vertical-align: top;
 
+}
+
+.attributeListContainer ul
+{
+    margin-top: 0px;
+}
+
+.activeStoryListContainer
+{
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.dashboardLinkContainer
+{
+    display: block;
+    margin-top: 10px;
+    width: 600px;
+    vertical-align: top;
+}
+
+.dashboardLinkContainer span
+{
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.attributeListContainer h6,
+.activeStoryListContainer h6
+{
+    margin: 0px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .selectAttributeList li
@@ -300,6 +335,7 @@ body
 {
     margin: 20px;
     display: inline-block;
+    vertical-align: top;
 }
 
 .editFormTxt
@@ -314,6 +350,13 @@ body
     display: block;
     font-weight: bold;
     font-size: 12px;
+}
+
+.editFormCheckLbl
+{
+    font-weight: bold;
+    font-size: 12px;
+    vertical-align: middle;
 }
 
 
@@ -374,6 +417,30 @@ body
 .clearBtn:hover
 {
     background-color: #183B62;
+}
+
+.formBtnContainer
+{
+    display: block;
+    margin-top: 10px;
+}
+
+.editStoryAttributeColumn
+{
+    display: block;
+    vertical-align: top;
+    margin: 15px;
+}
+
+.editStoryAttributeColumn span
+{
+    font-weight: bold;
+}
+
+.dashboardLinks
+{
+    width: 200px;
+    display: inline-block;
 }
 
 .dashboardLinks li a

@@ -6,6 +6,7 @@ import Names from './names'
 import Periods from './periods'
 import Subjects from './subjects'
 import Themes from './themes'
+import Locations from './locations'
 
 const defaultState = () => {
   return {
@@ -62,5 +63,6 @@ export default {
   Names,
   Periods,
   Subjects,
+  Locations,
   Themes
 }

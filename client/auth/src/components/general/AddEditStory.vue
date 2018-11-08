@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row"> 
             <h2 class="pageTitle">Add/Edit Stories</h2>
             <div class="activeStoryListContainer">
                 <h6>Active Stories</h6>
@@ -18,40 +18,70 @@
                 <label class="editFormLbl" for="storyDesc">Story Description:</label>
                 <textarea type="text" class="editFormTxt" id="storyDesc" v-model="selectedStory.description">Story Description</textarea>
                 
-                <input type="hidden" id="storyId" v-model="selectedStory.id" value=""/>
+                <label class="editFormLbl" for="storyAuthor">Story Author(s):</label>
+                <input type="text" class="editFormTxt" id="storyAuthor"  placeholder="Author Names"/>
                 
-                <button class="formBtn saveBtn" v-on:click="saveStory">Save</button>
-                <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
-                <button class="formBtn delBtn" v-on:click="delStory">Delete</button>
+                <label class="editFormLbl" for="storagePath">Upload Video:</label>
+                <input type="file" class="editFormTxt" id="storagePath"/>
+                
+                <label class="editFormLbl" for="youtubeId">YouTube ID:</label>
+                <input type="text" class="editFormTxt" id="youtubeId" placeholder="YouTube ID"/>
+                
+                <label class="editFormCheckLbl" for="youtubeId">Featured Rotation:</label>
+                <input type="checkbox" class="editFormCheck" id="featuredRotation" />
+
+                <input type="hidden" id="storyId" value=""/>
+                
+                <div class="formBtnContainer">               
+                    <button class="formBtn saveBtn" v-on:click="saveStory">Save</button>
+                    <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
+                    <button class="formBtn delBtn" v-on:click="delStory">Delete</button>
+                </div>
             </form>
-            
+                
             <div class="attributeListContainer">
-                <ul class="selectAttributeList" id="selectCategory">
-                    <li v-for="category in this.categoryList" v-on:click="">
-                        {{category.name}}
-                    </li>
-                </ul>
-                <ul class="selectAttributeList" id="selectName">
-                    <li v-for="name in this.nameList" v-on:click="">
-                        {{name.name}}
-                    </li>
-                </ul>
-                <ul class="selectAttributeList" id="selectPeriod">
-                    <li v-for="period in this.periodList" v-on:click="">
-                        {{period.name}}
-                    </li>
-                </ul>
-                <ul class="selectAttributeList" id="selectSubject">
-                    <li v-for="subject in this.subjectList" v-on:click="">
-                        {{subject.name}}
-                    </li>
-                </ul>
-                <ul class="selectAttributeList" id="selectTheme">
-                    <li v-for="theme in this.themeList" v-on:click="">
-                        {{theme.name}}
-                    </li>
-                </ul>
+                <div class="editStoryAttributeColumn">
+                    <span>Subjects:</span>
+                    <ul class="selectAttributeList" id="selectSubject">
+                        <li v-for="subject in this.subjectList" v-on:click="">
+                            {{subject.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="editStoryAttributeColumn">
+                    <span>Categories:</span>
+                    <ul class="selectAttributeList" id="selectCategory">
+                        <li v-for="category in this.categoryList" v-on:click="">
+                            {{category.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="editStoryAttributeColumn">
+                    <span>Names:</span>
+                    <ul class="selectAttributeList" id="selectName">
+                        <li v-for="name in this.nameList" v-on:click="">
+                            {{name.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="editStoryAttributeColumn">
+                    <span>Dates:</span>
+                    <ul class="selectAttributeList" id="selectPeriod">
+                        <li v-for="period in this.periodList" v-on:click="">
+                            {{period.name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="editStoryAttributeColumn">
+                    <span>Locations:</span>
+                    <ul class="selectAttributeList" id="selectLocation">
+                        <li v-for="location in this.locationList" v-on:click="">
+                            {{location.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
+            
         </div>
     </div>
 </template>
@@ -66,7 +96,7 @@ export default {
     storyList: null,
     categoryList: null,
     periodList: null,
-    themeList: null,
+    locationList: null,
     subjectList: null,
     nameList: null,
     selectedStory: {
@@ -92,11 +122,6 @@ export default {
           this.storyList = result
         })
       
-      this.getAllThemes()
-        .then((result) => {
-          this.themeList = result
-        })
-      
       this.getAllPeriods()
         .then((result) => {
           this.periodList = result
@@ -110,6 +135,16 @@ export default {
       this.getAllSubjects()
         .then((result) => {
           this.subjectList = result
+        })
+      
+      this.getAllNames()
+        .then((result) => {
+          this.nameList = result
+        })
+      
+      this.getAllLocations()
+        .then((result) => {
+          this.locationList = result
         })
 
     },
@@ -160,10 +195,12 @@ export default {
     'getCategoryById',
     'getAllPeriods',
     'getPeriodById',
+    'getAllNames',
+    'getNameById',
+    'getAllLocations',
+    'getLocationById',
     'getAllSubjects',
     'getSubjectById',
-    'getAllThemes',
-    'getThemeById',
     'updateStory',
     'addNewStory',
     'deleteStory'
