@@ -282,7 +282,7 @@ body
 .attributeListContainer
 {
     margin: 20px;
-    display: inline-block;
+    display: block;
     vertical-align: top;
 
 }
@@ -290,6 +290,60 @@ body
 .attributeListContainer ul
 {
     margin-top: 0px;
+}
+
+.selectStoryAttributeList
+{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.selectStoryAttributeList li
+{
+    cursor: pointer;
+            
+            border-radius: 5px;
+       -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    padding: 3px 8px;
+    margin: 2px;
+    vertical-align: middle;
+
+    font-size: 14px;
+}
+
+.selectStoryAttributeList li:hover
+{
+    background-color: #EFEFEF;
+    color: #2C2C2C;
+}
+
+.selectedAttribute
+{
+    background-color: #EFEFEF;
+    color: #2C2C2C;
+}
+
+.formBtnContainer
+{
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.editStoryAttributeColumn
+{
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px;
+    width: 175px;
+}
+
+.editStoryAttributeColumn span
+{
+    font-weight: bold;
 }
 
 .activeStoryListContainer
@@ -336,17 +390,27 @@ body
     margin: 20px;
     display: inline-block;
     vertical-align: top;
+    width: 300px;
 }
 
 .editFormTxt
 {
     display: block;
-    padding: 3px;
+    padding: 5px;
+    margin: 2px 5px 10px 5px;
+    width: 100%;
+}
+
+.editFormTxtArea
+{
+    width: 100%;
+    height: 200px;
     margin: 2px 5px 10px 5px;
 }
 
 .editFormLbl
 {
+    margin-top: 10px;
     display: block;
     font-weight: bold;
     font-size: 12px;
@@ -417,24 +481,6 @@ body
 .clearBtn:hover
 {
     background-color: #183B62;
-}
-
-.formBtnContainer
-{
-    display: block;
-    margin-top: 10px;
-}
-
-.editStoryAttributeColumn
-{
-    display: block;
-    vertical-align: top;
-    margin: 15px;
-}
-
-.editStoryAttributeColumn span
-{
-    font-weight: bold;
 }
 
 .dashboardLinks
