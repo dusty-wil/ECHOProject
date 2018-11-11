@@ -1,27 +1,24 @@
 'use strict'
-
 const moment = require('moment')
 const { transaction } = require('objection')
-const { Category } = require('./model')
+const { Location } = require('./model')
 
 module.exports = function () {
   return {
     get: async (id) => {
-      return Category.query()
+      return Location.query()
         .where({ id })
-        .select(Category.publicColumns)
+        .select(Location.publicColumns)
         .first()
         .throwIfNotFound()
     },
-
     getAll: async () => {
-      return Category.query()
-        .select(Category.publicColumns)
+      return Location.query()
+        .select(Location.publicColumns)
         .throwIfNotFound()
     },
-
     update: async (payload) => {
-      return Category.query()
+      return Location.query()
         .patchAndFetchById(
           payload.id,
           {
@@ -31,27 +28,21 @@ module.exports = function () {
         )
         .throwIfNotFound()
     },
-
-    create: async (payload) => {
-      return Category.query()
-        .insert({
-          name: payload.name,
-          description: payload.description
-        })
-    },
-
     new: async (payload) => {
-      return Category.query()
+      return Location.query()
         .insert({
           name: payload.name,
           description: payload.description
         })
     },
-
-    delete: async (id) => {
-      return Category.query()
-        .where({id: id})
-        .delete()
+    delete: async (payload) => {
+      let id = payload.id
+      console.log(id)
+      return Location.query()
+        .where({ id })
+        .select(Location.publicColumns)
+        .first()
+        .throwIfNotFound()
     }
   }
 }

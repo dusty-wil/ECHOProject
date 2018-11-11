@@ -18,9 +18,6 @@ const getters = {
     } else {
       return `${state.currentUser.username}`
     }
-  },
-  testGetter: state => {
-    return 'this is a test'
   }
 }
 
@@ -42,6 +39,12 @@ const actions = {
     return dispatch('apiRequest', {func: 'users.updateProfile', args: [payload]})
       .then(user => {
         commit(types.UPDATED_USER_PROFILE, { user })
+      })
+  },
+  logout ({ dispatch, commit, state }) {
+    return dispatch('apiRequest', { func: 'users.logout' })
+      .then(function() {
+        location.reload()
       })
   }
 }

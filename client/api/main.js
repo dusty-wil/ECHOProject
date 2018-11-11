@@ -1,4 +1,5 @@
 'use strict'
+
 import axios from 'axios'
 import config from '../auth/src/clientConfig/main'
 import users from './users'
@@ -9,7 +10,6 @@ import locations from './locations'
 import subjects from './subjects'
 import themes from './themes'
 import stories from './stories'
-
 
 const reqInstance = axios.create({
   baseURL: `api/${config.api_version}/`,

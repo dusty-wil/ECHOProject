@@ -26,7 +26,7 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -40,17 +40,31 @@ export default {
       description: null
     },
   }),
-
-  created () {
+  
+  mounted() {
+    // this.getAllCategories
     this.fetchData()
   },
 
+  created () {
+    // this.fetchData()
+  },
+
+  computed: Object.assign(
+    mapGetters([
+      'allCategories'
+    ])
+    // I can't get this method to reload the category list
+    // mapActions([
+    //   'getAllCategories'
+    // ])
+  ),
+  
   methods: Object.assign({
     fetchData () {
       this.getAllCategories()
         .then((result) => {
-          this.categoryList = result
-          console.log(this.categoryList)
+          this.categoryList = this.allCategories
         })
     },
     selectCategory (categoryId) {
@@ -67,7 +81,7 @@ export default {
       }
  
       if (this.selectedCategory.id === null || this.selectedCategory.id === '' || this.selectedCategory.id === 0) {
-        this.addNewCategory(this.selectedCategory)
+        this.createCategory(this.selectedCategory)
           .then((result) => {
             this.fetchData()
           })
@@ -82,10 +96,9 @@ export default {
       if (this.selectedCategory.id === null || this.selectedCategory.id === "" || this.selectedCategory.id === 0) {
         return
       }
-
-      this.deleteCategory(this.selectedCategory)
+      this.deleteCategory(this.selectedCategory.id)
         .then((result) => {
-          console.log(result)
+          this.fetchData()
         })
     },
     clearForm () {
@@ -93,11 +106,13 @@ export default {
       this.selectedCategory.name = null
       this.selectedCategory.description = null
     }
-  }, mapActions([
+  },
+  mapActions([
     'getCategoryById',
     'getAllCategories',
     'updateCategory',
     'addNewCategory',
+    'createCategory',
     'deleteCategory'
   ]))
 }
