@@ -8,14 +8,12 @@ module.exports = function () {
       return LocationBridge.query()
         .where({ location_id: id })
         .select(LocationBridge.publicColumns)
-        .first()
     },
 
     getByStoryId: async (id) => {
       return LocationBridge.query()
         .where({ story_id: id })
         .select(LocationBridge.publicColumns)
-        .first()
     },
 
     deleteLocationBridgeByLocationId: async (id) => {

@@ -8,14 +8,12 @@ module.exports = function () {
       return CategoryBridge.query()
         .where({ category_id: id })
         .select(CategoryBridge.publicColumns)
-        .first()
     },
 
     getByStoryId: async (id) => {
       return CategoryBridge.query()
         .where({ story_id: id })
         .select(CategoryBridge.publicColumns)
-        .first()
     },
 
     deleteCategoryBridgeByCategoryId: async (id) => {

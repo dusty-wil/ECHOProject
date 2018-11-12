@@ -8,14 +8,12 @@ module.exports = function () {
       return NameBridge.query()
         .where({ name_id: id })
         .select(NameBridge.publicColumns)
-        .first()
     },
 
     getByStoryId: async (id) => {
       return NameBridge.query()
         .where({ story_id: id })
         .select(NameBridge.publicColumns)
-        .first()
     },
 
     deleteNameBridgeByNameId: async (id) => {

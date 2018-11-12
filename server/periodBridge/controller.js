@@ -8,14 +8,12 @@ module.exports = function () {
       return PeriodBridge.query()
         .where({ period_id: id })
         .select(PeriodBridge.publicColumns)
-        .first()
     },
 
     getByStoryId: async (id) => {
       return PeriodBridge.query()
         .where({ story_id: id })
         .select(PeriodBridge.publicColumns)
-        .first()
     },
 
     deletePeriodBridgeByPeriodId: async (id) => {

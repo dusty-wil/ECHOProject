@@ -24,19 +24,20 @@
                 <textarea type="text" class="editFormTxtArea" id="storyDesc" v-model="selectedStory.description">Story Description</textarea>
 
                 <label class="editFormLbl" for="storyAuthor">Story Author(s):</label>
-                <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
-                <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
-                <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
-                <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
+                <span class="authorLines">
+                    <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
+                </span>
+                <span class="lineBtn addLineBtn" v-on:click="addAuthorLine">+</span>
+                <span class="lineBtn delLineBtn" v-on:click="delAuthorLine">-</span>
 
                 <label class="editFormLbl" for="storagePath">Upload Video:</label>
                 <input type="file" class="editFormTxt" id="storagePath"/>
 
                 <label class="editFormLbl" for="youtubeId">YouTube ID:</label>
-                <input type="text" class="editFormTxt" id="youtubeId" v-model="selectedStory.youtube_path" placeholder="YouTube ID"/>
+                <input type="text" class="editFormTxt" id="youtubeId" v-model="selectedStory.youtubeId" placeholder="YouTube ID"/>
 
                 <label class="editFormCheckLbl" for="featuredRotation">Featured Rotation:</label>
-                <input type="checkbox" class="editFormCheck" v-model="selectedStory.featured_rotation" id="featuredRotation" />
+                <input type="checkbox" class="editFormCheck" v-model="selectedStory.featuredRotation" id="featuredRotation" />
 
                 <input type="hidden" id="storyId" v-model="selectedStory.id"/>
             </form>
@@ -46,7 +47,7 @@
                 <div class="editStoryAttributeColumn">
                     <span>Subjects:</span>
                     <ul class="selectStoryAttributeList" id="selectSubject">
-                        <li v-for="subject in this.subjectList" :id="'subject' + subject.id" v-on:click="toggleSel('subject', subject.id)">
+                        <li v-for="subject in this.subjectList" :id="'subjects' + subject.id" v-on:click="toggleSel('subjects', subject.id)">
                             &bull; {{subject.name}}
                         </li>
                     </ul>
@@ -54,7 +55,7 @@
                 <div class="editStoryAttributeColumn">
                     <span>Categories:</span>
                     <ul class="selectStoryAttributeList" id="selectCategory">
-                        <li v-for="category in this.categoryList" :id="'category' + category.id" v-on:click="toggleSel('category', category.id)">
+                        <li v-for="category in this.categoryList" :id="'categories' + category.id" v-on:click="toggleSel('categories', category.id)">
                             &bull; {{category.name}}
                         </li>
                     </ul>
@@ -62,7 +63,7 @@
                 <div class="editStoryAttributeColumn">
                     <span>Names:</span>
                     <ul class="selectStoryAttributeList" id="selectName">
-                        <li v-for="name in this.nameList" :id="'name' + name.id" v-on:click="toggleSel('name', name.id)">
+                        <li v-for="name in this.nameList" :id="'names' + name.id" v-on:click="toggleSel('names', name.id)">
                             &bull; {{name.name}}
                         </li>
                     </ul>
@@ -70,7 +71,7 @@
                 <div class="editStoryAttributeColumn">
                     <span>Dates:</span>
                     <ul class="selectStoryAttributeList" id="selectPeriod">
-                        <li v-for="period in this.periodList" :id="'period' + period.id" v-on:click="toggleSel('period', period.id)">
+                        <li v-for="period in this.periodList" :id="'periods' + period.id" v-on:click="toggleSel('periods', period.id)">
                             &bull; {{period.name}}
                         </li>
                     </ul>
@@ -78,7 +79,7 @@
                 <div class="editStoryAttributeColumn">
                     <span>Locations:</span>
                     <ul class="selectStoryAttributeList" id="selectLocation">
-                        <li v-for="location in this.locationList" :id="'location' + location.id" v-on:click="toggleSel('location', location.id)">
+                        <li v-for="location in this.locationList" :id="'locations' + location.id" v-on:click="toggleSel('locations', location.id)">
                             &bull; {{location.name}}
                         </li>
                     </ul>
@@ -108,6 +109,12 @@ export default {
       approved: null,
       youtubeId: null,
       storagePath: null,
+      categories: [],
+      locations: [],
+      names: [],
+      periods: [],
+      subjects: [],
+      authors: [],
       featuredRotation: null
     },
     selectedCategories: [],
@@ -167,6 +174,8 @@ export default {
         .then(() => {
           this.locationList = this.allLocations
         })
+
+      this.clearForm()
     },
 
     selectStory (storyId) {
@@ -176,6 +185,22 @@ export default {
           this.selectedStory.id = result.id
           this.selectedStory.title = result.title
           this.selectedStory.description = result.description
+          this.selectedStory.youtubeId = result.youtube_path
+          this.selectedStory.featuredRotation = result.featured_rotation > 0
+
+          this.selectedStory.categories = result.categories
+          this.selectedStory.periods = result.periods
+          this.selectedStory.subjects = result.subjects
+          this.selectedStory.locations = result.locations
+          this.selectedStory.names = result.names
+
+          this.clearTags()
+
+          for (var category of this.selectedStory.categories) { this.toggleSel('categories', category) }
+          for (var period of this.selectedStory.periods) { this.toggleSel('periods', period) }
+          for (var subject of this.selectedStory.subjects) { this.toggleSel('subjects', subject) }
+          for (var location of this.selectedStory.locations) { this.toggleSel('locations', location) }
+          for (var name of this.selectedStory.names) { this.toggleSel('names', name) }
         })
     },
 
@@ -212,10 +237,44 @@ export default {
       this.selectedStory.id = null
       this.selectedStory.name = null
       this.selectedStory.description = null
+      this.clearTags()
     },
 
     toggleSel (type, id) {
-      $('#' + type + id).toggleClass('selectedAttribute')
+      var dataType = type.charAt(0).toUpperCase() + type.substr(1).toLowerCase()
+      var idIndex = this['selected' + dataType].indexOf(id)
+
+      if (idIndex >= 0) {
+        this['selected' + dataType].splice(idIndex, 1)
+        $('#' + type + id).removeClass('selectedAttribute')
+      } else {
+        this['selected' + dataType].push(id)
+        $('#' + type + id).addClass('selectedAttribute')
+      }
+    },
+
+    addAuthorLine () {
+      $('.authorLines').append('<input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>')
+      var lineLen = $('.authorLines input').length
+      if (lineLen > 1) { $('.delLineBtn').css({'display': 'inline-block'}) }
+    },
+
+    delAuthorLine () {
+      $('.authorLines input').last().remove()
+      var lineLen = $('.authorLines input').length
+      if (lineLen === 1) { $('.delLineBtn').css({'display': 'none'}) }
+    },
+
+    clearTags () {
+      this.selectedCategories = []
+      this.selectedPeriods = []
+      this.selectedLocations = []
+      this.selectedSubjects = []
+      this.selectedNames = []
+
+      $('.selectedAttribute').each(function () {
+        $(this).removeClass('selectedAttribute')
+      })
     }
   }, mapActions([
     'getStoryById',

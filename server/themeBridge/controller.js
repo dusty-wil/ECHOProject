@@ -8,14 +8,12 @@ module.exports = function () {
       return ThemeBridge.query()
         .where({ theme_id: id })
         .select(ThemeBridge.publicColumns)
-        .first()
     },
 
     getByStoryId: async (id) => {
       return ThemeBridge.query()
         .where({ story_id: id })
         .select(ThemeBridge.publicColumns)
-        .first()
     },
 
     deleteThemeBridgeByThemeId: async (id) => {

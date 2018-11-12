@@ -501,6 +501,44 @@ body
     text-decoration: underline;
 }
 
+.lineBtn
+{
+    background-color: #EFEFEF;
+    color: #2C2C2C;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 2px solid #000000;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: center;
+    font-size: 24px;
+    line-height: 15px;
+    font-weight: bold;
+    margin: 10px 1px 15px 10px;
+
+            border-radius: 12px;
+       -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+}
+
+.addLineBtn
+{
+
+}
+
+.delLineBtn
+{
+    margin: 10px 10px 15px 1px;
+    display: none;
+}
+
+.authorLines
+{
+    display: inline-block;
+}
+
 .heinz-red
 {
     color: rgb(211, 18, 69);

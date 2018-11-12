@@ -8,14 +8,12 @@ module.exports = function () {
       return SubjectBridge.query()
         .where({ subject_id: id })
         .select(SubjectBridge.publicColumns)
-        .first()
     },
 
     getByStoryId: async (id) => {
       return SubjectBridge.query()
         .where({ story_id: id })
         .select(SubjectBridge.publicColumns)
-        .first()
     },
 
     deleteSubjectBridgeBySubjectId: async (id) => {
