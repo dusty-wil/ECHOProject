@@ -61,10 +61,7 @@ function getAllStories () {
         {id: 5, name: 'Test Theme 1'},
         {id: 2, name: 'The Historical Society of Mt Pleasant'}
       ],
-      categories: [
-        {id: 1, name: 'Slavery'},
-        {id: 2, name: 'American Plantations'}
-      ],
+      categories: [1, 2],
       periods: [
         {id: 1, name: 'Reconstruction era'},
         {id: 2, name: '1848'}
@@ -72,7 +69,6 @@ function getAllStories () {
       names: [
         {id: 1, name: 'Test Name 1'},
         {id: 2, name: 'Test Name 2'}
-
       ],
       locations: [
         {id: 1, name: 'Allegheny County'},
@@ -94,10 +90,7 @@ function getAllStories () {
         {id: 5, name: 'Test Theme 1'},
         {id: 4, name: 'Ohio County Public Library'}
       ],
-      categories: [
-        {id: 3, name: 'World War II'},
-        {id: 4, name: 'POW'}
-      ],
+      categories: [3, 4],
       periods: [
         {id: 3, name: 'World War II'},
         {id: 4, name: '1942'},
@@ -106,7 +99,6 @@ function getAllStories () {
       names: [
         {id: 1, name: 'Test Name 1'},
         {id: 2, name: 'Test Name 2'}
-
       ],
       locations: [
         {id: 1, name: 'Allegheny County'},
@@ -125,11 +117,7 @@ function getAllStories () {
         {id: 5, name: 'Test Theme 1'},
         {id: 6, name: 'West Virginia Department of Arts, Culture and History'}
       ],
-      categories: [
-        {id: 5, name: 'Robbery'},
-        {id: 6, name: 'Crime'},
-        {id: 10, name: 'Test Category 2'}
-      ],
+      categories: [1, 4],
       periods: [
         {id: 5, name: 'Machine Age'},
         {id: 6, name: '1862'}
@@ -137,7 +125,6 @@ function getAllStories () {
       names: [
         {id: 1, name: 'Test Name 1'},
         {id: 2, name: 'Test Name 2'}
-
       ],
       locations: [
         {id: 1, name: 'Allegheny County'},
@@ -152,17 +139,12 @@ function getAllStories () {
       author: [
         {id: 9, name: 'Moriah Miller'},
         {id: 10, name: 'Taliesin Nolan'},
-        {id: 11, name: 'Julie Strotman'},
+        {id: 11, name: 'Julie Strotman'}
       ],
       subjects: [
         {id: 6, name: 'West Virginia Department of Arts, Culture and History'}
       ],
-      categories: [
-        {id: 7, name: 'School'},
-        {id: 8, name: 'Museum'},
-        {id: 9, name: 'Military'},
-        {id: 10, name: 'Test Category 2'}
-      ],
+      categories: [3, 4],
       periods: [
         {id: 7, name: 'Late Modern Period'},
         {id: 8, name: '1814'},
@@ -171,7 +153,6 @@ function getAllStories () {
       names: [
         {id: 1, name: 'Test Name 1'},
         {id: 2, name: 'Test Name 2'}
-
       ],
       locations: [
         {id: 1, name: 'Allegheny County'},

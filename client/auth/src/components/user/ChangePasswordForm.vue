@@ -22,48 +22,44 @@
     </div>
   </section>
 </template>
-
 <script>
-  import { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
-  export default {
-    data: () => ({
-      form: {
-        currentPassword: '',
-        newPassword: '',
-        newPasswordConfirmation: ''
-      },
-      showMessage: false
-    }),
-    computed: {
-      canSubmit () {
-        const noFieldsBlank = ((this.form.currentPassword.trim() !== '') &&
-          (this.form.newPassword.trim() !== '') &&
-          (this.form.newPasswordConfirmation.trim() !== ''))
-
-        const newPasswordsMatch = (this.form.newPassword === this.form.newPasswordConfirmation)
-
-        return (noFieldsBlank && newPasswordsMatch)
-      }
+export default {
+  data: () => ({
+    form: {
+      currentPassword: '',
+      newPassword: '',
+      newPasswordConfirmation: ''
     },
+    showMessage: false
+  }),
 
-    methods: Object.assign({
-      submit () {
-        this.updatePassword(this.form)
-          .then(() => {
-            this.form.currentPassword = ''
-            this.form.newPassword = ''
-            this.form.newPasswordConfirmation = ''
-            this.showMessage = true
-            setTimeout(() => {
-              this.showMessage = false
-            }, 8000)
-          })
-      }
-    }, mapActions(['updatePassword']))
-  }
-  </script>
+  computed: {
+    canSubmit () {
+      const noFieldsBlank = ((this.form.currentPassword.trim() !== '') &&
+        (this.form.newPassword.trim() !== '') &&
+        (this.form.newPasswordConfirmation.trim() !== ''))
 
-  <style scoped>
+      const newPasswordsMatch = (this.form.newPassword === this.form.newPasswordConfirmation)
 
-  </style>
+      return (noFieldsBlank && newPasswordsMatch)
+    }
+  },
+
+  methods: Object.assign({
+    submit () {
+      this.updatePassword(this.form)
+        .then(() => {
+          this.form.currentPassword = ''
+          this.form.newPassword = ''
+          this.form.newPasswordConfirmation = ''
+          this.showMessage = true
+          setTimeout(() => {
+            this.showMessage = false
+          }, 8000)
+        })
+    }
+  }, mapActions(['updatePassword']))
+}
+</script>

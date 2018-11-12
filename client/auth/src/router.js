@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// Import Components Here:
 import Dashboard from './components/general/Dashboard.vue'
 import ProfilePage from './components/user/ProfilePage.vue'
 

@@ -1,39 +1,33 @@
 const moment = require('moment')
 const { transaction } = require('objection')
-const { SubjectBridge } = require('./model')
+const { StoryAuthorBridge } = require('./model')
 
-module.exports = function ()
-{
-    return {
-        getBySubjectId: async (id) => {
-            return SubjectBridge.query()
-                .where({ subject_id: id })
-                .select(SubjectBridge.publicColumns)
-                .first()
+module.exports = function () {
+  return {
+    getByStoryAuthorId: async (id) => {
+      return StoryAuthorBridge.query()
+        .where({ storyAuthor_id: id })
+        .select(StoryAuthorBridge.publicColumns)
+        .first()
+    },
 
-        },
-        getByStoryId: async (id) => {
-            return SubjectBridge.query()
-                .where({ story_id: id })
-                .select(SubjectBridge.publicColumns)
-                .first()
+    getByStoryId: async (id) => {
+      return StoryAuthorBridge.query()
+        .where({ story_id: id })
+        .select(StoryAuthorBridge.publicColumns)
+        .first()
+    },
 
-        },
-        getAll: async () => {
-            return SubjectBridge.query()
-                .select(SubjectBridge.publicColumns)
-        },
-        deleteSubjectBridgeBySubjectId: async(id) => {
-            return SubjectBridge.query()
-                .where({ subject_id: id })
-                .delete()
+    deleteStoryAuthorBridgeByStoryAuthorId: async (id) => {
+      return StoryAuthorBridge.query()
+        .where({ storyAuthor_id: id })
+        .delete()
+    },
 
-        },
-        deleteSubjectBridgeByStoryId: async(id) => {
-            return SubjectBridge.query()
-                .where({ story_id: id })
-                .delete()
-
-        }
+    deleteStoryAuthorBridgeByStoryId: async (id) => {
+      return StoryAuthorBridge.query()
+        .where({ story_id: id })
+        .delete()
     }
+  }
 }

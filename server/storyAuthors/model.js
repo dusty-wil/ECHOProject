@@ -1,14 +1,12 @@
 const validator = require('../utils/validator')
 const BaseModel = require('../baseModel')
 
-const schemas = {
-}
+const schemas = {}
 
-class Location extends BaseModel 
-{
+class StoryAuthor extends BaseModel {
   // Table name is the only required property.
   static get tableName () {
-    return 'locations'
+    return 'storyAuthors'
   }
 
   // Optional JSON schema. This is not the database schema! Nothing is generated
@@ -17,14 +15,13 @@ class Location extends BaseModel
   static get jsonSchema () {
     return {
       type: 'object',
-      required: ['name', 'description'],
+      required: ['name'],
       properties: {
         id: { 
           type: 'integer',
           primaryKey: true
         },
         name: { type: 'string' },
-        description: { type: 'string' },
         created_at: { type: 'string' },
         updated_at: { type: 'string' }
       }
@@ -35,7 +32,6 @@ class Location extends BaseModel
     return [
       'id',
       'name',
-      'description',
       'created_at',
       'updated_at'
     ]
@@ -43,5 +39,5 @@ class Location extends BaseModel
 }
 
 module.exports = {
-  Location
+  StoryAuthor
 }

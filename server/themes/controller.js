@@ -1,4 +1,5 @@
 'use strict'
+
 const moment = require('moment')
 const { transaction } = require('objection')
 const { Theme } = require('./model')
@@ -12,11 +13,13 @@ module.exports = function () {
         .first()
         .throwIfNotFound()
     },
+
     getAll: async () => {
       return Theme.query()
         .select(Theme.publicColumns)
         .throwIfNotFound()
     },
+
     update: async (payload) => {
       return Theme.query()
         .patchAndFetchById(
@@ -28,6 +31,15 @@ module.exports = function () {
         )
         .throwIfNotFound()
     },
+
+    create: async (payload) => {
+      return Theme.query()
+        .insert({
+          name: payload.name,
+          description: payload.description
+        })
+    },
+
     new: async (payload) => {
       return Theme.query()
         .insert({
@@ -35,14 +47,11 @@ module.exports = function () {
           description: payload.description
         })
     },
-    delete: async (payload) => {
-      let id = payload.id
-      console.log(id)
+
+    delete: async (id) => {
       return Theme.query()
-        .where({ id })
-        .select(Theme.publicColumns)
-        .first()
-        .throwIfNotFound()
+        .where({id: id})
+        .delete()
     }
   }
 }

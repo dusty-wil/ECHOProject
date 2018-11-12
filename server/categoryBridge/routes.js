@@ -7,19 +7,22 @@ module.exports = function (router) {
       .then(category => res.json(category))
       .catch(done)
   }),
+
   router.get('/categoryBridge/byStoryId/:id', function (req, res, done) {
     CategoryBridge.getByStoryId(req.params.id)
       .then(category => res.json(category))
       .catch(done)
   }),
-  router.get('/categoryBridge/all', function (req, res, done) {
-    CategoryBridge.getAll()
-      .then(category => res.json(category))
+
+  router.get('/categoryBridge/deleteByCategoryId/:id', function (req, res, done) {
+    CategoryBridge.deleteCategoryBridgeByCategoryId(req.params.id)
+      .then(function () {})
       .catch(done)
   }),
-  router.get('/categoryBridge/delete/:id', function(req,res,done) {
-    CategoryBridge.deleteCategoryBridge(req.params.id)
-      .then(function(){})
+
+  router.get('/categoryBridge/deleteByStoryId/:id', function (req, res, done) {
+    LocationBridge.deleteCategoryBridgeByStoryId(req.params.id)
+      .then(function () {})
       .catch(done)
   })
 }

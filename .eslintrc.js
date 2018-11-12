@@ -17,6 +17,16 @@ module.exports = {
   ],
   extends: 'standard',
   rules: {
+    // this is silly. sometimes i want to do interp / eqeq.
+    'eqeqeq': 0, 
+    // setting to 1 means 'warn'
+    'no-unused-vars': 1,
+    'no-trailing-spaces': 1,
+    'quotes': 1,
+    'comma-dangle': 1,
+    'comma-spacing': 1,
+    'space-before-function-paren': 1,
+    'indent': 1,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   },
   overrides: [

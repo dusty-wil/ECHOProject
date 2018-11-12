@@ -1,46 +1,18 @@
-//const validator = require('../utils/validator')
 const BaseModel = require('../baseModel')
 
-const schemas = {
-}
+const schemas = {}
 
-class SubjectBridge extends BaseModel
-{
-    // Table name is the only required property.
-    static get tableName ()
-    {
-        return 'subjectBridge'
-    }
+class SubjectBridge extends BaseModel {
+  static get tableName () {
+    return 'subjectBridge'
+  }
 
-    // Optional JSON schema. This is not the database schema! Nothing is generated
-    // based on this. This is only used for validation. Whenever a model instance
-    // is created it is checked against this schema. http://json-schema.org/.
-    // static get jsonSchema ()
-    // {
-    //     return {
-    //         type: 'object',
-    //         required: ['id', 'name', 'description'],
-    //
-    //         properties: {
-    //             id: {
-    //                 type: 'integer',
-    //                 primaryKey: true
-    //             },
-    //             name: { type: 'string' },
-    //             description: { type: 'string' },
-    //             created_at: { type: 'string' },
-    //             updated_at: { type: 'string' }
-    //         }
-    //     }
-    // }
-
-    static get publicColumns ()
-    {
-        return [
-            'subject_id',
-            'story_id'
-        ]
-    }
+  static get publicColumns () {
+    return [
+      'story_author_id',
+      'story_id'
+    ]
+  }
 }
 
 module.exports = {

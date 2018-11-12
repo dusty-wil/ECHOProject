@@ -4,6 +4,7 @@ import * as actions from './actions'
 
 // Modules:
 import users from './modules/users'
+import authors from './modules/authors'
 import stories from './modules/stories'
 import categories from './modules/categories'
 import names from './modules/names'
@@ -11,7 +12,6 @@ import periods from './modules/periods'
 import subjects from './modules/subjects'
 import themes from './modules/themes'
 import locations from './modules/locations'
-import ui from './modules/ui'
 
 Vue.use(Vuex)
 
@@ -21,14 +21,14 @@ export default new Vuex.Store({
   actions,
   modules: {
     users,
+    authors,
     stories,
     categories,
     names,
     periods,
     subjects,
     themes,
-    locations,
-    ui
+    locations
   },
   strict: debug
 })

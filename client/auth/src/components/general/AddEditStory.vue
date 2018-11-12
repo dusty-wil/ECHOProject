@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row"> 
+        <div class="row">
             <h2 class="pageTitle">Add/Edit Stories</h2>
             <div class="activeStoryListContainer">
                 <h6>Active Stories</h6>
@@ -9,41 +9,38 @@
                         {{story.title}}
                     </li>
                 </ul>
-                
-                <div class="formBtnContainer">               
+                <div class="formBtnContainer">
                     <button class="formBtn saveBtn" v-on:click="saveStory">Save</button>
                     <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
                     <button class="formBtn delBtn" v-on:click="delStory">Delete</button>
                 </div>
             </div>
-            
+
             <form class="editAttributeForm" id="editStoryForm">
                 <label class="editFormLbl" for="storyTitle">Story Title:</label>
                 <input type="text" class="editFormTxt" id="storyName" v-model="selectedStory.title" placeholder="Story Title"/>
-                
-                
+
                 <label class="editFormLbl" for="storyDesc">Story Description:</label>
                 <textarea type="text" class="editFormTxtArea" id="storyDesc" v-model="selectedStory.description">Story Description</textarea>
-                
+
                 <label class="editFormLbl" for="storyAuthor">Story Author(s):</label>
                 <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
                 <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
                 <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
                 <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
-                
+
                 <label class="editFormLbl" for="storagePath">Upload Video:</label>
                 <input type="file" class="editFormTxt" id="storagePath"/>
-                
+
                 <label class="editFormLbl" for="youtubeId">YouTube ID:</label>
                 <input type="text" class="editFormTxt" id="youtubeId" v-model="selectedStory.youtube_path" placeholder="YouTube ID"/>
-                
+
                 <label class="editFormCheckLbl" for="featuredRotation">Featured Rotation:</label>
                 <input type="checkbox" class="editFormCheck" v-model="selectedStory.featured_rotation" id="featuredRotation" />
 
                 <input type="hidden" id="storyId" v-model="selectedStory.id"/>
-            
             </form>
-                
+
             <div class="attributeListContainer">
                 <h3>Select Story Tags</h3>
                 <div class="editStoryAttributeColumn">
@@ -87,16 +84,14 @@
                     </ul>
                 </div>
             </div>
-            
         </div>
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-  },
+  components: {},
 
   data: () => ({
     storyList: null,
@@ -123,42 +118,57 @@ export default {
   }),
 
   created () {
+    // this.fetchData()
+  },
+
+  mounted () {
     this.fetchData()
   },
+
+  computed: Object.assign(
+    mapGetters([
+      'allStories',
+      'allCategories',
+      'allLocations',
+      'allNames',
+      'allPeriods',
+      'allSubjects'
+    ])
+  ),
 
   methods: Object.assign({
     fetchData () {
       this.getAllStories()
-        .then((result) => {
-          this.storyList = result
-          console.log(result)
+        .then(() => {
+          this.storyList = this.allStories
         })
-      
+
       this.getAllPeriods()
-        .then((result) => {
-          this.periodList = result
+        .then(() => {
+          this.periodList = this.allPeriods
         })
-      
+
       this.getAllCategories()
-        .then((result) => {
-          this.categoryList = result
+        .then(() => {
+          this.categoryList = this.allCategories
         })
-      
+
       this.getAllSubjects()
-        .then((result) => {
-          this.subjectList = result
+        .then(() => {
+          this.subjectList = this.allSubjects
         })
-      
+
       this.getAllNames()
-        .then((result) => {
-          this.nameList = result
+        .then(() => {
+          this.nameList = this.allNames
         })
-      
+
       this.getAllLocations()
-        .then((result) => {
-          this.locationList = result
+        .then(() => {
+          this.locationList = this.allLocations
         })
     },
+
     selectStory (storyId) {
       this.getStoryById(storyId)
         .then((result) => {
@@ -168,11 +178,12 @@ export default {
           this.selectedStory.description = result.description
         })
     },
+
     saveStory () {
       if (this.selectedStory.name === '' || this.selectedStory.description === '') {
         return
       }
- 
+
       if (this.selectedStory.id === null || this.selectedStory.id === '' || this.selectedStory.id === 0) {
         this.addNewStory(this.selectedStory)
           .then((result) => {
@@ -185,8 +196,9 @@ export default {
           })
       }
     },
+
     delStory () {
-      if (this.selectedStory.id === null || this.selectedStory.id === "" || this.selectedStory.id === 0) {
+      if (this.selectedStory.id === null || this.selectedStory.id === '' || this.selectedStory.id === 0) {
         return
       }
 
@@ -195,13 +207,15 @@ export default {
           console.log(result)
         })
     },
+
     clearForm () {
       this.selectedStory.id = null
       this.selectedStory.name = null
       this.selectedStory.description = null
     },
+
     toggleSel (type, id) {
-      $("#" + type + id).toggleClass("selectedAttribute")
+      $('#' + type + id).toggleClass('selectedAttribute')
     }
   }, mapActions([
     'getStoryById',

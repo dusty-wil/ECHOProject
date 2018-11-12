@@ -41,12 +41,14 @@ module.exports = function (router) {
     Category.getAll()
       .then(categories => res.json(categories))
       .catch(done)
-  }),
+  })
 
   router.post('/categories/create', function (req, res, done) {
-    Category.create(req.body).then(function () {
-      Category.getAll()
-        .then(category => res.json(category))
+    Category.create(req.body)
+      .then(function (category) {
+        res.json(category)
+        // Category.getAll()
+        //   .then(category => res.json(category))
     }).catch(done)
   })
 }

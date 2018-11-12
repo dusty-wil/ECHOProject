@@ -13,10 +13,10 @@
             <form class="editAttributeForm" id="editSubjectForm">
                 <label class="editFormLbl" for="subjectName">Subject Name:</label>
                 <input type="text" class="editFormTxt" id="subjectName" v-model="selectedSubject.name" placeholder="Subject Name"/>
-                
+
                 <label class="editFormLbl" for="subjectDesc">Subject Description:</label>
                 <input type="text" class="editFormTxt" id="subjectDesc" v-model="selectedSubject.description" placeholder="Subject Description"/>
-                
+
                 <input type="hidden" id="subjectId" v-model="selectedSubject.id" value=""/>
                 <button class="formBtn saveBtn"  v-on:click="saveSubject">Save</button>
                 <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
@@ -26,11 +26,10 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-  },
+  components: {},
 
   data: () => ({
     subjectList: null,
@@ -38,21 +37,32 @@ export default {
       id: null,
       name: null,
       description: null
-    },
+    }
   }),
 
-  created () {
+  mounted () {
     this.fetchData()
   },
+
+  created () {
+    // this.fetchData()
+  },
+
+  computed: Object.assign(
+    mapGetters([
+      'allSubjects'
+    ])
+  ),
 
   methods: Object.assign({
     fetchData () {
       this.getAllSubjects()
         .then((result) => {
-          this.subjectList = result
-          console.log(this.subjectList)
+          this.subjectList = this.allSubjects
+          this.clearForm()
         })
     },
+
     selectSubject (subjectId) {
       this.getSubjectById(subjectId)
         .then((result) => {
@@ -61,13 +71,14 @@ export default {
           this.selectedSubject.description = result.description
         })
     },
+
     saveSubject () {
       if (this.selectedSubject.name === '' || this.selectedSubject.description === '') {
         return
       }
- 
+
       if (this.selectedSubject.id === null || this.selectedSubject.id === '' || this.selectedSubject.id === 0) {
-        this.addNewSubject(this.selectedSubject)
+        this.createSubject(this.selectedSubject)
           .then((result) => {
             this.fetchData()
           })
@@ -78,16 +89,18 @@ export default {
           })
       }
     },
+
     delSubject () {
-      if (this.selectedSubject.id === null || this.selectedSubject.id === "" || this.selectedSubject.id === 0) {
+      if (this.selectedSubject.id === null || this.selectedSubject.id === '' || this.selectedSubject.id === 0) {
         return
       }
 
-      this.deleteSubject(this.selectedSubject)
+      this.deleteSubject(this.selectedSubject.id)
         .then((result) => {
-          console.log(result)
+          this.fetchData()
         })
     },
+
     clearForm () {
       this.selectedSubject.id = null
       this.selectedSubject.name = null
@@ -98,6 +111,7 @@ export default {
     'getAllSubjects',
     'updateSubject',
     'addNewSubject',
+    'createSubject',
     'deleteSubject'
   ]))
 }

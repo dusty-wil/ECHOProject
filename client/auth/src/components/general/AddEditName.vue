@@ -13,10 +13,10 @@
             <form class="editAttributeForm" id="editNameForm">
                 <label class="editFormLbl" for="nameName">Name:</label>
                 <input type="text" class="editFormTxt" id="nameName" v-model="selectedName.name" placeholder="Name"/>
-                
+
                 <label class="editFormLbl" for="nameDesc">Name Description:</label>
                 <input type="text" class="editFormTxt" id="nameDesc" v-model="selectedName.description" placeholder="Name Description"/>
-                
+
                 <input type="hidden" id="nameId" v-model="selectedName.id" value=""/>
                 <button class="formBtn saveBtn"  v-on:click="saveName">Save</button>
                 <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
@@ -26,11 +26,10 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-  },
+  components: {},
 
   data: () => ({
     nameList: null,
@@ -38,21 +37,32 @@ export default {
       id: null,
       name: null,
       description: null
-    },
+    }
   }),
 
-  created () {
+  mounted () {
     this.fetchData()
   },
+
+  created () {
+    // this.fetchData()
+  },
+
+  computed: Object.assign(
+    mapGetters([
+      'allNames'
+    ])
+  ),
 
   methods: Object.assign({
     fetchData () {
       this.getAllNames()
         .then((result) => {
-          this.nameList = result
-          console.log(this.nameList)
+          this.nameList = this.allNames
+          this.clearForm()
         })
     },
+
     selectName (nameId) {
       this.getNameById(nameId)
         .then((result) => {
@@ -61,13 +71,14 @@ export default {
           this.selectedName.description = result.description
         })
     },
+
     saveName () {
       if (this.selectedName.name === '' || this.selectedName.description === '') {
         return
       }
- 
+
       if (this.selectedName.id === null || this.selectedName.id === '' || this.selectedName.id === 0) {
-        this.addNewName(this.selectedName)
+        this.createName(this.selectedName)
           .then((result) => {
             this.fetchData()
           })
@@ -78,16 +89,18 @@ export default {
           })
       }
     },
+
     delName () {
-      if (this.selectedName.id === null || this.selectedName.id === "" || this.selectedName.id === 0) {
+      if (this.selectedName.id === null || this.selectedName.id === '' || this.selectedName.id === 0) {
         return
       }
 
-      this.deleteName(this.selectedName)
+      this.deleteName(this.selectedName.id)
         .then((result) => {
-          console.log(result)
+          this.fetchData()
         })
     },
+
     clearForm () {
       this.selectedName.id = null
       this.selectedName.name = null
@@ -98,6 +111,7 @@ export default {
     'getAllNames',
     'updateName',
     'addNewName',
+    'createName',
     'deleteName'
   ]))
 }

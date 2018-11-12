@@ -13,10 +13,10 @@
             <form class="editAttributeForm" id="editPeriodForm">
                 <label class="editFormLbl" for="periodName">Date Name:</label>
                 <input type="text" class="editFormTxt" id="periodName" v-model="selectedPeriod.name" placeholder="Date Name"/>
-                
+
                 <label class="editFormLbl" for="periodDesc">Date Description:</label>
                 <input type="text" class="editFormTxt" id="periodDesc" v-model="selectedPeriod.description" placeholder="Date Description"/>
-                
+
                 <input type="hidden" id="periodId" v-model="selectedPeriod.id" value=""/>
                 <button class="formBtn saveBtn"  v-on:click="savePeriod">Save</button>
                 <button class="formBtn clearBtn" v-on:click="clearForm" type="reset">Cancel</button>
@@ -26,11 +26,10 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-  },
+  components: {},
 
   data: () => ({
     periodList: null,
@@ -38,21 +37,32 @@ export default {
       id: null,
       name: null,
       description: null
-    },
+    }
   }),
 
-  created () {
+  mounted () {
     this.fetchData()
   },
+
+  created () {
+    // this.fetchData()
+  },
+
+  computed: Object.assign(
+    mapGetters([
+      'allPeriods'
+    ])
+  ),
 
   methods: Object.assign({
     fetchData () {
       this.getAllPeriods()
         .then((result) => {
-          this.periodList = result
-          console.log(this.periodList)
+          this.periodList = this.allPeriods
+          this.clearForm()
         })
     },
+
     selectPeriod (periodId) {
       this.getPeriodById(periodId)
         .then((result) => {
@@ -61,13 +71,14 @@ export default {
           this.selectedPeriod.description = result.description
         })
     },
+
     savePeriod () {
       if (this.selectedPeriod.name === '' || this.selectedPeriod.description === '') {
         return
       }
- 
+
       if (this.selectedPeriod.id === null || this.selectedPeriod.id === '' || this.selectedPeriod.id === 0) {
-        this.addNewPeriod(this.selectedPeriod)
+        this.createPeriod(this.selectedPeriod)
           .then((result) => {
             this.fetchData()
           })
@@ -78,16 +89,18 @@ export default {
           })
       }
     },
+
     delPeriod () {
-      if (this.selectedPeriod.id === null || this.selectedPeriod.id === "" || this.selectedPeriod.id === 0) {
+      if (this.selectedPeriod.id === null || this.selectedPeriod.id === '' || this.selectedPeriod.id === 0) {
         return
       }
 
-      this.deletePeriod(this.selectedPeriod)
+      this.deletePeriod(this.selectedPeriod.id)
         .then((result) => {
-          console.log(result)
+          this.fetchData()
         })
     },
+
     clearForm () {
       this.selectedPeriod.id = null
       this.selectedPeriod.name = null
@@ -98,6 +111,7 @@ export default {
     'getAllPeriods',
     'updatePeriod',
     'addNewPeriod',
+    'createPeriod',
     'deletePeriod'
   ]))
 }

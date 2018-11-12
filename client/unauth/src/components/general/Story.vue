@@ -72,7 +72,7 @@ export default {
     fetchData () {
       this.getStoryCategories()
     },
- 
+
     getStoryCategories () {
       for (var category of this.Story.categories) {
         console.log(category)
@@ -90,7 +90,7 @@ export default {
         tag.src = 'https://www.youtube.com/iframe_api'
         var firstScriptTag = document.getElementsByTagName('script')[0]
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
- 
+
         var context = this
         window.onYouTubePlayerAPIReady = function () {
           context.loadYTVideo()
@@ -99,7 +99,7 @@ export default {
         this.loadYTVideo()
       }
     },
- 
+
     loadYTVideo () {
       this.player = new YT.Player('player', {
         height: '490',
@@ -119,22 +119,22 @@ export default {
         }
       })
     },
- 
+
     onPlayerStateChange (event) {
       console.log(event)
- 
+
       if (event.data === YT.PlayerState.PLAYING) {
         console.log('video playing')
       } else if (event.data === YT.PlayerState.ENDED) {
         console.log('video ended')
       }
     },
- 
+
     onPlayerReady (event) {
       console.log('player ready')
       console.log(event)
     },
- 
+
     onPlayerError (event) {
       console.log('youtube player error')
       console.log(event)
@@ -148,64 +148,4 @@ export default {
     'getCategoryById'
   ]))
 }
-// function loadYTPlayer (youtubeId) {
-//   if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
-//     var tag = document.createElement('script')
-//     tag.src = 'https://www.youtube.com/iframe_api'
-//     var firstScriptTag = document.getElementsByTagName('script')[0]
-//     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-// 
-//     window.onYouTubePlayerAPIReady = function () {
-//       loadYTVideo(youtubeId)
-//     }
-//   } else {
-//     loadYTVideo(youtubeId)
-//   }
-// }
-// 
-// var player
-// 
-// function loadYTVideo (youtubeId) {
-//   player = new YT.Player('player', {
-//     height: '490',
-//     width: '880',
-//     videoId: youtubeId,
-//     playerVars: {
-//       controls: 1,
-//       showinfo: 0,
-//       rel: 0,
-//       showsearch: 0,
-//       iv_load_policy: 3
-//     },
-//     events: {
-//       'onStateChange': onPlayerStateChange,
-//       'onError': onPlayerError,
-//       'onReady': onPlayerReady
-//     }
-//   })
-// }
-// 
-// function onPlayerStateChange (event) {
-//   console.log(event)
-// 
-//   if (event.data === YT.PlayerState.PLAYING) {
-//     console.log('video playing')
-//   } else if (event.data === YT.PlayerState.ENDED) {
-//     console.log('video ended')
-//   }
-// }
-// 
-// function onPlayerReady (event) {
-//   console.log('player ready')
-//   console.log(event)
-// }
-// 
-// function onPlayerError (event) {
-//   console.log('youtube player error')
-//   console.log(event)
-// }
-// 
-// function stopVideo () {
-//   player.stopVideo()
-// }
 </script>

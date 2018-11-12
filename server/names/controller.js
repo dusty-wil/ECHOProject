@@ -1,4 +1,5 @@
 'use strict'
+
 const moment = require('moment')
 const { transaction } = require('objection')
 const { Name } = require('./model')
@@ -12,11 +13,13 @@ module.exports = function () {
         .first()
         .throwIfNotFound()
     },
+
     getAll: async () => {
       return Name.query()
         .select(Name.publicColumns)
         .throwIfNotFound()
     },
+
     update: async (payload) => {
       return Name.query()
         .patchAndFetchById(
@@ -28,6 +31,15 @@ module.exports = function () {
         )
         .throwIfNotFound()
     },
+
+    create: async (payload) => {
+      return Name.query()
+        .insert({
+          name: payload.name,
+          description: payload.description
+        })
+    },
+
     new: async (payload) => {
       return Name.query()
         .insert({
@@ -35,14 +47,11 @@ module.exports = function () {
           description: payload.description
         })
     },
-    delete: async (payload) => {
-      let id = payload.id
-      console.log(id)
+
+    delete: async (id) => {
       return Name.query()
-        .where({ id })
-        .select(Name.publicColumns)
-        .first()
-        .throwIfNotFound()
+        .where({id: id})
+        .delete()
     }
   }
 }

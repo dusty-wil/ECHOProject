@@ -16,18 +16,12 @@
     </div>
   </section>
 </template>
-
 <script>
-  import ChangePasswordForm from './ChangePasswordForm.vue'
+import ChangePasswordForm from './ChangePasswordForm.vue'
 
-  export default {
-    components: {
-      ChangePasswordForm
-    }
+export default {
+  components: {
+    ChangePasswordForm
   }
+}
 </script>
-
-
-<style scoped>
-
-</style>

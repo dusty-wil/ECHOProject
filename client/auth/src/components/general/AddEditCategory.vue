@@ -29,8 +29,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-  },
+  components: {},
 
   data: () => ({
     categoryList: null,
@@ -38,10 +37,10 @@ export default {
       id: null,
       name: null,
       description: null
-    },
+    }
   }),
-  
-  mounted() {
+
+  mounted () {
     // this.getAllCategories
     this.fetchData()
   },
@@ -59,14 +58,16 @@ export default {
     //   'getAllCategories'
     // ])
   ),
-  
+
   methods: Object.assign({
     fetchData () {
       this.getAllCategories()
         .then((result) => {
           this.categoryList = this.allCategories
+          this.clearForm()
         })
     },
+
     selectCategory (categoryId) {
       this.getCategoryById(categoryId)
         .then((result) => {
@@ -75,11 +76,12 @@ export default {
           this.selectedCategory.description = result.description
         })
     },
+
     saveCategory () {
       if (this.selectedCategory.name === '' || this.selectedCategory.description === '') {
         return
       }
- 
+
       if (this.selectedCategory.id === null || this.selectedCategory.id === '' || this.selectedCategory.id === 0) {
         this.createCategory(this.selectedCategory)
           .then((result) => {
@@ -92,8 +94,9 @@ export default {
           })
       }
     },
+
     delCategory () {
-      if (this.selectedCategory.id === null || this.selectedCategory.id === "" || this.selectedCategory.id === 0) {
+      if (this.selectedCategory.id === null || this.selectedCategory.id === '' || this.selectedCategory.id === 0) {
         return
       }
       this.deleteCategory(this.selectedCategory.id)
@@ -101,6 +104,7 @@ export default {
           this.fetchData()
         })
     },
+
     clearForm () {
       this.selectedCategory.id = null
       this.selectedCategory.name = null

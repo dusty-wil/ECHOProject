@@ -26,11 +26,10 @@
     </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-  },
+  components: {},
 
   data: () => ({
     locationList: null,
@@ -38,21 +37,32 @@ export default {
       id: null,
       name: null,
       description: null
-    },
+    }
   }),
 
-  created () {
+  mounted () {
     this.fetchData()
   },
+
+  created () {
+    // this.fetchData()
+  },
+
+  computed: Object.assign(
+    mapGetters([
+      'allLocations'
+    ])
+  ),
 
   methods: Object.assign({
     fetchData () {
       this.getAllLocations()
         .then((result) => {
-          this.locationList = result
-          console.log(this.locationList)
+          this.locationList = this.allLocations
+          this.clearForm()
         })
     },
+
     selectLocation (locationId) {
       this.getLocationById(locationId)
         .then((result) => {
@@ -61,13 +71,14 @@ export default {
           this.selectedLocation.description = result.description
         })
     },
+
     saveLocation () {
       if (this.selectedLocation.name === '' || this.selectedLocation.description === '') {
         return
       }
- 
+
       if (this.selectedLocation.id === null || this.selectedLocation.id === '' || this.selectedLocation.id === 0) {
-        this.addNewLocation(this.selectedLocation)
+        this.createLocation(this.selectedLocation)
           .then((result) => {
             this.fetchData()
           })
@@ -78,16 +89,17 @@ export default {
           })
       }
     },
+
     delLocation () {
-      if (this.selectedLocation.id === null || this.selectedLocation.id === "" || this.selectedLocation.id === 0) {
+      if (this.selectedLocation.id === null || this.selectedLocation.id === '' || this.selectedLocation.id === 0) {
         return
       }
-
-      this.deleteLocation(this.selectedLocation)
+      this.deleteLocation(this.selectedLocation.id)
         .then((result) => {
-          console.log(result)
+          this.fetchData()
         })
     },
+
     clearForm () {
       this.selectedLocation.id = null
       this.selectedLocation.name = null
@@ -98,6 +110,7 @@ export default {
     'getAllLocations',
     'updateLocation',
     'addNewLocation',
+    'createLocation',
     'deleteLocation'
   ]))
 }

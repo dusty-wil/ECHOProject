@@ -1,11 +1,9 @@
 const validator = require('../utils/validator')
 const BaseModel = require('../baseModel')
 
-const schemas = {
-}
+const schemas = {}
 
-class Period extends BaseModel 
-{
+class Period extends BaseModel {
   // Table name is the only required property.
   static get tableName () {
     return 'periods'

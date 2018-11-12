@@ -1,24 +1,27 @@
 'use strict'
+
 const moment = require('moment')
 const { transaction } = require('objection')
-const { Location } = require('./model')
+const { StoryAuthor } = require('./model')
 
 module.exports = function () {
   return {
     get: async (id) => {
-      return Location.query()
+      return StoryAuthor.query()
         .where({ id })
-        .select(Location.publicColumns)
+        .select(StoryAuthor.publicColumns)
         .first()
         .throwIfNotFound()
     },
+
     getAll: async () => {
-      return Location.query()
-        .select(Location.publicColumns)
+      return StoryAuthor.query()
+        .select(StoryAuthor.publicColumns)
         .throwIfNotFound()
     },
+
     update: async (payload) => {
-      return Location.query()
+      return StoryAuthor.query()
         .patchAndFetchById(
           payload.id,
           {
@@ -28,21 +31,27 @@ module.exports = function () {
         )
         .throwIfNotFound()
     },
-    new: async (payload) => {
-      return Location.query()
+
+    create: async (payload) => {
+      return StoryAuthor.query()
         .insert({
           name: payload.name,
           description: payload.description
         })
     },
-    delete: async (payload) => {
-      let id = payload.id
-      console.log(id)
-      return Location.query()
-        .where({ id })
-        .select(Location.publicColumns)
-        .first()
-        .throwIfNotFound()
+
+    new: async (payload) => {
+      return StoryAuthor.query()
+        .insert({
+          name: payload.name,
+          description: payload.description
+        })
+    },
+
+    delete: async (id) => {
+      return StoryAuthor.query()
+        .where({id: id})
+        .delete()
     }
   }
 }

@@ -43,7 +43,7 @@ const actions = {
   },
   logout ({ dispatch, commit, state }) {
     return dispatch('apiRequest', { func: 'users.logout' })
-      .then(function() {
+      .then(function () {
         location.reload()
       })
   }
