@@ -89,7 +89,9 @@ module.exports = function (router) {
         }
       })
       .then(() => Story.get(req.body.id))
-      .then((story) => res.json(story))
+      .then((story) => {
+        res.json(story)
+      })
       .catch(done)
   })
 
@@ -144,7 +146,7 @@ module.exports = function (router) {
                 .then((author) => {
                   StoryAuthorBridgeController().create({
                     story_author_id: author.id,
-                    story_id: req.body.id
+                    story_id: story.id
                   })
                 })
               } else {
@@ -157,7 +159,7 @@ module.exports = function (router) {
                     .then((res) => {
                       StoryAuthorBridgeController().create({
                         story_author_id: res.id,
-                        story_id: req.body.id
+                        story_id: story.id
                       })
                     })
                   }
@@ -172,7 +174,7 @@ module.exports = function (router) {
   })
 
   router.post('/stories/create', function (req, res, done) {
-    Story.new(req.body)
+    Story.create(req.body)
       .then((story) => {
         Promise.resolve()
           .then(() => {
@@ -222,7 +224,7 @@ module.exports = function (router) {
                 .then((author) => {
                   StoryAuthorBridgeController().create({
                     story_author_id: author.id,
-                    story_id: req.body.id
+                    story_id: story.id
                   })
                 })
               } else {
@@ -235,7 +237,7 @@ module.exports = function (router) {
                     .then((res) => {
                       StoryAuthorBridgeController().create({
                         story_author_id: res.id,
-                        story_id: req.body.id
+                        story_id: story.id
                       })
                     })
                   }
@@ -257,7 +259,7 @@ module.exports = function (router) {
       .then(() => NameBridgeController().deleteNameBridgeByStoryId(req.params.id))
       .then(() => PeriodBridgeController().deletePeriodBridgeByStoryId(req.params.id))
       .then(() => SubjectBridgeController().deleteSubjectBridgeByStoryId(req.params.id))
-      .then(() => StoryAuthorBridgeController().deleteStoryAuthorBridgeByStoryId(req.body.id))
+      .then(() => StoryAuthorBridgeController().deleteStoryAuthorBridgeByStoryId(req.params.id))
       .then(() => Story.delete(req.params.id))
       .catch(done)
   })

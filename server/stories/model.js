@@ -9,8 +9,8 @@ const schemas = {
       'approved': { type: 'integer' },
       'title': { type: 'string' },
       'description': { type: 'string' },
-      'youtube_path': { type: 'string' },
-      'publish_date': { type: 'string' },
+      'youtube_path': { type: ['string', 'null'] },
+      'publish_date': { type: ['string', 'null'] },
       'featured_rotation': { type: 'integer' }
     },
     required: ['title', 'description']
@@ -22,8 +22,8 @@ const schemas = {
       'approved': { type: 'integer' },
       'title': { type: 'string' },
       'description': { type: 'string' },
-      'youtube_path': { type: 'string' },
-      'publish_date': { type: 'string' },
+      'youtube_path': { type: ['string', 'null'] },
+      'publish_date': { type: ['string', 'null'] },
       'featured_rotation': { type: 'integer' }
     },
     required: ['title', 'description']
@@ -39,21 +39,23 @@ class Story extends BaseModel {
   // Optional JSON schema. This is not the database schema! Nothing is generated
   // based on this. This is only used for validation. Whenever a model instance
   // is created it is checked against this schema. http://json-schema.org/.
+  // Can be used by objection to check DB values.
+  // https://vincit.github.io/objection.js/#jsonschema
   static get jsonSchema () {
     return {
       type: 'object',
       required: ['title', 'description'],
       properties: {
-        id: { 
+        id: {
           type: 'integer',
           primaryKey: true
         },
-        approver_id: { type: 'integer' },
+        approver_id: { type: ['integer', 'null'] },
         approved: { type: 'integer' },
         title: { type: 'string' },
         description: { type: 'string' },
-        youtube_path: { type: 'string' },
-        publish_date: { type: 'string' },
+        youtube_path: { type: ['string', 'null'] },
+        publish_date: { type: ['string', 'null'] },
         created_at: { type: 'string' },
         updated_at: { type: 'string' },
         featured_rotation: { type: 'integer' }

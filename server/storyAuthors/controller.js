@@ -16,16 +16,16 @@ module.exports = function () {
 
     getByName: async (name) => {
       return StoryAuthor.query()
-        where({ name: name })
-        select(StoryAuthor.publicColumns)
+        .where({ name: name })
+        .select(StoryAuthor.publicColumns)
         .first()
     },
 
     getByStoryId: async (id) => {
       return StoryAuthor.query()
-        select(StoryAuthor.publicColumns)
-        .join('storyAuthorBridge', 'storyAuthorBridge.story_author_id', 'storyAuthor.id')
-        where('storyAuthorBridge.story_id', id)
+        .select(StoryAuthor.publicColumns)
+        .join('storyAuthorBridge', 'storyAuthorBridge.story_author_id', 'storyAuthors.id')
+        .where('storyAuthorBridge.story_id', id)
     },
 
     update: async (payload) => {

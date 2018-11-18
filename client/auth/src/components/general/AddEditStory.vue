@@ -186,7 +186,6 @@ export default {
     selectStory (storyId) {
       this.getStoryById(storyId)
         .then((result) => {
-          console.log(result)
           this.selectedStory.id = result.id
           this.selectedStory.title = result.title
           this.selectedStory.description = result.description
@@ -208,23 +207,38 @@ export default {
           for (var subject of this.selectedStory.subjects) { this.toggleSel('subjects', subject) }
           for (var location of this.selectedStory.locations) { this.toggleSel('locations', location) }
           for (var name of this.selectedStory.names) { this.toggleSel('names', name) }
-        
-          if (this.selectedStory.authors.length > 0) { 
-            console.log(this.selectedStory.authors[0].name)
+
+          if (this.selectedStory.authors.length > 0) {
             $('.authorLine:first').find('.storyAuthor').val(this.selectedStory.authors[0].name)
             $('.authorLine:first').find('.storyAuthorId').val(this.selectedStory.authors[0].id)
-            for (var i = 1; i < this.selectedStory.authors.length; i++) { 
+            for (var i = 1; i < this.selectedStory.authors.length; i++) {
               this.addAuthorLine()
-              $('.authorLine:last').last().find('.storyAuthor').val(this.selectedStory.authors[i].name)
-              $('.authorLine:last').last().find('.storyAuthorId').val(this.selectedStory.authors[i].id)
+              $('.authorLine:last').find('.storyAuthor').val(this.selectedStory.authors[i].name)
+              $('.authorLine:last').find('.storyAuthorId').val(this.selectedStory.authors[i].id)
             }
           }
         })
     },
 
     saveStory () {
-      if (this.selectedStory.name === '' || this.selectedStory.description === '') {
+      if (!this.selectedStory.title || this.selectedStory.title == '' || !this.selectedStory.description || this.selectedStory.description == '') {
         alert('Some fields were left blank. Please check the form and try again.')
+        return
+      }
+
+      var authors = []
+      $('.authorLines .authorLine').each(function () {
+        var authorName = $(this).find('.storyAuthor').val()
+        if (authorName && authorName != '') {
+            authors.push({
+              id: $(this).find('.storyAuthorId').val(),
+              name: authorName
+            })
+        }
+      })
+
+      if (authors.length < 1) {
+        alert('No authors were added. Please check the form and try again.')
         return
       }
 
@@ -233,33 +247,17 @@ export default {
       this.selectedStory.locations = this.selectedLocations
       this.selectedStory.subjects = this.selectedSubjects
       this.selectedStory.names = this.selectedNames
-
-      var authors = []
-      $('.authorLines .authorLine').each(function () {
-        var authorName = $(this).find('.storyAuthor').val()
-        if (authorName == '') { 
-          alert('No authors were added. Please check the form and try again.')
-          return
-        }
-
-        authors.push({
-          id: $(this).find('.storyAuthorId').val(),
-          name: $(this).find('.storyAuthor').val()
-        })
-      })
       this.selectedStory.authors = authors
 
       if (this.selectedStory.id === null || this.selectedStory.id === '' || this.selectedStory.id === 0) {
         this.createStory(this.selectedStory)
           .then((result) => {
-            console.log(result)
             this.fetchData()
             alert('Story created.')
           })
       } else {
         this.updateStory(this.selectedStory)
           .then((result) => {
-            console.log(result)
             this.fetchData()
             alert('Story saved.')
           })
@@ -277,7 +275,6 @@ export default {
 
       this.deleteStory(this.selectedStory.id)
         .then((result) => {
-          console.log(result)
             this.fetchData()
             alert('Story deleted.')
         })
@@ -319,15 +316,6 @@ export default {
     },
 
     delAuthorLine () {
-      // var lastLineVal = $('.authorLines .authorLine').last().find('input:hidden').val()
-      // if (lastLineVal && lastLineVal != '') {
-      //   for (var i = 0; i < this.selectedAuthors.length; i++) {
-      //     if (this.selectedAuthors[i].id == lastLineVal) {
-      //       this.selectedAuthors.splice(i, 1)
-      //     }
-      //   }
-      // }
-
       $('.authorLines .authorLine').last().remove()
       var lineLen = $('.authorLines .authorLine').length
       if (lineLen === 1) { $('.delLineBtn').css({'display': 'none'}) }
