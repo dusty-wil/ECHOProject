@@ -2,9 +2,9 @@ const BaseModel = require('../baseModel')
 
 const schemas = {}
 
-class SubjectBridge extends BaseModel {
+class StoryAuthorBridge extends BaseModel {
   static get tableName () {
-    return 'subjectBridge'
+    return 'storyAuthorBridge'
   }
 
   static get publicColumns () {
@@ -16,5 +16,5 @@ class SubjectBridge extends BaseModel {
 }
 
 module.exports = {
-  SubjectBridge
+  StoryAuthorBridge
 }

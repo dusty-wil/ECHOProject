@@ -112,7 +112,7 @@ export default {
       title: null,
       description: null,
       approved: null,
-      youtubeId: null,
+      youtubeId: '',
       categories: [],
       locations: [],
       names: [],
@@ -199,6 +199,7 @@ export default {
           this.selectedStory.subjects = result.subjects
           this.selectedStory.locations = result.locations
           this.selectedStory.names = result.names
+          this.selectedStory.authors = result.authors
 
           this.clearTags()
 
@@ -207,11 +208,23 @@ export default {
           for (var subject of this.selectedStory.subjects) { this.toggleSel('subjects', subject) }
           for (var location of this.selectedStory.locations) { this.toggleSel('locations', location) }
           for (var name of this.selectedStory.names) { this.toggleSel('names', name) }
+        
+          if (this.selectedStory.authors.length > 0) { 
+            console.log(this.selectedStory.authors[0].name)
+            $('.authorLine:first').find('.storyAuthor').val(this.selectedStory.authors[0].name)
+            $('.authorLine:first').find('.storyAuthorId').val(this.selectedStory.authors[0].id)
+            for (var i = 1; i < this.selectedStory.authors.length; i++) { 
+              this.addAuthorLine()
+              $('.authorLine:last').last().find('.storyAuthor').val(this.selectedStory.authors[i].name)
+              $('.authorLine:last').last().find('.storyAuthorId').val(this.selectedStory.authors[i].id)
+            }
+          }
         })
     },
 
     saveStory () {
       if (this.selectedStory.name === '' || this.selectedStory.description === '') {
+        alert('Some fields were left blank. Please check the form and try again.')
         return
       }
 
@@ -223,6 +236,12 @@ export default {
 
       var authors = []
       $('.authorLines .authorLine').each(function () {
+        var authorName = $(this).find('.storyAuthor').val()
+        if (authorName == '') { 
+          alert('No authors were added. Please check the form and try again.')
+          return
+        }
+
         authors.push({
           id: $(this).find('.storyAuthorId').val(),
           name: $(this).find('.storyAuthor').val()
@@ -235,12 +254,14 @@ export default {
           .then((result) => {
             console.log(result)
             this.fetchData()
+            alert('Story created.')
           })
       } else {
         this.updateStory(this.selectedStory)
           .then((result) => {
             console.log(result)
             this.fetchData()
+            alert('Story saved.')
           })
       }
     },
@@ -250,10 +271,15 @@ export default {
         return
       }
 
+      if (!confirm('This will permanently remove the selected story from the system. Proceed?')) {
+        return
+      }
+
       this.deleteStory(this.selectedStory.id)
         .then((result) => {
           console.log(result)
             this.fetchData()
+            alert('Story deleted.')
         })
     },
 

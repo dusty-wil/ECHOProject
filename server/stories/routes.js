@@ -8,6 +8,8 @@ const LocationBridgeController = require('../locationBridge/controller')
 const NameBridgeController = require('../nameBridge/controller')
 const PeriodBridgeController = require('../periodBridge/controller')
 const SubjectBridgeController = require('../subjectBridge/controller')
+const StoryAuthorController = require('../storyAuthors/controller')
+const StoryAuthorBridgeController = require('../storyAuthorBridge/controller')
 
 module.exports = function (router) {
   router.put('/stories/update', function (req, res, done) {
@@ -17,6 +19,7 @@ module.exports = function (router) {
       .then(() => NameBridgeController().deleteNameBridgeByStoryId(req.body.id))
       .then(() => PeriodBridgeController().deletePeriodBridgeByStoryId(req.body.id))
       .then(() => SubjectBridgeController().deleteSubjectBridgeByStoryId(req.body.id))
+      .then(() => StoryAuthorBridgeController().deleteStoryAuthorBridgeByStoryId(req.body.id))
       .then(() => {
         for (var category of req.body.categories) {
           CategoryBridgeController().create({
@@ -55,6 +58,34 @@ module.exports = function (router) {
             subject_id: subject,
             story_id: req.body.id
           })
+        }
+      })
+      .then(() => {
+        for (var author of req.body.authors) {
+          if (author.id && author.id != '') {
+            StoryAuthorController().update(author)
+            .then((author) => {
+              StoryAuthorBridgeController().create({
+                story_author_id: author.id,
+                story_id: req.body.id
+              })
+            })
+          } else {
+            StoryAuthorController().getByName(author.name)
+            .then((res) => {
+              if (res && res.length > 0 && typeof res.id != 'undefined') {
+                StoryAuthorController().update({ id: res.id, name: author.name })
+              } else {
+                StoryAuthorController().create(author)
+                .then((res) => {
+                  StoryAuthorBridgeController().create({
+                    story_author_id: res.id,
+                    story_id: req.body.id
+                  })
+                })
+              }
+            })
+          }
         }
       })
       .then(() => Story.get(req.body.id))
@@ -104,6 +135,34 @@ module.exports = function (router) {
                 subject_id: subject,
                 story_id: story.id
               })
+            }
+          })
+          .then(() => {
+            for (var author of req.body.authors) {
+              if (author.id && author.id != '') {
+                StoryAuthorController().update(author)
+                .then((author) => {
+                  StoryAuthorBridgeController().create({
+                    story_author_id: author.id,
+                    story_id: req.body.id
+                  })
+                })
+              } else {
+                StoryAuthorController().getByName(author.name)
+                .then((res) => {
+                  if (res && res.length > 0 && typeof res.id != 'undefined') {
+                    StoryAuthorController().update({ id: res.id, name: author.name })
+                  } else {
+                    StoryAuthorController().create(author)
+                    .then((res) => {
+                      StoryAuthorBridgeController().create({
+                        story_author_id: res.id,
+                        story_id: req.body.id
+                      })
+                    })
+                  }
+                })
+              }
             }
           })
           .then(() => Story.get(story.id))
@@ -156,6 +215,34 @@ module.exports = function (router) {
               })
             }
           })
+          .then(() => {
+            for (var author of req.body.authors) {
+              if (author.id && author.id != '') {
+                StoryAuthorController().update(author)
+                .then((author) => {
+                  StoryAuthorBridgeController().create({
+                    story_author_id: author.id,
+                    story_id: req.body.id
+                  })
+                })
+              } else {
+                StoryAuthorController().getByName(author.name)
+                .then((res) => {
+                  if (res && res.length > 0 && typeof res.id != 'undefined') {
+                    StoryAuthorController().update({ id: res.id, name: author.name })
+                  } else {
+                    StoryAuthorController().create(author)
+                    .then((res) => {
+                      StoryAuthorBridgeController().create({
+                        story_author_id: res.id,
+                        story_id: req.body.id
+                      })
+                    })
+                  }
+                })
+              }
+            }
+          })
           .then(() => Story.get(story.id))
           .then((story) => res.json(story))
       })
@@ -170,6 +257,7 @@ module.exports = function (router) {
       .then(() => NameBridgeController().deleteNameBridgeByStoryId(req.params.id))
       .then(() => PeriodBridgeController().deletePeriodBridgeByStoryId(req.params.id))
       .then(() => SubjectBridgeController().deleteSubjectBridgeByStoryId(req.params.id))
+      .then(() => StoryAuthorBridgeController().deleteStoryAuthorBridgeByStoryId(req.body.id))
       .then(() => Story.delete(req.params.id))
       .catch(done)
   })
@@ -213,17 +301,17 @@ module.exports = function (router) {
                     story.names.push(name.name_id)
                   }
 
-                  // storyAuthorBridgeController().getByStoryId(story.id)
-                  // .then(function (storyAuthors) {
-                  //   story.authors = []
-                  //   for (var author of storyAuthors) {
-                  //     story.authors.push(author.author_id)
-                  //   }
-
-                  //   res.json(story)
-                  // })
-
-                  res.json(story)
+                  StoryAuthorController().getByStoryId(story.id)
+                  .then(function (storyAuthors) {
+                    story.authors = []
+                    for (var storyAuthor of storyAuthors) {
+                      story.authors.push({
+                        id: storyAuthor.id,
+                        name: storyAuthor.name
+                      })
+                    }
+                    res.json(story)
+                  })
                 })
               })
             })

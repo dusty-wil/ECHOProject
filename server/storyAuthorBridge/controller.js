@@ -23,7 +23,6 @@ module.exports = function () {
       return StoryAuthorBridge.query()
         .where({ story_id: id })
         .select(StoryAuthorBridge.publicColumns)
-        .first()
     },
 
     deleteStoryAuthorBridgeByStoryAuthorId: async (id) => {
