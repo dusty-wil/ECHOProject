@@ -4,6 +4,14 @@ const { CategoryBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return CategoryBridge.query()
+        .insert({
+          category_id: payload.category_id,
+          story_id: payload.story_id
+        })
+    },
+
     getByCategoryId: async (id) => {
       return CategoryBridge.query()
         .where({ category_id: id })

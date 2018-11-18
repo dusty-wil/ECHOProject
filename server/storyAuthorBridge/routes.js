@@ -24,5 +24,12 @@ module.exports = function (router) {
     StoryAuthorBridge.deleteStoryAuthorBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/storyAuthorBridge/new', function (req, res, done) {
+    StoryAuthorBridge.create(req.body)
+      .then(function (storyAuthorBridge) {
+        res.json(storyAuthorBridge)
+      }).catch(done)
   })
 }

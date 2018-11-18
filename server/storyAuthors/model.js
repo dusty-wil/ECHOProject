@@ -22,6 +22,9 @@ class StoryAuthor extends BaseModel {
           primaryKey: true
         },
         name: { type: 'string' },
+        email: { type: 'string' },
+        major: { type: 'string' },
+        year: { type: 'integer' },
         created_at: { type: 'string' },
         updated_at: { type: 'string' }
       }

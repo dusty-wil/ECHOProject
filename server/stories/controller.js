@@ -1,7 +1,7 @@
 'use strict'
 const moment = require('moment')
 const { transaction } = require('objection')
-const { 
+const {
   Story,
   validateUpdateStory
 } = require('./model')
@@ -13,40 +13,59 @@ module.exports = function () {
         .where({ id })
         .select(Story.publicColumns)
         .first()
-        .throwIfNotFound() 
-    },    
+        .throwIfNotFound()
+    },
+
     getAll: async () => {
       return Story.query()
         .select(Story.publicColumns)
         .throwIfNotFound()
     },
-    update: async function (payload) {
+
+    update: async (payload) => {
       return Story.query()
-        .patchAndFetchById( 
-          payload.id, 
+        .patchAndFetchById(
+          payload.id,
           {
+            approved: (payload.approved) ? 1 : 0,
             title: payload.title,
-            author_id: payload.author_id,
-            description: payload.description
+            description: payload.description,
+            youtube_path: payload.youtubeId,
+            publish_date: payload.publishDate,
+            featured_rotation: (payload.featuredRotation) ? 1 : 0
           }
         )
         .throwIfNotFound()
     },
+
+    create: async (payload) => {
+      return Story.query()
+        .insert({
+          approved: (payload.approved) ? 1 : 0,
+          title: payload.title,
+          description: payload.description,
+          youtube_path: payload.youtubeId,
+          publish_date: payload.publishDate,
+          featured_rotation: (payload.featuredRotation) ? 1 : 0
+        })
+    },
+
     new: async (payload) => {
       return Story.query()
         .insert({
+          approved: (payload.approved) ? 1 : 0,
           title: payload.title,
-          author_id: payload.author_id,
-          description: payload.description
+          description: payload.description,
+          youtube_path: payload.youtubeId,
+          publish_date: payload.publishDate,
+          featured_rotation: (payload.featuredRotation) ? 1 : 0
         })
     },
-    delete: async (payload) => {
-      let id = payload.id
+
+    delete: async (id) => {
       return Story.query()
-        .where({ id })
-        .select(Story.publicColumns)
-        .first()
-        .throwIfNotFound()
+        .where({id: id})
+        .delete()
     }
   }
 }

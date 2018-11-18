@@ -7,7 +7,7 @@ import names from './names'
 import categories from './categories'
 import periods from './periods'
 import locations from './locations'
-import authors from './authors'
+import storyAuthors from './storyAuthors'
 import subjects from './subjects'
 import themes from './themes'
 import stories from './stories'
@@ -21,7 +21,7 @@ export default {
   users: users(reqInstance),
   stories: stories(reqInstance),
   names: names(reqInstance),
-  authors: authors(reqInstance),
+  storyAuthors: storyAuthors(reqInstance),
   locations: locations(reqInstance),
   periods: periods(reqInstance),
   categories: categories(reqInstance),

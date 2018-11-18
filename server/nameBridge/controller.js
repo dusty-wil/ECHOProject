@@ -4,6 +4,14 @@ const { NameBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return NameBridge.query()
+        .insert({
+          name_id: payload.name_id,
+          story_id: payload.story_id
+        })
+    },
+
     getByNameId: async (id) => {
       return NameBridge.query()
         .where({ name_id: id })

@@ -4,6 +4,14 @@ const { SubjectBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return SubjectBridge.query()
+        .insert({
+          subject_id: payload.subject_id,
+          story_id: payload.story_id
+        })
+    },
+
     getBySubjectId: async (id) => {
       return SubjectBridge.query()
         .where({ subject_id: id })

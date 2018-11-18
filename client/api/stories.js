@@ -17,7 +17,7 @@ export default (reqInstance) => ({
   },
 
   addNewStory (storyData) {
-    return reqInstance.put('stories/new', storyData)
+    return reqInstance.post('stories/new', storyData)
       .then(res => res.data)
   },
 

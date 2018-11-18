@@ -24,5 +24,12 @@ module.exports = function (router) {
     LocationBridge.deleteCategoryBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/categoryBridge/new', function (req, res, done) {
+    CategoryBridge.create(req.body)
+      .then(function (categoryBridge) {
+        res.json(categoryBridge)
+      }).catch(done)
   })
 }

@@ -24,5 +24,12 @@ module.exports = function (router) {
     SubjectBridge.deleteSubjectBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/subjectBridge/new', function (req, res, done) {
+    SubjectBridge.create(req.body)
+      .then(function (subjectBridge) {
+        res.json(subjectBridge)
+      }).catch(done)
   })
 }

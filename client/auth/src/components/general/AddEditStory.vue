@@ -25,7 +25,10 @@
 
                 <label class="editFormLbl" for="storyAuthor">Story Author(s):</label>
                 <span class="authorLines">
-                    <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
+                    <span class="authorLine">
+                        <input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>
+                        <input type="hidden" class="storyAuthorId" value=""/>
+                    </span>
                 </span>
                 <span class="lineBtn addLineBtn" v-on:click="addAuthorLine">+</span>
                 <span class="lineBtn delLineBtn" v-on:click="delAuthorLine">-</span>
@@ -36,6 +39,9 @@
                 <label class="editFormLbl" for="youtubeId">YouTube ID:</label>
                 <input type="text" class="editFormTxt" id="youtubeId" v-model="selectedStory.youtubeId" placeholder="YouTube ID"/>
 
+                <label class="editFormCheckLbl" for="approved">Approved For Public Access:</label>
+                <input type="checkbox" class="editFormCheck" v-model="selectedStory.approved" id="approved" />
+                <br/>
                 <label class="editFormCheckLbl" for="featuredRotation">Featured Rotation:</label>
                 <input type="checkbox" class="editFormCheck" v-model="selectedStory.featuredRotation" id="featuredRotation" />
 
@@ -105,10 +111,8 @@ export default {
       id: null,
       title: null,
       description: null,
-      author: null,
       approved: null,
       youtubeId: null,
-      storagePath: null,
       categories: [],
       locations: [],
       names: [],
@@ -121,7 +125,8 @@ export default {
     selectedPeriods: [],
     selectedLocations: [],
     selectedSubjects: [],
-    selectedNames: []
+    selectedNames: [],
+    selectedAuthors: []
   }),
 
   created () {
@@ -187,6 +192,7 @@ export default {
           this.selectedStory.description = result.description
           this.selectedStory.youtubeId = result.youtube_path
           this.selectedStory.featuredRotation = result.featured_rotation > 0
+          this.selectedStory.approved = result.approved > 0
 
           this.selectedStory.categories = result.categories
           this.selectedStory.periods = result.periods
@@ -209,14 +215,31 @@ export default {
         return
       }
 
+      this.selectedStory.categories = this.selectedCategories
+      this.selectedStory.periods = this.selectedPeriods
+      this.selectedStory.locations = this.selectedLocations
+      this.selectedStory.subjects = this.selectedSubjects
+      this.selectedStory.names = this.selectedNames
+
+      var authors = []
+      $('.authorLines .authorLine').each(function () {
+        authors.push({
+          id: $(this).find('.storyAuthorId').val(),
+          name: $(this).find('.storyAuthor').val()
+        })
+      })
+      this.selectedStory.authors = authors
+
       if (this.selectedStory.id === null || this.selectedStory.id === '' || this.selectedStory.id === 0) {
-        this.addNewStory(this.selectedStory)
+        this.createStory(this.selectedStory)
           .then((result) => {
+            console.log(result)
             this.fetchData()
           })
       } else {
         this.updateStory(this.selectedStory)
           .then((result) => {
+            console.log(result)
             this.fetchData()
           })
       }
@@ -227,17 +250,22 @@ export default {
         return
       }
 
-      this.deleteStory(this.selectedStory)
+      this.deleteStory(this.selectedStory.id)
         .then((result) => {
           console.log(result)
+            this.fetchData()
         })
     },
 
     clearForm () {
       this.selectedStory.id = null
-      this.selectedStory.name = null
+      this.selectedStory.title = null
       this.selectedStory.description = null
+      this.selectedStory.approved = null
+      this.selectedStory.featuredRotation = null
+      this.selectedStory.youtubeId = null
       this.clearTags()
+      this.clearAuthors()
     },
 
     toggleSel (type, id) {
@@ -254,14 +282,28 @@ export default {
     },
 
     addAuthorLine () {
-      $('.authorLines').append('<input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>')
-      var lineLen = $('.authorLines input').length
+      $('.authorLines').append(
+        '<span class="authorLine">' +
+        '<input type="text" class="editFormTxt storyAuthor" placeholder="Author Name"/>' +
+        '<input type="hidden" class="storyAuthorId" value=""/>' +
+        '</span>'
+      )
+      var lineLen = $('.authorLines .authorLine').length
       if (lineLen > 1) { $('.delLineBtn').css({'display': 'inline-block'}) }
     },
 
     delAuthorLine () {
-      $('.authorLines input').last().remove()
-      var lineLen = $('.authorLines input').length
+      // var lastLineVal = $('.authorLines .authorLine').last().find('input:hidden').val()
+      // if (lastLineVal && lastLineVal != '') {
+      //   for (var i = 0; i < this.selectedAuthors.length; i++) {
+      //     if (this.selectedAuthors[i].id == lastLineVal) {
+      //       this.selectedAuthors.splice(i, 1)
+      //     }
+      //   }
+      // }
+
+      $('.authorLines .authorLine').last().remove()
+      var lineLen = $('.authorLines .authorLine').length
       if (lineLen === 1) { $('.delLineBtn').css({'display': 'none'}) }
     },
 
@@ -275,6 +317,12 @@ export default {
       $('.selectedAttribute').each(function () {
         $(this).removeClass('selectedAttribute')
       })
+    },
+
+    clearAuthors () {
+      $('.authorLines .authorLine').not(':first').remove()
+      $('.delLineBtn').css({'display': 'none'})
+      $('.storyAuthor').val('')
     }
   }, mapActions([
     'getStoryById',
@@ -291,6 +339,7 @@ export default {
     'getSubjectById',
     'updateStory',
     'addNewStory',
+    'createStory',
     'deleteStory'
   ]))
 }

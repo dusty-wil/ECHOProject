@@ -7,7 +7,7 @@ import Periods from './periods'
 import Subjects from './subjects'
 import Themes from './themes'
 import Locations from './locations'
-import Authors from './authors'
+import storyAuthors from './storyAuthors'
 
 const getDefaultState = () => {
   return {
@@ -85,5 +85,5 @@ export default {
   Subjects,
   Locations,
   Themes,
-  Authors
+  storyAuthors
 }

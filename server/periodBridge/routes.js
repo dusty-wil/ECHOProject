@@ -24,5 +24,12 @@ module.exports = function (router) {
     PeriodBridge.deletePeriodBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/periodBridge/new', function (req, res, done) {
+    PeriodBridge.create(req.body)
+      .then(function (periodBridge) {
+        res.json(periodBridge)
+      }).catch(done)
   })
 }

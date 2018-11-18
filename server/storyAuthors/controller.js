@@ -14,12 +14,6 @@ module.exports = function () {
         .throwIfNotFound()
     },
 
-    getAll: async () => {
-      return StoryAuthor.query()
-        .select(StoryAuthor.publicColumns)
-        .throwIfNotFound()
-    },
-
     update: async (payload) => {
       return StoryAuthor.query()
         .patchAndFetchById(

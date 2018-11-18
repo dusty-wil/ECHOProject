@@ -24,5 +24,12 @@ module.exports = function (router) {
     NameBridge.deleteNameBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/nameBridge/new', function (req, res, done) {
+    NameBridge.create(req.body)
+      .then(function (nameBridge) {
+        res.json(nameBridge)
+      }).catch(done)
   })
 }

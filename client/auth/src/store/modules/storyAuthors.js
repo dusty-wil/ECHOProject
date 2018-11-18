@@ -10,35 +10,35 @@ const getters = {}
 
 const actions = {
   getAuthorById ({ dispatch, commit, state }, payload) {
-    return dispatch('apiRequest', {func: 'authors.getAuthorById', args: [payload]})
+    return dispatch('apiRequest', {func: 'storyAuthors.getAuthorById', args: [payload]})
       .then(author => {
         return author
       })
   },
 
   updateAuthor ({ dispatch, commit, state }, payload) {
-    return dispatch('apiRequest', {func: 'authors.updateAuthor', args: [payload]})
+    return dispatch('apiRequest', {func: 'storyAuthors.updateAuthor', args: [payload]})
       .then(author => {
         return author
       })
   },
 
   addNewAuthor ({ dispatch, commit, state }, payload) {
-    return dispatch('apiRequest', {func: 'authors.addNewAuthor', args: [payload]})
+    return dispatch('apiRequest', {func: 'storyAuthors.addNewAuthor', args: [payload]})
       .then(author => {
         return author
       })
   },
 
   deleteAuthor ({ dispatch, commit, state }, payload) {
-    return dispatch('apiRequest', {func: 'authors.deleteAuthor', args: [payload]})
+    return dispatch('apiRequest', {func: 'storyAuthors.deleteAuthor', args: [payload]})
       .then(author => {
         return author
       })
   },
 
   createAuthor ({dispatch, commit, state}, payload) {
-    return dispatch('apiRequest', {func: 'authors.createAuthor', args: [payload]})
+    return dispatch('apiRequest', {func: 'storyAuthors.createAuthor', args: [payload]})
       .then(author => {
         return author
       })

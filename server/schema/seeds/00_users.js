@@ -1,6 +1,6 @@
 'use strict'
 
-const ids = [1, 2, 3]
+const ids = [1]
 
 const authHelpers = require('../../utils/authHelpers')
 exports.seed = function (knex, Promise) {
@@ -14,22 +14,15 @@ exports.seed = function (knex, Promise) {
 
       return knex('users')
         .insert([
-            {
-                username: 'echo_author',
-                email: `author@echo.school`,
-                first_name: 'ECHO',
-                last_name: 'Author',
-                password: authHelpers.generateHash('TerriblePassword'),
-                active: true
-            },
-            {
-                username: 'echo_user',
-                email: `user@echo.school`,
-                first_name: 'ECHO',
-                last_name: 'User',
-                password: authHelpers.generateHash('TerriblePassword'),
-                active: true
-            },
+          {
+            username: 'echo_admin',
+            email: `dusty.wil@gmail.com`,
+            first_name: 'ECHO',
+            last_name: 'Admin',
+            password: authHelpers.generateHash('TerriblePassword'),
+            active: true,
+            role: 'admin'
+          }
         ])
     })
 }

@@ -4,6 +4,14 @@ const { PeriodBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return PeriodBridge.query()
+        .insert({
+          period_id: payload.period_id,
+          story_id: payload.story_id
+        })
+    },
+
     getByPeriodId: async (id) => {
       return PeriodBridge.query()
         .where({ period_id: id })

@@ -24,5 +24,12 @@ module.exports = function (router) {
     ThemeBridge.deleteThemeBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/themeBridge/new', function (req, res, done) {
+    ThemeBridge.create(req.body)
+      .then(function (themeBridge) {
+        res.json(themeBridge)
+      }).catch(done)
   })
 }

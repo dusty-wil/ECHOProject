@@ -24,5 +24,12 @@ module.exports = function (router) {
     LocationBridge.deleteLocationBridgeByStoryId(req.params.id)
       .then(function () {})
       .catch(done)
+  }),
+
+  router.post('/locationBridge/new', function (req, res, done) {
+    LocationBridge.create(req.body)
+      .then(function (locationBridge) {
+        res.json(locationBridge)
+      }).catch(done)
   })
 }

@@ -4,6 +4,14 @@ const { StoryAuthorBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return StoryAuthorBridge.query()
+        .insert({
+          story_author_id: payload.story_author_id,
+          story_id: payload.story_id
+        })
+    },
+
     getByStoryAuthorId: async (id) => {
       return StoryAuthorBridge.query()
         .where({ storyAuthor_id: id })

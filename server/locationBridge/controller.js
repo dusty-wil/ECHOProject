@@ -4,6 +4,14 @@ const { LocationBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return LocationBridge.query()
+        .insert({
+          location_id: payload.location_id,
+          story_id: payload.story_id
+        })
+    },
+
     getByLocationId: async (id) => {
       return LocationBridge.query()
         .where({ location_id: id })

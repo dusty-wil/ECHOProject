@@ -4,6 +4,14 @@ const { ThemeBridge } = require('./model')
 
 module.exports = function () {
   return {
+    create: async (payload) => {
+      return ThemeBridge.query()
+        .insert({
+          theme_id: payload.theme_id,
+          story_id: payload.story_id
+        })
+    },
+
     getByThemeId: async (id) => {
       return ThemeBridge.query()
         .where({ theme_id: id })
