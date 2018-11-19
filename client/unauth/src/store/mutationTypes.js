@@ -1,8 +1,0 @@
-// UI Mutations:
-
-export const TOGGLE_FLAG = 'TOGGLE_FLAG'
-
-// User Mutations:
-export const RECEIVED_CURRENT_USER = 'RECEIVED_CURRENT_USER'
-export const UPDATED_USER_PASSWORD = 'UPDATED_USER_PASSWORD'
-export const UPDATED_USER_PROFILE = 'UPDATED_USER_PROFILE'

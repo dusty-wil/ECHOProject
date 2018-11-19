@@ -1,4 +1,3 @@
-import * as types from '../mutationTypes'
 import Vue from 'vue'
 
 const getDefaultState = () => {

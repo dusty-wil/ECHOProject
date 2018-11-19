@@ -11,6 +11,11 @@ export default (reqInstance) => ({
       .then(res => res.data)
   },
 
+  getRandomFeaturedStory () {
+    return reqInstance.get('stories/randomFeatured')
+      .then(res => res.data)
+  },
+
   updateStory (updateData) {
     return reqInstance.put('stories/update', updateData)
       .then(res => res.data)

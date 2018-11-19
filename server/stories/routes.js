@@ -323,6 +323,65 @@ module.exports = function (router) {
       .catch(done)
   })
 
+  router.get('/stories/randomFeatured', function (req, res, done) {
+    Story.getRandomFeatured()
+      .then(function (story) {
+        // hoooooooooly crap is there a better way to do this???
+        CategoryBridgeController().getByStoryId(story.id)
+        .then(function (categories) {
+          story.categories = []
+          for (var category of categories) {
+            story.categories.push(category.category_id)
+          }
+
+          PeriodBridgeController().getByStoryId(story.id)
+          .then(function (periods) {
+            story.periods = []
+            for (var period of periods) {
+              story.periods.push(period.period_id)
+            }
+
+            SubjectBridgeController().getByStoryId(story.id)
+            .then(function (subjects) {
+              story.subjects = []
+              for (var subject of subjects) {
+                story.subjects.push(subject.subject_id)
+              }
+
+              LocationBridgeController().getByStoryId(story.id)
+              .then(function (locations) {
+                story.locations = []
+                for (var location of locations) {
+                  story.locations.push(location.location_id)
+                }
+
+                NameBridgeController().getByStoryId(story.id)
+                .then(function (names) {
+                  story.names = []
+                  for (var name of names) {
+                    story.names.push(name.name_id)
+                  }
+
+                  StoryAuthorController().getByStoryId(story.id)
+                  .then(function (storyAuthors) {
+                    story.authors = []
+                    for (var storyAuthor of storyAuthors) {
+                      story.authors.push({
+                        id: storyAuthor.id,
+                        name: storyAuthor.name
+                      })
+                    }
+                    res.json(story)
+                  })
+                })
+              })
+            })
+          })
+        })
+      })
+      .catch(done)
+  })
+
   router.get('/stories/all', function (req, res, done) {
     Story.getAll()
       .then((stories) => res.json(stories))

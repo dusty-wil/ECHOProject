@@ -1,6 +1,6 @@
 'use strict'
 const moment = require('moment')
-const { transaction } = require('objection')
+const { transaction, raw } = require('objection')
 const {
   Story,
   validateUpdateStory
@@ -12,6 +12,16 @@ module.exports = function () {
       return Story.query()
         .where({ id })
         .select(Story.publicColumns)
+        .first()
+        .throwIfNotFound()
+    },
+
+    getRandomFeatured: async () => {
+      // https://github.com/Vincit/objection.js/blob/master/doc/includes/RECIPES.md
+      return Story.query()
+        .select(Story.publicColumns)
+        .where({ featured_rotation: 1 })
+        .orderBy(raw('rand()'))
         .first()
         .throwIfNotFound()
     },

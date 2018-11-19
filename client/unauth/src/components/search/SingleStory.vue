@@ -8,39 +8,45 @@
 </template>
 <script>
 import Story from '../general/Story.vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     Story: Story
   },
+
   data: function () {
     return {
       story: null
     }
   },
-  created () {
+
+  mounted () {
     this.fetchData()
   },
+
   watch: {
     '$route': 'fetchData'
   },
-  methods: {
+
+  methods: Object.assign({
     fetchData () {
-      this.story = null
-      this.story = getStoryById(this.$route.params.id)
+      this.story = this.getStoryById(this.$route.params.id)
     }
-  }
-
+  },
+  mapActions([
+    'getStoryById'
+  ]))
 }
 
-function getStoryById (id) {
-  var stories = getAllStories()
-  for (var story of stories) {
-    if (story.id == id) {
-      return story
-    }
-  }
-}
+// function getStoryById (id) {
+//   var stories = getAllStories()
+//   for (var story of stories) {
+//     if (story.id == id) {
+//       return story
+//     }
+//   }
+// }
 
 // temporary function to emulate getting data from the database
 function getAllStories () {
