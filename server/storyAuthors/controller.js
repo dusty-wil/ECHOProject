@@ -24,7 +24,11 @@ module.exports = function () {
     getByStoryId: async (id) => {
       return StoryAuthor.query()
         .select(StoryAuthor.publicColumns)
-        .join('storyAuthorBridge', 'storyAuthorBridge.story_author_id', 'storyAuthors.id')
+        .join(
+          'storyAuthorBridge', 
+          'storyAuthorBridge.story_author_id', 
+          'storyAuthors.id'
+        )
         .where('storyAuthorBridge.story_id', id)
     },
 

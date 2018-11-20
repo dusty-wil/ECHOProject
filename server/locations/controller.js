@@ -20,6 +20,17 @@ module.exports = function () {
         .throwIfNotFound()
     },
 
+    getByStoryId: async (id) => {
+      return Location.query()
+        .select(Location.publicColumns)
+        .join(
+          'locationBridge', 
+          'locationBridge.location_id', 
+          'locations.id'
+        )
+        .where('locationBridge.story_id', id)
+    },
+
     update: async (payload) => {
       return Location.query()
         .patchAndFetchById(

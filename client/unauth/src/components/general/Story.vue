@@ -3,31 +3,31 @@
         <div id="player"></div>
         <p>
             <span class="storyDesc">{{Story.desc}}</span>
-            <span class="storyAuthors"><span class="authorTag" v-for="author in Story.author">{{author.name}}</span></span>
+            <span class="storyAuthors"><span class="authorTag" v-for="author in this.Story.authors">{{author.name}}</span></span>
             <br/>
             <span class="tagLbl">Subjects:</span>
             <ul class="subjectTagList">
-                <SubjectTag v-for="subject in this.SubjectList" :Subject="subject" :key="subject.id"/>
+                <SubjectTag v-for="subject in this.Story.subjects" :Subject="subject" :key="subject.id"/>
             </ul>
             <br/>
             <span class="tagLbl">Categories:</span>
             <ul class="categoryTagList">
-                <CategoryTag v-for="category in this.categoryList" :Category="category" :key="category.id"/>
+                <CategoryTag v-for="category in this.Story.categories" :Category="category" :key="category.id"/>
             </ul>
             <br/>
             <span class="tagLbl">Names:</span>
             <ul class="nameTagList">
-                <NameTag v-for="name in this.nameList" :Name="name" :key="name.id"/>
+                <NameTag v-for="name in this.Story.names" :Name="name" :key="name.id"/>
             </ul>
             <br/>
             <span class="tagLbl">Dates:</span>
             <ul class="periodTagList">
-                <PeriodTag v-for="period in this.periodList" :Period="period" :key="period.id"/>
+                <PeriodTag v-for="period in this.Story.periods" :Period="period" :key="period.id"/>
             </ul>
             <br/>
             <span class="tagLbl">Locations:</span>
             <ul class="locationTagList">
-                <LocationTag v-for="location in this.locationList" :Location="location" :key="location.id"/>
+                <LocationTag v-for="location in this.Story.locations" :Location="location" :key="location.id"/>
             </ul>
         </p>
     </div>
@@ -68,68 +68,11 @@ export default {
   }),
 
   mounted () {
-    console.log(this.Story.youtube_path)
     this.loadYTPlayer()
-    this.fetchData()
   },
 
   methods: Object.assign({
     fetchData () {
-      this.getStoryCategories()
-      this.getStoryLocations()
-      this.getStoryNames()
-      this.getStoryPeriods()
-      this.getStorySubjects()
-    },
-
-    getStoryCategories () {
-      for (var category of this.Story.categories) {
-        this.getCategoryById(category)
-          .then((result) => {
-            console.log(result)
-            this.categoryList.push(result)
-          })
-      }
-    },
-
-    getStoryLocations () {
-      for (var location of this.Story.locations) {
-        this.getLocationById(location)
-          .then((result) => {
-            console.log(result)
-            this.locationList.push(result)
-          })
-      }
-    },
-
-    getStoryNames () {
-      for (var name of this.Story.names) {
-        this.getNameById(name)
-          .then((result) => {
-            console.log(result)
-            this.nameList.push(result)
-          })
-      }
-    },
-
-    getStoryPeriods () {
-      for (var period of this.Story.periods) {
-        this.getPeriodById(period)
-          .then((result) => {
-            console.log(result)
-            this.periodList.push(result)
-          })
-      }
-    },
-
-    getStorySubjects () {
-      for (var subject of this.Story.subjects) {
-        this.getSubjectById(subject)
-          .then((result) => {
-            console.log(result)
-            this.subjectList.push(result)
-          })
-      }
     },
 
     loadYTPlayer () {

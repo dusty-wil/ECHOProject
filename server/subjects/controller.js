@@ -20,6 +20,17 @@ module.exports = function () {
         .throwIfNotFound()
     },
 
+    getByStoryId: async (id) => {
+      return Subject.query()
+        .select(Subject.publicColumns)
+        .join(
+          'subjectBridge', 
+          'subjectBridge.subject_id', 
+          'subjects.id'
+        )
+        .where('subjectBridge.story_id', id)
+    },
+
     update: async (payload) => {
       return Subject.query()
         .patchAndFetchById(

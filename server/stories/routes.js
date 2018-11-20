@@ -11,6 +11,12 @@ const SubjectBridgeController = require('../subjectBridge/controller')
 const StoryAuthorController = require('../storyAuthors/controller')
 const StoryAuthorBridgeController = require('../storyAuthorBridge/controller')
 
+const CategoryController = require('../categories/controller')
+const LocationController = require('../locations/controller')
+const NameController = require('../names/controller')
+const PeriodController = require('../periods/controller')
+const SubjectController = require('../subjects/controller')
+
 module.exports = function (router) {
   router.put('/stories/update', function (req, res, done) {
     Story.update(req.body)
@@ -327,49 +333,46 @@ module.exports = function (router) {
     Story.getRandomFeatured()
       .then(function (story) {
         // hoooooooooly crap is there a better way to do this???
-        CategoryBridgeController().getByStoryId(story.id)
+        CategoryController().getByStoryId(story.id)
         .then(function (categories) {
           story.categories = []
           for (var category of categories) {
-            story.categories.push(category.category_id)
+            story.categories.push({ id: category.id, name: category.name })
           }
 
-          PeriodBridgeController().getByStoryId(story.id)
+          PeriodController().getByStoryId(story.id)
           .then(function (periods) {
             story.periods = []
             for (var period of periods) {
-              story.periods.push(period.period_id)
+              story.periods.push({ id: period.id, name: period.name })
             }
 
-            SubjectBridgeController().getByStoryId(story.id)
+            SubjectController().getByStoryId(story.id)
             .then(function (subjects) {
               story.subjects = []
               for (var subject of subjects) {
-                story.subjects.push(subject.subject_id)
+                story.subjects.push({ id: subject.id, name: subject.name })
               }
 
-              LocationBridgeController().getByStoryId(story.id)
+              LocationController().getByStoryId(story.id)
               .then(function (locations) {
                 story.locations = []
                 for (var location of locations) {
-                  story.locations.push(location.location_id)
+                  story.locations.push({ id: location.id, name: location.name })
                 }
 
-                NameBridgeController().getByStoryId(story.id)
+                NameController().getByStoryId(story.id)
                 .then(function (names) {
                   story.names = []
                   for (var name of names) {
-                    story.names.push(name.name_id)
+                    story.names.push({ id: name.id, name: name.name })
                   }
 
                   StoryAuthorController().getByStoryId(story.id)
                   .then(function (storyAuthors) {
                     story.authors = []
                     for (var storyAuthor of storyAuthors) {
-                      story.authors.push({
-                        id: storyAuthor.id,
-                        name: storyAuthor.name
-                      })
+                      story.authors.push({ id: storyAuthor.id, name: storyAuthor.name })
                     }
                     res.json(story)
                   })

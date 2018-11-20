@@ -20,6 +20,17 @@ module.exports = function () {
         .throwIfNotFound()
     },
 
+    getByStoryId: async (id) => {
+      return Name.query()
+        .select(Name.publicColumns)
+        .join(
+          'nameBridge', 
+          'nameBridge.name_id', 
+          'names.id'
+        )
+        .where('nameBridge.story_id', id)
+    },
+
     update: async (payload) => {
       return Name.query()
         .patchAndFetchById(

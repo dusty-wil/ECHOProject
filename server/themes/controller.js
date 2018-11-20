@@ -20,6 +20,17 @@ module.exports = function () {
         .throwIfNotFound()
     },
 
+    getByStoryId: async (id) => {
+      return Theme.query()
+        .select(Theme.publicColumns)
+        .join(
+          'themeBridge', 
+          'themeBridge.theme_id', 
+          'themes.id'
+        )
+        .where('themeBridge.story_id', id)
+    },
+
     update: async (payload) => {
       return Theme.query()
         .patchAndFetchById(
