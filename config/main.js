@@ -4,9 +4,9 @@ const defaultConfig = {
   message: 'Hello from Default Config',
   db: {
     database: process.env.MYSQL_DATABASE || 'echo',
-    user: process.env.MYSQL_USER || 'dev',
-    password: process.env.MYSQL_PASSWORD || 'awfulPassword',
-    host: process.env.MYSQL_HOST || 'localhost',
+    user: process.env.MYSQL_USER || 'echoadmin',
+    password: process.env.MYSQL_PASSWORD || 'badpassword',
+    host: process.env.MYSQL_HOST || 'echo-db.cvtwolzxwhhb.us-east-2.rds.amazonaws.com',
     port: process.env.DB_PORT || '3306'
   },
   api_version: 'v1'
