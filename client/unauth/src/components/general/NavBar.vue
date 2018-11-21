@@ -14,6 +14,7 @@
                         <option value="byName">Name</option>
                         <option value="byLocation">Location</option>
                         <option value="byAuthor">Author</option>
+                        <option value="byTitle">Title</option>
                     </select>
                     <input type="text" class="inputTxt" name="searchTxt" v-model="searchTxt" placeholder="Enter search term"/>
                     <button class="inputBtn" id="searchGo" v-on:click="submitSearch()">go</button>

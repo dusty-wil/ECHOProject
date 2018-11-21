@@ -70,6 +70,55 @@ const actions = {
       .then(story => {
         return story
       })
+  },
+
+  getByCategoryVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getByCategoryVal', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
+  getByLocationVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getByLocationVal', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
+  getByNameVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getByNameVal', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
+  getByPeriodVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getByPeriodVal', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
+  getByAuthorVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getByAuthorVal', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
+  getBySubjectVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getBySubjectVal', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
+  getByTitleVal ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.getByTitleVal', args: [payload]})
+      .then(story => {
+        return story
+      })
   }
 }
 

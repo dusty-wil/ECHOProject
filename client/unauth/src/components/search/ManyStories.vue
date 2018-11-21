@@ -58,17 +58,12 @@ export default {
       return pathSegs[2] === 'search' && pathSegs[4] === 'matching'
     },
 
-    // temporary function to get stories based on search term, replace with model???
     getStoriesBy (searchType, searchParam, isMatching) {
-      console.log(searchType)
-      console.log(searchParam)
-      console.log(isMatching)
-
       if (!isMatching && searchParam.id) {
         this.getStoriesByType(searchType, searchParam.id)
-      } else {
-        // searchVal = searchParam.searchValue
-        // storiesOut = getStoriesByMatch(searchType, searchVal)
+      } else if (isMatching && searchParam.searchValue) {
+        var searchVal = searchParam.searchValue
+        this.getStoriesByMatch(searchType, searchVal)
       }
     },
 
@@ -79,37 +74,78 @@ export default {
             console.log(results)
             this.results = results
           })
-      }
-      if (searchType === 'location') {
+      } else if (searchType === 'location') {
         this.getByLocationId(id)
           .then((results) => {
             console.log(results)
             this.results = results
           })
-      }
-      if (searchType === 'name') {
+      } else if (searchType === 'name') {
         this.getByNameId(id)
           .then((results) => {
             console.log(results)
             this.results = results
           })
-      }
-      if (searchType === 'period') {
+      } else if (searchType === 'period') {
         this.getByPeriodId(id)
           .then((results) => {
             console.log(results)
             this.results = results
           })
-      }
-      if (searchType === 'subject') {
+      } else if (searchType === 'subject') {
         this.getBySubjectId(id)
           .then((results) => {
             console.log(results)
             this.results = results
           })
-      }
-      if (searchType === 'author') {
+      } else if (searchType === 'author') {
         this.getByAuthorId(id)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      }
+    },
+
+    getStoriesByMatch (searchType, searchVal) {
+      if (searchType === 'category') {
+        this.getByCategoryVal(searchVal)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      } else if (searchType === 'location') {
+        this.getByLocationVal(searchVal)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      } else if (searchType === 'name') {
+        this.getByNameVal(searchVal)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      } else if (searchType === 'period') {
+        this.getByPeriodVal(searchVal)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      } else if (searchType === 'subject') {
+        this.getBySubjectVal(searchVal)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      } else if (searchType === 'author') {
+        this.getByAuthorVal(searchVal)
+          .then((results) => {
+            console.log(results)
+            this.results = results
+          })
+      } else if (searchType === 'title') {
+        this.getByTitleVal(searchVal)
           .then((results) => {
             console.log(results)
             this.results = results
@@ -123,7 +159,14 @@ export default {
     'getByNameId',
     'getByPeriodId',
     'getByAuthorId',
-    'getBySubjectId'
+    'getBySubjectId',
+    'getByCategoryVal',
+    'getByLocationVal',
+    'getByNameVal',
+    'getByPeriodVal',
+    'getBySubjectVal',
+    'getByAuthorVal',
+    'getByTitleVal'
   ]))
 }
 </script>

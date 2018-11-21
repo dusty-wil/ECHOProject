@@ -82,6 +82,125 @@ module.exports = function () {
         .where('subjectBridge.subject_id', id)
     },
 
+    getByCategoryVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'categoryBridge',
+          'categoryBridge.story_id',
+          'stories.id'
+        )
+        .join(
+          'categories',
+          'categories.id',
+          'categoryBridge.category_id'
+        )
+        .where(raw('lower(categories.name) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
+    getByLocationVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'locationBridge',
+          'locationBridge.story_id',
+          'stories.id'
+        )
+        .join(
+          'locations',
+          'locations.id',
+          'locationBridge.location_id'
+        )
+        .where(raw('lower(locations.name) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
+    getByNameVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'nameBridge',
+          'nameBridge.story_id',
+          'stories.id'
+        )
+        .join(
+          'names',
+          'names.id',
+          'nameBridge.name_id'
+        )
+        .where(raw('lower(names.name) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
+    getByPeriodVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'periodBridge',
+          'periodBridge.story_id',
+          'stories.id'
+        )
+        .join(
+          'periods',
+          'periods.id',
+          'periodBridge.period_id'
+        )
+        .where(raw('lower(periods.name) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
+    getByAuthorVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'storyAuthorBridge',
+          'storyAuthorBridge.story_id',
+          'stories.id'
+        )
+        .join(
+          'storyAuthors',
+          'storyAuthors.id',
+          'storyAuthorBridge.story_author_id'
+        )
+        .where(raw('lower(storyAuthors.name) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
+    getBySubjectVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'subjectBridge',
+          'subjectBridge.story_id',
+          'stories.id'
+        )
+        .join(
+          'subjects',
+          'subjects.id',
+          'subjectBridge.subject_id'
+        )
+        .where(raw('lower(subjects.name) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
+    getByTitleVal: async (val) => {
+      var v = val.toLowerCase().trim()
+      return Story.query()
+        .select(Story.publicColumns)
+        // is this getting properly escaped?
+        // .where('stories.title', 'like', '%' + v + '%')
+        // is this?
+        .where(raw('lower(stories.title) like ?', '%' + v + '%'))
+        .groupBy('stories.id')
+    },
+
     getRandomFeatured: async () => {
       // https://github.com/Vincit/objection.js/blob/master/doc/includes/RECIPES.md
       return Story.query()

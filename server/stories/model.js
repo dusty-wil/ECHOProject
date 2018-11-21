@@ -65,16 +65,16 @@ class Story extends BaseModel {
 
   static get publicColumns () {
     return [
-      'id',
-      'approver_id',
-      'approved',
-      'title',
-      'description',
-      'youtube_path',
-      'publish_date',
-      'created_at',
-      'updated_at',
-      'featured_rotation'
+      'stories.id',
+      'stories.approver_id',
+      'stories.approved',
+      'stories.title',
+      'stories.description',
+      'stories.youtube_path',
+      'stories.publish_date',
+      'stories.created_at',
+      'stories.updated_at',
+      'stories.featured_rotation'
     ]
   }
 }

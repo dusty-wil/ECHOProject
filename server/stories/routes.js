@@ -485,6 +485,188 @@ module.exports = function (router) {
       .catch(done)
   })
 
+  router.get('/stories/search/byCategory/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getByCategoryVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byLocation/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getByLocationVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byName/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getByNameVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byPeriod/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getByPeriodVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byAuthor/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getByAuthorVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/bySubject/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getBySubjectVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byTitle/matching/:val', function (req, res, done) {
+    storiesOut = []
+    Story.getByTitleVal(req.params.val)
+      .then(async function (stories) {
+        for (var story of stories) {
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
   router.get('/stories/randomFeatured', function (req, res, done) {
     Story.getRandomFeatured()
       .then(function (story) {

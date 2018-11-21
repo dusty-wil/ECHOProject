@@ -51,6 +51,41 @@ export default (reqInstance) => ({
       .then(res => res.data)
   },
 
+  getByCategoryVal (value) {
+    return reqInstance.get(`stories/search/byCategory/matching/${value}`)
+      .then(res => res.data)
+  },
+
+  getByLocationVal (value) {
+    return reqInstance.get(`stories/search/byLocation/matching/${value}`)
+      .then(res => res.data)
+  },
+
+  getByNameVal (value) {
+    return reqInstance.get(`stories/search/byName/matching/${value}`)
+      .then(res => res.data)
+  },
+
+  getByPeriodVal (value) {
+    return reqInstance.get(`stories/search/byPeriod/matching/${value}`)
+      .then(res => res.data)
+  },
+
+  getByAuthorVal (value) {
+    return reqInstance.get(`stories/search/byAuthor/matching/${value}`)
+      .then(res => res.data)
+  },
+
+  getBySubjectVal (value) {
+    return reqInstance.get(`stories/search/bySubject/matching/${value}`)
+      .then(res => res.data)
+  },
+
+  getByTitleVal (value) {
+    return reqInstance.get(`stories/search/byTitle/matching/${value}`)
+      .then(res => res.data)
+  },
+
   updateStory (updateData) {
     return reqInstance.put('stories/update', updateData)
       .then(res => res.data)
