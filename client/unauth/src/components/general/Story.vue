@@ -71,6 +71,13 @@ export default {
     this.loadYTPlayer()
   },
 
+  updated () {
+    this.player.cueVideoById({
+      'videoId': this.Story.youtube_path,
+      'suggestedQuality': 'large'
+    })
+  },
+
   methods: Object.assign({
     fetchData () {
     },
@@ -92,6 +99,7 @@ export default {
     },
 
     loadYTVideo () {
+      this.player = null
       this.player = new YT.Player('player', {
         height: '490',
         width: '880',
@@ -112,8 +120,6 @@ export default {
     },
 
     onPlayerStateChange (event) {
-      console.log(event)
-
       if (event.data === YT.PlayerState.PLAYING) {
         console.log('video playing')
       } else if (event.data === YT.PlayerState.ENDED) {

@@ -16,6 +16,72 @@ module.exports = function () {
         .throwIfNotFound()
     },
 
+    getByCategoryId: async (id) => {
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'categoryBridge',
+          'categoryBridge.story_id',
+          'stories.id'
+        )
+        .where('categoryBridge.category_id', id)
+    },
+
+    getByLocationId: async (id) => {
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'locationBridge',
+          'locationBridge.story_id',
+          'stories.id'
+        )
+        .where('locationBridge.location_id', id)
+    },
+
+    getByNameId: async (id) => {
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'nameBridge',
+          'nameBridge.story_id',
+          'stories.id'
+        )
+        .where('nameBridge.name_id', id)
+    },
+
+    getByPeriodId: async (id) => {
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'periodBridge',
+          'periodBridge.story_id',
+          'stories.id'
+        )
+        .where('periodBridge.period_id', id)
+    },
+
+    getByAuthorId: async (id) => {
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'storyAuthorBridge',
+          'storyAuthorBridge.story_id',
+          'stories.id'
+        )
+        .where('storyAuthorBridge.story_author_id', id)
+    },
+
+    getBySubjectId: async (id) => {
+      return Story.query()
+        .select(Story.publicColumns)
+        .join(
+          'subjectBridge',
+          'subjectBridge.story_id',
+          'stories.id'
+        )
+        .where('subjectBridge.subject_id', id)
+    },
+
     getRandomFeatured: async () => {
       // https://github.com/Vincit/objection.js/blob/master/doc/includes/RECIPES.md
       return Story.query()

@@ -329,8 +329,215 @@ module.exports = function (router) {
       .catch(done)
   })
 
+  router.get('/stories/search/byCategoryId/:id', function (req, res, done) {
+    storiesOut = []
+    Story.getByCategoryId(req.params.id)
+      .then(async function (stories) {
+        for (var story of stories) { 
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byLocationId/:id', function (req, res, done) {
+    Story.getByLocationId(req.params.id)
+      .then(async function (stories) {
+        for (var story of stories) { 
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byNameId/:id', function (req, res, done) {
+    Story.getByNameId(req.params.id)
+      .then(async function (stories) {
+        for (var story of stories) { 
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byPeriodId/:id', function (req, res, done) {
+    Story.getByPeriodId(req.params.id)
+      .then(async function (stories) {
+        for (var story of stories) { 
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/byAuthorId/:id', function (req, res, done) {
+    Story.getByAuthorId(req.params.id)
+      .then(async function (stories) {
+        for (var story of stories) { 
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/search/bySubjectId/:id', function (req, res, done) {
+    Story.getBySubjectId(req.params.id)
+      .then(async function (stories) {
+        for (var story of stories) { 
+          await StoryAuthorController().getByStoryId(story.id)
+            .then(function (storyAuthors) {
+              story.authors = []
+              for (var storyAuthor of storyAuthors) {
+                story.authors.push({
+                  id: storyAuthor.id,
+                  name: storyAuthor.name
+                })
+              }
+            })
+            .then(() => {
+              storiesOut.push(story)
+            })
+        }
+      })
+      .then(() => {
+        res.json(storiesOut)
+      })
+      .catch(done)
+  })
+
   router.get('/stories/randomFeatured', function (req, res, done) {
     Story.getRandomFeatured()
+      .then(function (story) {
+        // hoooooooooly crap is there a better way to do this???
+        CategoryController().getByStoryId(story.id)
+        .then(function (categories) {
+          story.categories = []
+          for (var category of categories) {
+            story.categories.push({ id: category.id, name: category.name })
+          }
+
+          PeriodController().getByStoryId(story.id)
+          .then(function (periods) {
+            story.periods = []
+            for (var period of periods) {
+              story.periods.push({ id: period.id, name: period.name })
+            }
+
+            SubjectController().getByStoryId(story.id)
+            .then(function (subjects) {
+              story.subjects = []
+              for (var subject of subjects) {
+                story.subjects.push({ id: subject.id, name: subject.name })
+              }
+
+              LocationController().getByStoryId(story.id)
+              .then(function (locations) {
+                story.locations = []
+                for (var location of locations) {
+                  story.locations.push({ id: location.id, name: location.name })
+                }
+
+                NameController().getByStoryId(story.id)
+                .then(function (names) {
+                  story.names = []
+                  for (var name of names) {
+                    story.names.push({ id: name.id, name: name.name })
+                  }
+
+                  StoryAuthorController().getByStoryId(story.id)
+                  .then(function (storyAuthors) {
+                    story.authors = []
+                    for (var storyAuthor of storyAuthors) {
+                      story.authors.push({ id: storyAuthor.id, name: storyAuthor.name })
+                    }
+                    res.json(story)
+                  })
+                })
+              })
+            })
+          })
+        })
+      })
+      .catch(done)
+  })
+
+  router.get('/stories/getSearchResultById/:id', function (req, res, done) {
+    Story.get(req.params.id)
       .then(function (story) {
         // hoooooooooly crap is there a better way to do this???
         CategoryController().getByStoryId(story.id)
