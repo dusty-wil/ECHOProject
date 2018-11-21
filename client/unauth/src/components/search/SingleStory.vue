@@ -34,9 +34,9 @@ export default {
 
   methods: Object.assign({
     fetchData () {
-      if (this.$route.params.id) { 
+      if (this.$route.params.id) {
         this.getSearchResultById(this.$route.params.id)
-          .then((story) => { 
+          .then((story) => {
             this.story = story
             this.storyDataLoaded = true
           })

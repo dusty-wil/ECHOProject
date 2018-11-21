@@ -230,10 +230,10 @@ export default {
       $('.authorLines .authorLine').each(function () {
         var authorName = $(this).find('.storyAuthor').val()
         if (authorName && authorName != '') {
-            authors.push({
-              id: $(this).find('.storyAuthorId').val(),
-              name: authorName
-            })
+          authors.push({
+            id: $(this).find('.storyAuthorId').val(),
+            name: authorName
+          })
         }
       })
 
@@ -275,8 +275,8 @@ export default {
 
       this.deleteStory(this.selectedStory.id)
         .then((result) => {
-            this.fetchData()
-            alert('Story deleted.')
+          this.fetchData()
+          alert('Story deleted.')
         })
     },
 

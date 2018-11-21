@@ -333,7 +333,7 @@ module.exports = function (router) {
     storiesOut = []
     Story.getByCategoryId(req.params.id)
       .then(async function (stories) {
-        for (var story of stories) { 
+        for (var story of stories) {
           await StoryAuthorController().getByStoryId(story.id)
             .then(function (storyAuthors) {
               story.authors = []
@@ -356,9 +356,10 @@ module.exports = function (router) {
   })
 
   router.get('/stories/search/byLocationId/:id', function (req, res, done) {
+    storiesOut = []
     Story.getByLocationId(req.params.id)
       .then(async function (stories) {
-        for (var story of stories) { 
+        for (var story of stories) {
           await StoryAuthorController().getByStoryId(story.id)
             .then(function (storyAuthors) {
               story.authors = []
@@ -381,9 +382,10 @@ module.exports = function (router) {
   })
 
   router.get('/stories/search/byNameId/:id', function (req, res, done) {
+    storiesOut = []
     Story.getByNameId(req.params.id)
       .then(async function (stories) {
-        for (var story of stories) { 
+        for (var story of stories) {
           await StoryAuthorController().getByStoryId(story.id)
             .then(function (storyAuthors) {
               story.authors = []
@@ -406,9 +408,10 @@ module.exports = function (router) {
   })
 
   router.get('/stories/search/byPeriodId/:id', function (req, res, done) {
+    storiesOut = []
     Story.getByPeriodId(req.params.id)
       .then(async function (stories) {
-        for (var story of stories) { 
+        for (var story of stories) {
           await StoryAuthorController().getByStoryId(story.id)
             .then(function (storyAuthors) {
               story.authors = []
@@ -431,9 +434,10 @@ module.exports = function (router) {
   })
 
   router.get('/stories/search/byAuthorId/:id', function (req, res, done) {
+    storiesOut = []
     Story.getByAuthorId(req.params.id)
       .then(async function (stories) {
-        for (var story of stories) { 
+        for (var story of stories) {
           await StoryAuthorController().getByStoryId(story.id)
             .then(function (storyAuthors) {
               story.authors = []
@@ -456,9 +460,10 @@ module.exports = function (router) {
   })
 
   router.get('/stories/search/bySubjectId/:id', function (req, res, done) {
+    storiesOut = []
     Story.getBySubjectId(req.params.id)
       .then(async function (stories) {
-        for (var story of stories) { 
+        for (var story of stories) {
           await StoryAuthorController().getByStoryId(story.id)
             .then(function (storyAuthors) {
               story.authors = []
