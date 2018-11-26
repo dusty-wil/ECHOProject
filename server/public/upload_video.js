@@ -15,8 +15,6 @@ limitations under the License.
 */
 
 var signinCallback = function (result){
-  alert('heewwwo')
-  console.log(result)
   if(result.access_token) {
     var uploadVideo = new UploadVideo();
     uploadVideo.ready(result.access_token);
@@ -34,22 +32,25 @@ var STATUS_POLLING_INTERVAL_MILLIS = 60 * 1000; // One minute.
 var UploadVideo = function() {
   /**
    * The array of tags for the new YouTube video.
+   * Maybe one day this can be derived from the tags the user picks on the page
+   * That might be outside the scope of this iteration of the project.
    *
    * @attribute tags
    * @type Array.<string>
-   * @default ['google-cors-upload']
+   * @default ['heinz-history-center', 'calu', 'digital-stories-archive']
    */
-  this.tags = ['youtube-cors-upload'];
+  this.tags = ['heinz-history-center', 'calu', 'digital-stories-archive'];
 
   /**
    * The numeric YouTube
    * [category id](https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.videoCategories.list?part=snippet&regionCode=us).
-   *
+   * 27 = education
+   * 
    * @attribute categoryId
    * @type number
-   * @default 22
+   * @default 27
    */
-  this.categoryId = 22;
+  this.categoryId = 27;
 
   /**
    * The id of the new video.
@@ -65,7 +66,6 @@ var UploadVideo = function() {
 
 
 UploadVideo.prototype.ready = function(accessToken) {
-  console.log('uploaddvideo')
   this.accessToken = accessToken;
   this.gapi = gapi;
   this.authenticated = true;
@@ -87,7 +87,7 @@ UploadVideo.prototype.ready = function(accessToken) {
       }
     }.bind(this)
   });
-  $('#button').on("click", this.handleUploadClicked.bind(this));
+  $('#upload-button').on("click", this.handleUploadClicked.bind(this));
 };
 
 /**
@@ -99,13 +99,13 @@ UploadVideo.prototype.ready = function(accessToken) {
 UploadVideo.prototype.uploadFile = function(file) {
   var metadata = {
     snippet: {
-      title: $('#title').val(),
-      description: $('#description').text(),
+      title: $('#storyName').val(),
+      description: $('#storyDesc').text(),
       tags: this.tags,
       categoryId: this.categoryId
     },
     status: {
-      privacyStatus: $('#privacy-status option:selected').text()
+      privacyStatus: $('#privacy-status option:selected').text().toLowerCase()
     }
   };
   var uploader = new MediaUploader({
@@ -118,6 +118,7 @@ UploadVideo.prototype.uploadFile = function(file) {
     },
     onError: function(data) {
       var message = data;
+      $('#uploadInProgress').val(0);
       // Assuming the error is raised by the YouTube API, data will be
       // a JSON string with error.message set. That may not be the
       // only time onError will be raised, though.
@@ -135,7 +136,7 @@ UploadVideo.prototype.uploadFile = function(file) {
       // The times are in millis, so we need to divide by 1000 to get seconds.
       var bytesPerSecond = bytesUploaded / ((currentTime - this.uploadStartTime) / 1000);
       var estimatedSecondsRemaining = (totalBytes - bytesUploaded) / bytesPerSecond;
-      var percentageComplete = (bytesUploaded * 100) / totalBytes;
+      var percentageComplete = ((bytesUploaded * 100) / totalBytes).toFixed(2);
 
       $('#upload-progress').attr({
         value: bytesUploaded,
@@ -147,12 +148,16 @@ UploadVideo.prototype.uploadFile = function(file) {
       $('#total-bytes').text(totalBytes);
 
       $('.during-upload').show();
+      $('#uploadInProgress').val(1);
     }.bind(this),
     onComplete: function(data) {
       var uploadResponse = JSON.parse(data);
       this.videoId = uploadResponse.id;
       $('#video-id').text(this.videoId);
+      $('#youtubeId').val(this.videoId);
       $('.post-upload').show();
+      $('#uploadInProgress').val(0);
+      alert('Upload complete! You may now add tags to the story and save any changes.');
       this.pollForVideoStatus();
     }.bind(this)
   });
@@ -162,6 +167,11 @@ UploadVideo.prototype.uploadFile = function(file) {
 };
 
 UploadVideo.prototype.handleUploadClicked = function() {
+  var uploadMessage = 'This will begin uploading the video to YouTube. Navigating away from the page, ' 
+    + 'saving, deleting, or canceling the story edit page may interfere with the upload and yield ' 
+    + 'unpredictable results. Continue with upload?'
+  
+  if (!confirm(uploadMessage)) { return false; }
   $('#button').attr('disabled', true);
   this.uploadFile($('#file').get(0).files[0]);
 };

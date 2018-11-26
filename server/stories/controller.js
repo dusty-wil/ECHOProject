@@ -25,6 +25,7 @@ module.exports = function () {
           'stories.id'
         )
         .where('categoryBridge.category_id', id)
+        .andWhere('stories.approved', 1)
     },
 
     getByLocationId: async (id) => {
@@ -36,6 +37,7 @@ module.exports = function () {
           'stories.id'
         )
         .where('locationBridge.location_id', id)
+        .andWhere('stories.approved', 1)
     },
 
     getByNameId: async (id) => {
@@ -47,6 +49,7 @@ module.exports = function () {
           'stories.id'
         )
         .where('nameBridge.name_id', id)
+        .andWhere('stories.approved', 1)
     },
 
     getByPeriodId: async (id) => {
@@ -58,6 +61,7 @@ module.exports = function () {
           'stories.id'
         )
         .where('periodBridge.period_id', id)
+        .andWhere('stories.approved', 1)
     },
 
     getByAuthorId: async (id) => {
@@ -69,6 +73,7 @@ module.exports = function () {
           'stories.id'
         )
         .where('storyAuthorBridge.story_author_id', id)
+        .andWhere('stories.approved', 1)
     },
 
     getBySubjectId: async (id) => {
@@ -80,6 +85,7 @@ module.exports = function () {
           'stories.id'
         )
         .where('subjectBridge.subject_id', id)
+        .andWhere('stories.approved', 1)
     },
 
     getByCategoryVal: async (val) => {
@@ -97,6 +103,7 @@ module.exports = function () {
           'categoryBridge.category_id'
         )
         .where(raw('lower(categories.name) like ?', '%' + v + '%'))
+        .andWhere('stories.approved', 1)
         .groupBy('stories.id')
     },
 
@@ -115,6 +122,7 @@ module.exports = function () {
           'locationBridge.location_id'
         )
         .where(raw('lower(locations.name) like ?', '%' + v + '%'))
+        .andWhere('stories.approved', 1)
         .groupBy('stories.id')
     },
 
@@ -151,6 +159,7 @@ module.exports = function () {
           'periodBridge.period_id'
         )
         .where(raw('lower(periods.name) like ?', '%' + v + '%'))
+        .andWhere('stories.approved', 1)
         .groupBy('stories.id')
     },
 
@@ -187,6 +196,7 @@ module.exports = function () {
           'subjectBridge.subject_id'
         )
         .where(raw('lower(subjects.name) like ?', '%' + v + '%'))
+        .andWhere('stories.approved', 1)
         .groupBy('stories.id')
     },
 
@@ -198,6 +208,7 @@ module.exports = function () {
         // .where('stories.title', 'like', '%' + v + '%')
         // is this?
         .where(raw('lower(stories.title) like ?', '%' + v + '%'))
+        .andWhere('stories.approved', 1)
         .groupBy('stories.id')
     },
 
@@ -206,6 +217,7 @@ module.exports = function () {
       return Story.query()
         .select(Story.publicColumns)
         .where({ featured_rotation: 1 })
+        .andWhere('stories.approved', 1)
         .orderBy(raw('rand()'))
         .first()
         .throwIfNotFound()
