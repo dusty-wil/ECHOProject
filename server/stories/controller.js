@@ -10,6 +10,15 @@ module.exports = function () {
   return {
     get: async (id) => {
       return Story.query()
+        .select(Story.publicColumns)
+        .where({ id })
+        .andWhere('stories.approved', 1)
+        .first()
+        .throwIfNotFound()
+    },
+
+    adminGet: async (id) => {
+      return Story.query()
         .where({ id })
         .select(Story.publicColumns)
         .first()

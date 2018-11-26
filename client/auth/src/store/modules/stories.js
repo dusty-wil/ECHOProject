@@ -38,6 +38,13 @@ const actions = {
       })
   },
 
+  adminGetStoryById ({ dispatch, commit, state }, payload) {
+    return dispatch('apiRequest', {func: 'stories.adminGetStoryById', args: [payload]})
+      .then(story => {
+        return story
+      })
+  },
+
   updateStory ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'stories.updateStory', args: [payload]})
       .then(story => {

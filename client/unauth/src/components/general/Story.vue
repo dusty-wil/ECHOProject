@@ -5,30 +5,36 @@
             <span class="storyDesc">{{Story.desc}}</span>
             <span class="storyAuthors"><span class="authorTag" v-for="author in this.Story.authors">{{author.name}}</span></span>
             <br/>
-            <span class="tagLbl">Subjects:</span>
-            <ul class="subjectTagList">
-                <SubjectTag v-for="subject in this.Story.subjects" :Subject="subject" :key="subject.id"/>
-            </ul>
-            <br/>
-            <span class="tagLbl">Categories:</span>
-            <ul class="categoryTagList">
-                <CategoryTag v-for="category in this.Story.categories" :Category="category" :key="category.id"/>
-            </ul>
-            <br/>
-            <span class="tagLbl">Names:</span>
-            <ul class="nameTagList">
-                <NameTag v-for="name in this.Story.names" :Name="name" :key="name.id"/>
-            </ul>
-            <br/>
-            <span class="tagLbl">Dates:</span>
-            <ul class="periodTagList">
-                <PeriodTag v-for="period in this.Story.periods" :Period="period" :key="period.id"/>
-            </ul>
-            <br/>
-            <span class="tagLbl">Locations:</span>
-            <ul class="locationTagList">
-                <LocationTag v-for="location in this.Story.locations" :Location="location" :key="location.id"/>
-            </ul>
+            <div v-if="this.Story.subjects.length > 0">
+                <span class="tagLbl">Subjects:</span>
+                <ul class="subjectTagList">
+                    <SubjectTag v-for="subject in this.Story.subjects" :Subject="subject" :key="subject.id"/>
+                </ul>
+            </div>
+            <div v-if="this.Story.categories.length > 0">
+                <span class="tagLbl">Categories:</span>
+                <ul class="categoryTagList">
+                    <CategoryTag v-for="category in this.Story.categories" :Category="category" :key="category.id"/>
+                </ul>
+            </div>
+            <div v-if="this.Story.names.length > 0">
+                <span class="tagLbl">Names:</span>
+                <ul class="nameTagList">
+                    <NameTag v-for="name in this.Story.names" :Name="name" :key="name.id"/>
+                </ul>
+            </div>
+            <div v-if="this.Story.periods.length > 0">
+                <span class="tagLbl">Dates:</span>
+                <ul class="periodTagList">
+                    <PeriodTag v-for="period in this.Story.periods" :Period="period" :key="period.id"/>
+                </ul>
+            </div>
+            <div v-if="this.Story.locations.length > 0">
+                <span class="tagLbl">Locations:</span>
+                <ul class="locationTagList">
+                    <LocationTag v-for="location in this.Story.locations" :Location="location" :key="location.id"/>
+                </ul>
+            </div>
         </p>
     </div>
 </template>
@@ -59,12 +65,7 @@ export default {
   },
 
   data: () => ({
-    player: null,
-    categoryList: [],
-    locationList: [],
-    nameList: [],
-    periodList: [],
-    subjectList: []
+    player: null
   }),
 
   mounted () {

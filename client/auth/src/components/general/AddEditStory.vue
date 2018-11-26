@@ -299,8 +299,9 @@ export default {
 
     selectStory (storyId) {
       if (!this.checkInterruptUpload()) { return }
+      this.clearForm()
 
-      this.getStoryById(storyId)
+      this.adminGetStoryById(storyId)
         .then((result) => {
           this.selectedStory.id = result.id
           this.selectedStory.title = result.title
@@ -315,8 +316,6 @@ export default {
           this.selectedStory.locations = result.locations
           this.selectedStory.names = result.names
           this.selectedStory.authors = result.authors
-
-          this.clearTags()
 
           for (var category of this.selectedStory.categories) { this.toggleSel('categories', category) }
           for (var period of this.selectedStory.periods) { this.toggleSel('periods', period) }
@@ -358,6 +357,10 @@ export default {
       if (authors.length < 1) {
         alert('No authors were added. Please check the form and try again.')
         return
+      }
+
+      if ($('#youtubeId').val() && $('#youtubeId').val() != '' && $('#youtubeId').val() != this.selectedStory.youtubeId) {
+        this.selectedStory.youtubeId = $('#youtubeId').val()
       }
 
       this.selectedStory.categories = this.selectedCategories
@@ -411,7 +414,7 @@ export default {
       this.selectedStory.description = null
       this.selectedStory.approved = null
       this.selectedStory.featuredRotation = null
-      this.selectedStory.youtubeId = null
+      this.selectedStory.youtubeId = ''
       this.clearTags()
       this.clearAuthors()
     },
@@ -482,7 +485,6 @@ export default {
     },
 
     checkInterruptUpload () {
-      console.log($('#uploadInProgress').val())
       if (($('#uploadInProgress').val() && $('#uploadInProgress').val() != 0) || this.uploadInProgress != 0) {
         if (!confirm('Upload is currently in progress. This might interfere with the upload process. Continue?')) {
           return false
@@ -492,6 +494,7 @@ export default {
     }
   }, mapActions([
     'getStoryById',
+    'adminGetStoryById',
     'getAllStories',
     'getAllCategories',
     'getCategoryById',

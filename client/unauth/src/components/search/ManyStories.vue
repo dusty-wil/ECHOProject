@@ -2,10 +2,16 @@
     <div class="container">
         <div class="row">
             <div class="bodyWrapper">
-                <h2>Search Results for stories by {{searchType}}: {{typeName}}</h2>
-                <ul class="storySearchResults">
-                    <StorySearchResult v-for="result in results" :StorySearchResult="result" :key="result.id"/>
-                </ul>
+                <template v-if="storyDataNotFound">
+                    <h2>No results found for stories by {{searchType}}: {{typeVal}}</h2>
+                    <p>Please try a different search.</p>
+                </template>
+                <template v-else>
+                    <h2>Search results for stories by {{searchType}}: {{typeVal}}</h2>
+                    <ul class="storySearchResults">
+                        <StorySearchResult v-for="result in results" :StorySearchResult="result" :key="result.id"/>
+                    </ul>
+                </template>
             </div>
         </div>
     </div>
@@ -23,7 +29,8 @@ export default {
     return {
       results: null,
       searchType: '',
-      typeName: ''
+      typeVal: '',
+      storyDataNotFound: false
     }
   },
 
@@ -60,9 +67,14 @@ export default {
 
     getStoriesBy (searchType, searchParam, isMatching) {
       if (!isMatching && searchParam.id) {
+        this['get' + searchType.charAt(0).toUpperCase() + searchType.substr(1) + 'ById'](searchParam.id)
+          .then((res) => {
+            this.typeVal = res.name
+          })
         this.getStoriesByType(searchType, searchParam.id)
       } else if (isMatching && searchParam.searchValue) {
         var searchVal = searchParam.searchValue
+        this.typeVal = searchVal
         this.getStoriesByMatch(searchType, searchVal)
       }
     },
@@ -71,38 +83,32 @@ export default {
       if (searchType === 'category') {
         this.getByCategoryId(id)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'location') {
         this.getByLocationId(id)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'name') {
         this.getByNameId(id)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'period') {
         this.getByPeriodId(id)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'subject') {
         this.getBySubjectId(id)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'author') {
         this.getByAuthorId(id)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       }
     },
@@ -111,45 +117,47 @@ export default {
       if (searchType === 'category') {
         this.getByCategoryVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'location') {
         this.getByLocationVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'name') {
         this.getByNameVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'period') {
         this.getByPeriodVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'subject') {
         this.getBySubjectVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'author') {
         this.getByAuthorVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
       } else if (searchType === 'title') {
         this.getByTitleVal(searchVal)
           .then((results) => {
-            console.log(results)
-            this.results = results
+            this.parseResults(results)
           })
+      }
+    },
+
+    parseResults (results) {
+      if (results.length < 1) {
+        this.storyDataNotFound = true
+      } else {
+        this.storyDataNotFound = false
+        this.results = results
       }
     }
   },
@@ -166,7 +174,14 @@ export default {
     'getByPeriodVal',
     'getBySubjectVal',
     'getByAuthorVal',
-    'getByTitleVal'
+    'getByTitleVal',
+    'getCategoryById',
+    'getLocationById',
+    'getNameById',
+    'getPeriodById',
+    'getAuthorById',
+    'getSubjectById',
+    'getThemeById'
   ]))
 }
 </script>

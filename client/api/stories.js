@@ -6,6 +6,11 @@ export default (reqInstance) => ({
       .then(res => res.data)
   },
 
+  adminGetStoryById (id) {
+    return reqInstance.get(`stories/adminById/${id}`)
+      .then(res => res.data)
+  },
+
   getAllStories () {
     return reqInstance.get('stories/all')
       .then(res => res.data)
