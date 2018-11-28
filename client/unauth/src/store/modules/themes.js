@@ -1,12 +1,19 @@
 import Vue from 'vue'
+import * as types from '../mutationTypes'
 
 const getDefaultState = () => {
-  return {}
+  return {
+    themes: {
+      all: []
+    }
+  }
 }
 
 const state = getDefaultState()
 
-const getters = {}
+const getters = {
+  allThemes: state => state.themes.all
+}
 
 const actions = {
   getThemeById ({ dispatch, commit, state }, payload) {
@@ -17,7 +24,11 @@ const actions = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  [types.UPDATE_ALL_THEMES] (state, { themes }) {
+    state.themes.all = themes
+  }
+}
 
 export default {
   state,

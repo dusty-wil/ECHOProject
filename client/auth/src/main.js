@@ -3,6 +3,8 @@ import store from './store/main'
 import router from './router'
 import App from './components/App.vue'
 
+const moment = require('moment')
+
 new Vue({
   router,
   store,

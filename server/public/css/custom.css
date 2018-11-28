@@ -89,6 +89,14 @@ body
     margin-left: 5px;
 }
 
+#categorySel, #locationSel, #nameSel, 
+#periodSel, #subjectSel
+{
+    display: none;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
 .inputTxt
 {
     padding: 3px;
@@ -692,4 +700,16 @@ body
 #upload-progress
 {
     width: 100%;
+}
+
+.logOutLink
+{
+    float: right !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logOutLink:hover
+{
+    text-decoration: underline !important;
 }

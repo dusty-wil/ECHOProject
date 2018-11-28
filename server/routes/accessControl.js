@@ -26,6 +26,14 @@ module.exports = function (app, passport) {
     res.redirect('/')
   })
 
+  app.get('/logout', function (req, res) {
+  // app.get('/logout', function (req, res) {
+    // logout() is a function added by Passport's middleware
+    res.clearCookie('jwt')
+    req.logout()
+    res.redirect('/')
+  })
+
   // Used by back-end cluster to communicate
   app.post('/auth/login', passport.authenticate('local', { failureRedirect: '/auth/failure', session: false }),
     (req, res) => {

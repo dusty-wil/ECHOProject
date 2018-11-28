@@ -26,6 +26,7 @@ const router = new VueRouter({
     {name: 'Add/Edit Date', path: '/AddEditPeriod', component: AddEditPeriods},
     {name: 'Add/Edit Location', path: '/AddEditLocation', component: AddEditLocations},
     {name: 'Add/Edit Story', path: '/AddEditStory', component: AddEditStories},
+    {name: 'Log Out', path: '/logout'},
     {name: 'defaultRoute', path: '/*'}
   ]
 })

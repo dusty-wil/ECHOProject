@@ -97,7 +97,7 @@
                 >i</span>
                 <span id="visibilityToolTip" class="toolTipPopup">
                     This setting controls whether or not a given story will be visible on this site
-                    specifically, the story will not appear in tag searches, keyword searches, or in
+                    specifically; the story will not appear in tag searches, keyword searches, or in
                     the featured story rotation if it is not visible. This setting has no bearing on
                     the settings for the video on YouTube. To change the visibility of the video on
                     YouTube, it must be edited from YouTube directly.
@@ -209,6 +209,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import moment from 'moment'
 
 export default {
   components: {},
@@ -226,6 +227,7 @@ export default {
       description: null,
       approved: null,
       youtubeId: '',
+      publishDate: '',
       categories: [],
       locations: [],
       names: [],
@@ -316,6 +318,7 @@ export default {
           this.selectedStory.locations = result.locations
           this.selectedStory.names = result.names
           this.selectedStory.authors = result.authors
+          this.selectedStory.publishDate = result.publish_date
 
           for (var category of this.selectedStory.categories) { this.toggleSel('categories', category) }
           for (var period of this.selectedStory.periods) { this.toggleSel('periods', period) }
@@ -369,6 +372,12 @@ export default {
       this.selectedStory.subjects = this.selectedSubjects
       this.selectedStory.names = this.selectedNames
       this.selectedStory.authors = authors
+
+      if (this.selectedStory.approved) {
+        if (this.selectedStory.publishDate == '' || !this.selectedStory.publishDate) {
+          this.selectedStory.publishDate = moment().format('YYYY-MM-DD HH:mm:ss')
+        }
+      }
 
       if (this.selectedStory.id === null || this.selectedStory.id === '' || this.selectedStory.id === 0) {
         this.createStory(this.selectedStory)
@@ -468,8 +477,8 @@ export default {
     },
 
     showToolTip (ttName, event) {
-      var relX = event.originalTarget.offsetLeft + 30
-      var relY = event.originalTarget.offsetTop
+      var relX = event.target.offsetLeft + 30
+      var relY = event.target.offsetTop
 
       $('#' + ttName + 'ToolTip').css({
         'display': 'block',

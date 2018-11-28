@@ -157,7 +157,12 @@ UploadVideo.prototype.uploadFile = function(file) {
       $('#youtubeId').val(this.videoId);
       $('.post-upload').show();
       $('#uploadInProgress').val(0);
-      alert('Upload complete! You may now add tags to the story and save any changes.');
+      alert(
+        'Upload complete! You may now add tags to the story and save any changes. ' + 
+        'Please be aware that it may take between 15 minutes to an hour for the video ' + 
+        'to be processed by YouTube once it has been uploaded. If the video isn\'t available' + 
+        'right away, check back later.'
+      );
       this.pollForVideoStatus();
     }.bind(this)
   });
