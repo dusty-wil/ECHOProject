@@ -42,7 +42,7 @@ module.exports = {
   generateTokenObject (tokenKey, expirationKey) {
     const ret = {}
     ret[tokenKey] = crypto.randomBytes(20).toString('hex')
-    ret[expirationKey] = moment().add(1, 'd').format('YYYY-MM-DD HH:mm:ss')
+    ret[expirationKey] = moment().add(1, 'h').format('YYYY-MM-DD HH:mm:ss')
     return ret
   }
 }
