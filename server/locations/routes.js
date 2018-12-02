@@ -18,8 +18,6 @@ module.exports = function (router) {
   })
 
   router.get('/locations/delete/:id', function (req, res, done) {
-    console.log('calling bridge')
-    console.log(req.params.id)
     LocationBridgeController().deleteLocationBridgeByLocationId(req.params.id)
       .then(function () {
         // return the deleted record

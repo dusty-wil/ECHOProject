@@ -38,8 +38,6 @@ module.exports = function (router) {
   })
 
   router.post('/users/resetPassword', function (req, res, done) {
-    console.log('router users resetPassword')
-    console.log(req.body)
     var errors = []
 
     if (req.body.password !== req.body.passwordConf) {

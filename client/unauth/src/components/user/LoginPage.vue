@@ -60,8 +60,8 @@ export default {
             alert(res.error)
           } else {
             alert(
-              'Password reset request sent. Please check your email for instructions. '
-              + 'If you don\'t see the email right away, be sure to check your spam folder.'
+              'Password reset request sent. Please check your email for instructions. ' +
+              'If you don\'t see the email right away, be sure to check your spam folder.'
             )
           }
         })

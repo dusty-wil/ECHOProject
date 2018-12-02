@@ -85,7 +85,6 @@ module.exports = function () {
     },
 
     sendResetPasswordEmail: async function (username, email, host, token) {
-      process.env.SENDGRID_API_KEY='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'
       sgMail.setApiKey(process.env.SENDGRID_API_KEY);
       const msg = {
         to: email,

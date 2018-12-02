@@ -38,4 +38,6 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
+process.env.SENDGRID_API_KEY = ''
+
 module.exports = { app, server }
