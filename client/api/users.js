@@ -18,5 +18,15 @@ export default (reqInstance) => ({
 
   logout () {
     return reqInstance.get('logout')
+  },
+
+  forgotPassword (payload) {
+    return reqInstance.post('users/forgotPassword', payload)
+      .then(res => res.data)
+  },
+
+  resetPassword (payload) {
+    return reqInstance.post('users/resetPassword', payload)
+      .then(res => res.data)
   }
 })

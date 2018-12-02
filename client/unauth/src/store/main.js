@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as actions from './actions'
 
 // Modules:
+import users from './modules/users'
 import categories from './modules/categories'
 import stories from './modules/stories'
 import names from './modules/names'
@@ -19,6 +20,7 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   actions,
   modules: {
+    users,
     categories,
     stories,
     names,

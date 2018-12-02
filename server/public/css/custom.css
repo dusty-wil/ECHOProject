@@ -511,6 +511,17 @@ body
     display: inline-block;
 }
 
+.loginBtn
+{
+    color: #2C2C2C !important;
+    background-color: #EFEFEF;
+}
+
+.loginBtn:hover
+{
+    background-color: #FFFFFF !important;
+}
+
 .dashboardLinks li a
 {
     color: #EFEFEF;
@@ -702,6 +713,11 @@ body
     width: 100%;
 }
 
+.loginActions
+{
+  margin-top: 10px;
+}
+
 .logOutLink
 {
     float: right !important;
@@ -712,4 +728,28 @@ body
 .logOutLink:hover
 {
     text-decoration: underline !important;
+}
+
+.forgotPasswordLink
+{
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.forgotPasswordLink:hover
+{
+    text-decoration: underline !important;
+}
+
+.formErrors
+{
+    padding: 10px;
+    background-color: #A40E36;
+    border-left: 5px solid #D31245;
+    list-style-type: none;
+
+            border-radius: 12px;
+       -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
 }

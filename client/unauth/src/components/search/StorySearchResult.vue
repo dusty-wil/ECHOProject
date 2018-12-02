@@ -3,7 +3,7 @@
         <img v-bind:src="'https://img.youtube.com/vi/' + StorySearchResult.youtube_path + '/mqdefault.jpg'"/>
         <h4>{{StorySearchResult.title}}</h4>
         <p>
-            {{StorySearchResult.desc}}
+            {{StorySearchResult.description}}
             <br/>
             <span class="searchResultAuthorTag" v-for="author in StorySearchResult.authors">{{author.name}}</span>
         </p>

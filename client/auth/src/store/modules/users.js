@@ -29,18 +29,21 @@ const actions = {
         commit(types.UPDATED_USER_PASSWORD, { user })
       })
   },
+
   getCurrentUser ({ dispatch, commit, state }) {
     return dispatch('apiRequest', {func: 'users.getCurrentUser'})
       .then(user => {
         commit(types.RECEIVED_CURRENT_USER, { user })
       })
   },
+
   updateProfile ({ dispatch, commit, state }, payload) {
     return dispatch('apiRequest', {func: 'users.updateProfile', args: [payload]})
       .then(user => {
         commit(types.UPDATED_USER_PROFILE, { user })
       })
   },
+
   logout ({ dispatch, commit, state }) {
     return dispatch('apiRequest', { func: 'users.logout' })
       .then(function () {

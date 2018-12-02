@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import LoginPage from './components/user/LoginPage.vue'
+import ResetPasswordPage from './components/user/ResetPassword.vue'
 import Home from './components/general/Home.vue'
 import About from './components/general/About.vue'
 import SingleStoryResult from './components/search/SingleStory.vue'
@@ -14,6 +15,7 @@ const router = new VueRouter({
   routes: [
     {path: '/home', alias: '/', component: Home},
     {path: '/login', component: LoginPage},
+    {path: '/reset/:token', component: ResetPasswordPage},
     {path: '/about', component: About},
     // search endpoints
     {path: '/story/search/byCategory/:id', component: ManyStoryResults},

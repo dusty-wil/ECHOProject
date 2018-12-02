@@ -114,7 +114,7 @@
                         <span
                             class="g-signin"
                             data-callback="signinCallback"
-                            data-clientid="261927204966-ttg4vjb3k1d8opg12ol8fl6n57o04od7.apps.googleusercontent.com"
+                            data-clientid="558073159759-tv9180eiuhfr6l68sdufoi6m64pe2csn.apps.googleusercontent.com"
                             data-cookiepolicy="single_host_origin"
                             data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube"
                         >

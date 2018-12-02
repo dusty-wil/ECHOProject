@@ -3,6 +3,7 @@ const Story = controller()
 const Logger = require('../utils/logger').Logger
 const log = Logger('app:echo:poo')
 const { NotFoundError } = require('objection') 
+const sgMail = require('@sendgrid/mail')
 
 const CategoryBridgeController = require('../categoryBridge/controller')
 const LocationBridgeController = require('../locationBridge/controller')

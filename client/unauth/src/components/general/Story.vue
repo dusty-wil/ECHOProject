@@ -2,7 +2,7 @@
     <div class="story">
         <div id="player"></div>
         <p>
-            <span class="storyDesc">{{Story.desc}}</span>
+            <span class="storyDesc">{{Story.description}}</span>
             <span class="storyAuthors"><span class="authorTag" v-for="author in this.Story.authors">{{author.name}}</span></span>
             <br/>
             <div v-if="this.Story.subjects.length > 0">

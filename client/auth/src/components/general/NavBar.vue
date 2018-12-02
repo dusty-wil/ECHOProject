@@ -18,7 +18,7 @@ import { mapActions } from 'vuex'
 export default {
   methods: Object.assign({
     lo () {
-      if (confirm('Are you sure you want to log out?')) { 
+      if (confirm('Are you sure you want to log out?')) {
         this.logout()
       }
     }
