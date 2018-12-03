@@ -113,12 +113,11 @@
                     <span id="signinButton" class="pre-sign-in">
                         <span
                             class="g-signin"
-                            data-callback="signinCallback"
                             data-clientid="558073159759-tv9180eiuhfr6l68sdufoi6m64pe2csn.apps.googleusercontent.com"
+                            data-callback="signinCallback"
                             data-cookiepolicy="single_host_origin"
                             data-scope="https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube"
-                        >
-                        </span>
+                        ></span>
                     </span>
 
                     <div class="post-sign-in">
@@ -247,6 +246,7 @@ export default {
 
   created () {
     // this.fetchData()
+    this.attachGoogleSignin()
   },
 
   mounted () {
@@ -500,6 +500,15 @@ export default {
         }
       }
       return true
+    },
+
+    attachGoogleSignin () {
+      var po = document.createElement('script')
+      po.type = 'text/javascript'
+      po.async = true
+      po.src = 'https://apis.google.com/js/client:plusone.js'
+      var s = document.getElementsByTagName('script')[0]
+      s.parentNode.insertBefore(po, s)
     }
   }, mapActions([
     'getStoryById',
