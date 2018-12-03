@@ -17,6 +17,7 @@ module.exports = function () {
     getAll: async () => {
       return Category.query()
         .select(Category.publicColumns)
+        .orderBy('name')
         .throwIfNotFound()
     },
 

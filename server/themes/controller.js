@@ -17,6 +17,7 @@ module.exports = function () {
     getAll: async () => {
       return Theme.query()
         .select(Theme.publicColumns)
+        .orderBy('name')
         .throwIfNotFound()
     },
 

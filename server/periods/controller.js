@@ -17,6 +17,7 @@ module.exports = function () {
     getAll: async () => {
       return Period.query()
         .select(Period.publicColumns)
+        .orderBy('name')
         .throwIfNotFound()
     },
 

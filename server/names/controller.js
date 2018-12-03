@@ -17,6 +17,7 @@ module.exports = function () {
     getAll: async () => {
       return Name.query()
         .select(Name.publicColumns)
+        .orderBy('name')
         .throwIfNotFound()
     },
 

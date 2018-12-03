@@ -17,6 +17,7 @@ module.exports = function () {
     getAll: async () => {
       return Subject.query()
         .select(Subject.publicColumns)
+        .orderBy('name')
         .throwIfNotFound()
     },
 
