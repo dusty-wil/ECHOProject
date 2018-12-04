@@ -10,9 +10,9 @@
                     </li>
                 </ul>
                 <div class="formBtnContainer">
-                    <button class="formBtn saveBtn" v-on:click="saveStory">Save</button>
-                    <button class="formBtn clearBtn" v-on:click="clearStory" type="reset">Cancel</button>
-                    <button class="formBtn delBtn" v-on:click="delStory">Delete</button>
+                    <button type="button" class="formBtn saveBtn" v-on:click="saveStory">Save</button>
+                    <button type="button" class="formBtn clearBtn" v-on:click="clearStory" type="reset">Cancel</button>
+                    <button type="button" class="formBtn delBtn" v-on:click="delStory">Delete</button>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@
 
                         <div>
                             <input input type="file" id="file" class="uploadBtn" accept="video/*">
-                            <button class="formBtn saveBtn" id="upload-button">Upload Video</button>
+                            <button type="button" class="formBtn saveBtn" id="upload-button">Upload Video</button>
                         </div>
 
                         <div class="during-upload">
@@ -246,10 +246,10 @@ export default {
 
   created () {
     // this.fetchData()
-    this.attachGoogleSignin()
   },
 
   mounted () {
+    this.attachGoogleSignin()
     this.fetchData()
   },
 
@@ -507,8 +507,9 @@ export default {
       po.type = 'text/javascript'
       po.async = true
       po.src = 'https://apis.google.com/js/client:plusone.js'
-      var s = document.getElementsByTagName('script')[0]
-      s.parentNode.insertBefore(po, s)
+      document.head.appendChild(po)
+      // var s = document.getElementsByTagName('script')[0]
+      // s.parentNode.insertBefore(po, s)
     }
   }, mapActions([
     'getStoryById',
