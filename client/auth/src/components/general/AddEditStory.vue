@@ -10,9 +10,9 @@
                     </li>
                 </ul>
                 <div class="formBtnContainer">
-                    <button type="button" class="formBtn saveBtn" v-on:click="saveStory">Save</button>
-                    <button type="button" class="formBtn clearBtn" v-on:click="clearStory" type="reset">Cancel</button>
-                    <button type="button" class="formBtn delBtn" v-on:click="delStory">Delete</button>
+                    <button class="formBtn saveBtn" v-on:click="saveStory">Save</button>
+                    <button class="formBtn clearBtn" v-on:click="clearStory" type="reset">Cancel</button>
+                    <button class="formBtn delBtn" v-on:click="delStory">Delete</button>
                 </div>
             </div>
 
