@@ -1,6 +1,6 @@
 'use strict'
 
-const ids = [1,2,3,4]
+const ids = [1,2,3,4,5,6,7,8,9]
 
 const authHelpers = require('../../utils/authHelpers')
 exports.seed = function (knex, Promise) {
@@ -14,20 +14,40 @@ exports.seed = function (knex, Promise) {
       return knex('categories')
         .insert([
             {
-                name: 'category 1',
-                description: 'description of category 1',
+                name: 'Slavery',
+                description: 'Slavery'
             },
             {
-                name: 'category 2',
-                description: 'description of category 2',
+                name: 'American Plantations',
+                description: 'American Plantations'
             },
             {
-                name: 'category 3',
-                description: 'description of category 3',
+                name: 'World War II',
+                description: 'World War II'
             },
             {
-                name: 'category 4',
-                description: 'description of category 4',
+                name: 'POW',
+                description: 'POW'
+            },
+            {
+                name: 'Robbery',
+                description: 'Robbery'
+            },
+            {
+                name: 'Crime',
+                description: 'Crime'
+            },
+            {
+                name: 'School',
+                description: 'School'
+            },
+            {
+                name: 'Museum',
+                description: 'Museum'
+            },
+            {
+                name: 'Military',
+                description: 'Military'
             }
         ])
     })

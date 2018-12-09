@@ -16,10 +16,10 @@ exports.seed = function (knex, Promise) {
         .insert([
           {
             username: 'echo_admin',
-            email: `dusty.wil@gmail.com`,
+            email: `digitalstoriesatcalu@gmail.com`,
             first_name: 'ECHO',
             last_name: 'Admin',
-            password: authHelpers.generateHash('TerriblePassword'),
+            password: authHelpers.generateHash('TestPassword1'),
             active: true,
             role: 'admin'
           }

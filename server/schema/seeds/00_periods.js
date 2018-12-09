@@ -1,6 +1,6 @@
 'use strict'
 
-const ids = [1,2,3,4]
+const ids = [1,2,3,4,5,6,7,8]
 
 const authHelpers = require('../../utils/authHelpers')
 exports.seed = function (knex, Promise) {
@@ -14,20 +14,36 @@ exports.seed = function (knex, Promise) {
       return knex('periods')
         .insert([
             {
-                name: 'period 1',
-                description: 'description of period 1',
+                name: 'Reconstruction Era',
+                description: 'Reconstruction Era',
             },
             {
-                name: 'period 2',
-                description: 'description of period 2',
+                name: '1848',
+                description: '1848'
             },
             {
-                name: 'period 3',
-                description: 'description of period 3',
+                name: '1942',
+                description: '1942'
             },
             {
-                name: 'period 4',
-                description: 'description of period 4',
+                name: 'Machine Age',
+                description: 'Machine Age'
+            },
+            {
+                name: 'World War II',
+                description: 'World War II'
+            },
+            {
+                name: '1862',
+                description: '1862'
+            },
+            {
+                name: 'Late Modern Period',
+                description: 'Late Modern Period'
+            },
+            {
+                name: '1814',
+                description: '1814'
             }
         ])
     })
